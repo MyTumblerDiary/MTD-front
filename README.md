@@ -8,7 +8,7 @@
 
 ## How to use
 
-### `start project`
+### `Start project`
 
 ```bash
 npm install
