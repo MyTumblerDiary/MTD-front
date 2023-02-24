@@ -32,7 +32,7 @@ npm run format
 
 ## Library
 
-- `next`: v13.1.6,
+- `next`: v13.1.6
 - `react` : v18.2.0
 - `typescript` : v4.9.5
 - `apollo-client` : v3.7.9
