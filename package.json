@@ -7,6 +7,7 @@
     "format": "prettier src/**/*.ts{,x} --write",
     "lint": "eslint .",
     "lint:fix": "exlint . --fix src/**/*.ts{,x}",
+    "test": "jest --watch",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
@@ -32,11 +33,15 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/styled-components": "^5.1.26",
     "babel-plugin-styled-components": "^2.0.7",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
+    "jest": "^29.4.3",
+    "jest-environment-jsdom": "^29.4.3",
     "prettier": "^2.8.4"
   }
 }
