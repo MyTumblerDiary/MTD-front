@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Temp from './Temp';
+import Temp from '../Temp';
 
 describe('Temp', () => {
   it('Shows Temp component', () => {
