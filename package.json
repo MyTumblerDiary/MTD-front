@@ -6,7 +6,7 @@
     "postinstall": "husky install",
     "format": "prettier src/**/*.ts{,x} --write",
     "lint": "eslint .",
-    "lint:fix": "exlint . --fix src/**/*.ts{,x}",
+    "lint:fix": "eslint . --fix src/**/*.ts{,x}",
     "test": "jest --watch",
     "dev": "next dev",
     "build": "next build",
