@@ -29,6 +29,7 @@
     "no-plusplus": "off",
     "react/jsx-no-constructed-context-values": "off",
     "import/no-cycle": "off",
-    "no-case-declarations": "off"
+    "no-case-declarations": "off",
+    "import/no-anonymous-default-export": [2, { "allowObject": true }]
   }
 }

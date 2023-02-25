@@ -1,1 +1,3 @@
-export const temp = 'temp';
+import Temp from './Temp';
+
+export default { Temp };
