@@ -15,15 +15,13 @@ export default function Input({ name, size, onChange, ...rest }: Props) {
   const sizeStyle = SIZES[size];
 
   return (
-    <>
-      <Style.Label htmlFor={name}>{name}</Style.Label>
-      <Style.Input
-        id={name}
-        name={name}
-        sizeStyle={sizeStyle}
-        onChange={onChange}
-        {...rest}
-      />
-    </>
+    <Style.Input
+      id={name}
+      name={name}
+      sizeStyle={sizeStyle}
+      onChange={onChange}
+      {...rest}
+      aria-label={`${name}-input`}
+    />
   );
 }
