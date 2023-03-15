@@ -1,13 +1,13 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import Input from './Input';
 
 describe('Input', () => {
-  const renderer = (
-    value: string | number,
+  const setup = (
+    value: string | number = '',
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void = () => {}
   ) => {
-    const { getByLabelText } = render(
+    const utils = render(
       <Input
         type='text'
         name='test'
@@ -18,11 +18,28 @@ describe('Input', () => {
       />
     );
 
-    return { getByLabelText };
+    const input = screen.getByLabelText('test-input');
+
+    return { ...utils, input };
   };
 
-  it('Show Input component', () => {
-    const { getByLabelText } = renderer('');
-    expect(getByLabelText('test')).not.toBeNull();
+  it('Mounts Input component', () => {
+    const { input } = setup();
+
+    expect(input).not.toBeNull();
+  });
+
+  it('Change Input value', () => {
+    let testValue = 'test value';
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      testValue = e.target.value;
+    };
+
+    const { input } = setup(testValue, handleChange);
+
+    fireEvent.change(input, { target: { value: 'change value' } });
+
+    expect(testValue).toBe('change value');
   });
 });
