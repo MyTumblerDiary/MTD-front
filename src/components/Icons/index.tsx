@@ -1,4 +1,6 @@
 import Search from './Search';
 import BracketDown from './BracketDown';
+import RequiredStar from './RequiredStar';
+import AlertFilled from './AlertFiiled';
 
-export { Search, BracketDown };
+export default { Search, BracketDown, RequiredStar, AlertFilled };
