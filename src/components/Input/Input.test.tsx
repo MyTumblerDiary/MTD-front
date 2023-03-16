@@ -5,6 +5,10 @@ import Input from './Input';
 describe('Input', () => {
   const setup = (
     value: string | number = '',
+    isLabelVisible: boolean = true,
+    isRequired: boolean = false,
+    validation: 'default' | 'error' | 'success' = 'default',
+    message: string = '',
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void = () => {}
   ) => {
     const utils = render(
@@ -13,6 +17,11 @@ describe('Input', () => {
         name='test'
         size='md'
         value={value}
+        label='test label'
+        isLabelVisible={isLabelVisible}
+        isRequired={isRequired}
+        validation={validation}
+        message={message}
         onChange={onChange}
         placeholder='test'
       />
@@ -36,10 +45,41 @@ describe('Input', () => {
       testValue = e.target.value;
     };
 
-    const { input } = setup(testValue, handleChange);
+    const { input } = setup(
+      testValue,
+      true,
+      false,
+      'default',
+      '',
+      handleChange
+    );
 
     fireEvent.change(input, { target: { value: 'change value' } });
 
     expect(testValue).toBe('change value');
+  });
+
+  it('Shows label', () => {
+    const { getByText } = setup('', true, false);
+
+    expect(getByText(/test label/)).not.toBeNull();
+  });
+
+  it('Shows error alert icon', () => {
+    const { getByRole } = setup('', true, true, 'error');
+
+    expect(getByRole('error_alert')).not.toBeNull();
+  });
+
+  it('Shows validation message', () => {
+    const { getByText } = setup(
+      '',
+      true,
+      true,
+      'error',
+      'test validation message'
+    );
+
+    expect(getByText('test validation message')).not.toBeNull();
   });
 });
