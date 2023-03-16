@@ -1,8 +1,9 @@
-import Icons from '../Icons';
-import Typography from '../Typography/Typography';
 import * as Style from './Input.style';
 
 import { SIZES, VARIANTS } from './Input.variant';
+
+import Icons from '../Icons';
+import Typography from '../Typography/Typography';
 
 interface Props {
   type: 'text' | 'password' | 'email';

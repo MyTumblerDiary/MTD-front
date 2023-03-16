@@ -1,10 +1,10 @@
 import styled, { CSSProp } from 'styled-components';
 
-interface Props {
+interface ButtonProps {
   sizeStyle: CSSProp;
 }
 
-export const Button = styled.button<Props>`
+export const Button = styled.button<ButtonProps>`
   ${(props) => props.sizeStyle}
   width: var(--button-width, 280px);
   height: var(--button-height, 48px);

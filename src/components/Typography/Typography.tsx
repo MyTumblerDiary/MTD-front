@@ -1,4 +1,5 @@
 import * as Style from './Typography.style';
+
 import { SIZES, VARIANTS } from './Typography.variant';
 
 interface Props {
