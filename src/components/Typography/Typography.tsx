@@ -1,5 +1,5 @@
 import * as Style from './Typography.style';
-import { SIZES, VARIANT } from './Typography.variant';
+import { SIZES, VARIANTS } from './Typography.variant';
 
 interface Props {
   size: 'body1' | 'body2' | 'button1' | 'button2';
@@ -13,7 +13,7 @@ export default function Typography({
   children
 }: Props) {
   const sizeStyle = SIZES[size];
-  const variantStyle = VARIANT[variant];
+  const variantStyle = VARIANTS[variant];
 
   return (
     <Style.Typography sizeStyle={sizeStyle} variantStyle={variantStyle}>
