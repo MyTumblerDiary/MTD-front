@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
   color: {
     main: '#A435EF',
+
     g900: '#222222',
     g800: '#4D4D4D',
     g700: '#656565',
@@ -12,11 +13,12 @@ const theme: DefaultTheme = {
     g300: '#E4E4E4',
     g200: '#EFEFEF',
     g100: '#F5F5F5',
-    success: '#09E36B',
-    notice: '#FFD83B',
-    warning: '#FF8B48',
-    error: '#FF4E44',
-    info: '#6570D6'
+
+    success: '#006EFF',
+    warning: '#F09A00',
+    error: '#F00001',
+
+    border: '#D1D1D1'
   },
 
   maxWidth: '768px'
