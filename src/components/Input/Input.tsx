@@ -16,7 +16,7 @@ interface Props {
   validation?: 'default' | 'success' | 'error';
   message?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+  placeholder: string;
 }
 
 export default function Input({
