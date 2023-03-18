@@ -21,7 +21,8 @@ const theme: DefaultTheme = {
     border: '#D1D1D1'
   },
 
-  maxWidth: '768px'
+  maxWidth: '768px',
+  bottomNavigatorHeight: '70px'
 };
 
 export default theme;
