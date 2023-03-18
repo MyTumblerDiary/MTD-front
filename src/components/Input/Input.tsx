@@ -2,7 +2,7 @@ import * as Style from './Input.style';
 
 import { SIZES, VARIANTS } from './Input.variant';
 
-import Icons from '../Icons';
+import Svg from '../Svg';
 import Typography from '../Typography/Typography';
 
 interface Props {
@@ -38,7 +38,7 @@ export default function Input({
       {isLabelVisible && (
         <Style.Label htmlFor={name}>
           <Typography size='body2'>{label}</Typography>
-          {isRequired && <Icons.RequiredStar />}
+          {isRequired && <Svg.RequiredStar />}
         </Style.Label>
       )}
       <Style.InputWrapper sizeStyle={sizeStyle}>
@@ -51,7 +51,7 @@ export default function Input({
           aria-label={`${name}-input`}
         />
         <Style.AlertWrapper>
-          {validation === 'error' && <Icons.AlertFilled />}
+          {validation === 'error' && <Svg.AlertFilled />}
         </Style.AlertWrapper>
       </Style.InputWrapper>
       {message && <Style.ValidationMessage>{message}</Style.ValidationMessage>}
