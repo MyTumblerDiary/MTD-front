@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import * as Style from './BottomNavigator.style';
+
 import Svg from '../../svg';
 
 export default function BottomNavigator() {

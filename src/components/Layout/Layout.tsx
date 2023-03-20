@@ -1,5 +1,5 @@
-import React from 'react';
 import * as Style from './Layout.style';
+
 import BottomNavigator from './BottomNavigator/BottomNavigator';
 
 interface LayoutProps {
