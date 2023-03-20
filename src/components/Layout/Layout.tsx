@@ -13,7 +13,7 @@ export default function Layout({
 }: LayoutProps) {
   return (
     <Style.LayoutContainer>
-      <Style.Main bottomNavigator={bottomNavigator}>{children}</Style.Main>
+      <Style.Main hasBottomNavigator={bottomNavigator}>{children}</Style.Main>
       {bottomNavigator && <BottomNavigator />}
     </Style.LayoutContainer>
   );
