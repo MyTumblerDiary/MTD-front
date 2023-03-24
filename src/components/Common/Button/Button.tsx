@@ -1,26 +1,22 @@
 import * as Style from './Button.style';
 
+import { type ButtonProps } from '@/types';
+
 import { SIZES } from './Button.variant';
 
-interface Props {
-  size: 'sm' | 'md';
-  name: string;
-  children: React.ReactNode;
-  onClick: () => void;
-}
-
 export default function Button({
+  type,
   size,
   name,
   children,
   onClick,
   ...rest
-}: Props) {
+}: ButtonProps) {
   const sizeStyle = SIZES[size];
 
   return (
     <Style.Button
-      type='button'
+      type={type}
       name={name}
       sizeStyle={sizeStyle}
       onClick={onClick}

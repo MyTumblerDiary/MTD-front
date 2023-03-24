@@ -1,23 +1,11 @@
 import * as Style from './Input.style';
-
 import { SIZES, VARIANTS } from './Input.variant';
 
-import Svg from '../Svg';
-import Typography from '../Typography/Typography';
+import Svg from '../../svg';
 
-interface Props {
-  type: 'text' | 'password' | 'email';
-  name: string;
-  size: 'sm' | 'md';
-  value: string | number;
-  label: string;
-  isLabelVisible?: boolean;
-  isRequired?: boolean;
-  validation?: 'default' | 'success' | 'error';
-  message?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-}
+import { type InputProps } from '@/types';
+
+import Typography from '../Typography/Typography';
 
 export default function Input({
   name,
@@ -29,7 +17,7 @@ export default function Input({
   message = '',
   onChange,
   ...rest
-}: Props) {
+}: InputProps) {
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[validation];
 
