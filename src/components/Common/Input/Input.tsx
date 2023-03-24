@@ -1,7 +1,7 @@
 import * as Style from './Input.style';
 import { SIZES, VARIANTS } from './Input.variant';
 
-import Svg from '../svg';
+import Svg from '../../svg';
 
 import { type InputProps } from '@/types';
 
