@@ -1,0 +1,28 @@
+name: Project CI when run pull_request
+
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  Continuous_Integration:
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_TOKEN: ${{secrets.REACT_APP_TOKEN}}
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: 체크아웃 액션을 사용합니다.
+        uses: actions/checkout@v3
+      - name: Node.js ${{ matrix.node-version }}을 설치합니다.
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: NPM 패키지를 설치합니다.
+        run: npm ci
+      - name: 코드 포맷팅을 체크합니다.
+        run: npm run format:check
+      - name: 코드 규칙을 체크합니다.
+        run: npm run lint
+      - name: 테스트 코드를 체크합니다.
+        run: npm run test
