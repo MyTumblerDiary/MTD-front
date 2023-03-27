@@ -1,34 +1,8 @@
-# Getting Started with Boilerplate-next-apollo
+# MTD-front
 
 ## Description
 
-- This repository is a code for next-typescript-apollo users.
-- This boilerplate is set with Recoil and Styled-components etc.
-- This boilerplate code has pre-commit / commit-lint settings using husky hooks
-
-## How to use
-
-### `Start project`
-
-```bash
-npm install
-
-npm start
-```
-
-### `Linting codes`
-
-```bash
-npm run lint
-
-npm run lint:fix
-```
-
-### `Formatting codes`
-
-```bash
-npm run format
-```
+- My tumbler diary front-end repository
 
 ## Library
 
