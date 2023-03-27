@@ -9,6 +9,10 @@ export const SIZES = {
     --typography-size: 14px;
     --typography-weight: 400;
   `,
+  body3: css`
+    --typography-size: 12px;
+    --typography-weight: 400;
+  `,
   button1: css`
     --typography-size: 16px;
     --typography-weight: 700;
