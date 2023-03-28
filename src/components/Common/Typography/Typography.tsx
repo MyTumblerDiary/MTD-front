@@ -2,17 +2,13 @@ import * as Style from './Typography.style';
 
 import { SIZES, VARIANTS } from './Typography.variant';
 
-interface Props {
-  size: 'body1' | 'body2' | 'button1' | 'button2';
-  variant?: 'default' | 'accent';
-  children: React.ReactNode;
-}
+import { TypographyProps } from '../../../types/typography.type';
 
 export default function Typography({
   size,
   variant = 'default',
   children
-}: Props) {
+}: TypographyProps) {
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
 

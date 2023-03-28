@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import theme from '@/styles/theme';
 
 export const SIZES = {
   body1: css`
@@ -29,5 +30,8 @@ export const VARIANTS = {
   `,
   accent: css`
     --typography-color: white;
+  `,
+  gray: css`
+    --typography-color: ${theme.color.g400};
   `
 };
