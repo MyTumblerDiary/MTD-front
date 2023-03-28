@@ -2,7 +2,7 @@ import Svg from '../components/svg';
 
 const NAVIGATOR = {
   cafe: {
-    icon: <Svg.Cafe />,
+    icon: <Svg.Mug />,
     title: '카페',
     path: '/cafes'
   },
