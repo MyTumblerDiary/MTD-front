@@ -3,8 +3,8 @@ import * as Style from './Typography.style';
 import { SIZES, VARIANTS } from './Typography.variant';
 
 interface Props {
-  size: 'body1' | 'body2' | 'button1' | 'button2';
-  variant?: 'default' | 'accent';
+  size: 'body1' | 'body2' | 'body3' | 'caption' | 'button1' | 'button2';
+  variant?: 'default' | 'accent' | 'success' | 'error';
   children: React.ReactNode;
 }
 
