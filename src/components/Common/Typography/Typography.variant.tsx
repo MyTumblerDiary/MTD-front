@@ -21,6 +21,10 @@ export const SIZES = {
   button2: css`
     --typography-size: 14px;
     --typography-weight: 700;
+  `,
+  caption: css`
+    --typography-size: 10px;
+    --typography-weight: 400;
   `
 };
 
@@ -33,5 +37,11 @@ export const VARIANTS = {
   `,
   gray: css`
     --typography-color: ${theme.color.g400};
+  `,
+  success: css`
+    --typography-color: #006eff;
+  `,
+  error: css`
+    --typography-color: #f00001;
   `
 };

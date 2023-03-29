@@ -1,5 +1,5 @@
 import * as Style from './Input.style';
-import { SIZES, VARIANTS } from './Input.variant';
+import { SIZES, INPUT_VARIANTS, LABEL_VARIANTS } from './Input.variant';
 
 import Svg from '../../svg';
 
@@ -19,13 +19,15 @@ export default function Input({
   ...rest
 }: InputProps) {
   const sizeStyle = SIZES[size];
-  const variantStyle = VARIANTS[validation];
+  const inputVariantStyle = INPUT_VARIANTS[validation];
 
   return (
     <Style.InputWithLabel>
       {isLabelVisible && (
         <Style.Label htmlFor={name}>
-          <Typography size='body2'>{label}</Typography>
+          <Typography size='caption' variant={validation}>
+            {label}
+          </Typography>
           {isRequired && <Svg.RequiredStar />}
         </Style.Label>
       )}
@@ -33,7 +35,7 @@ export default function Input({
         <Style.Input
           id={name}
           name={name}
-          variantStyle={variantStyle}
+          variantStyle={inputVariantStyle}
           onChange={onChange}
           {...rest}
           aria-label={`${name}-input`}

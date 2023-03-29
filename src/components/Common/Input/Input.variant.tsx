@@ -11,9 +11,21 @@ export const SIZES = {
   `
 };
 
-export const VARIANTS = {
+export const LABEL_VARIANTS = {
   default: css`
-    --input-border: #d1d1d1;
+    --label-color: black;
+  `,
+  success: css`
+    --label-color: #006eff;
+  `,
+  error: css`
+    --label-color: #f00001;
+  `
+};
+
+export const INPUT_VARIANTS = {
+  default: css`
+    --input-border: #f5f5f5;
   `,
   success: css`
     --input-border: #006eff;
