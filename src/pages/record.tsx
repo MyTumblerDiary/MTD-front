@@ -1,7 +1,13 @@
 import Layout from '../components/Layout/Layout';
+import PageHead from '@/components/Head/Head';
 
 export default function Record() {
-  return <div>기록하는 페이지</div>;
+  return (
+    <div>
+      <PageHead title='기록하기' />
+      기록하는 페이지
+    </div>
+  );
 }
 
 Record.getLayout = function getLayout(page: React.ReactElement) {
