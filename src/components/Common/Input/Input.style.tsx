@@ -48,6 +48,10 @@ export const Input = styled.input<InputProps>`
   :disabled {
     opacity: 50%;
   }
+
+  :-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+  }
 `;
 
 export const AlertWrapper = styled.div`
