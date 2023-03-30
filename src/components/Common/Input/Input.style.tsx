@@ -50,7 +50,7 @@ export const Input = styled.input<InputProps>`
   }
 
   :-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+    box-shadow: 0 0 0 1000px #ffffff inset;
   }
 `;
 
