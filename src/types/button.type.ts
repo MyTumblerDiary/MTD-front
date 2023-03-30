@@ -1,7 +1,8 @@
 export interface ButtonProps {
   type: 'submit' | 'button';
-  size: 'sm' | 'md';
+  size: 'xsm' | 'sm' | 'md' | 'lg';
   name: string;
+  disabled?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
 }

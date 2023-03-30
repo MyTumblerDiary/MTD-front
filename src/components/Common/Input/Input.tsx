@@ -44,7 +44,13 @@ export default function Input({
           {validation === 'error' && <Svg.AlertFilled />}
         </Style.AlertWrapper>
       </Style.InputWrapper>
-      {message && <Style.ValidationMessage>{message}</Style.ValidationMessage>}
+      {message && (
+        <Style.ValidationMessage>
+          <Typography size='caption' variant={validation}>
+            {message}
+          </Typography>
+        </Style.ValidationMessage>
+      )}
     </Style.InputWithLabel>
   );
 }

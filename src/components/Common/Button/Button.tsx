@@ -10,6 +10,7 @@ export default function Button({
   name,
   children,
   onClick,
+  disabled = false,
   ...rest
 }: ButtonProps) {
   const sizeStyle = SIZES[size];
@@ -20,6 +21,7 @@ export default function Button({
       name={name}
       sizeStyle={sizeStyle}
       onClick={onClick}
+      disabled={disabled}
       {...rest}
       aria-label={`${name}-button`}
     >
