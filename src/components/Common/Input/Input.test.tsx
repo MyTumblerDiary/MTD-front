@@ -14,20 +14,20 @@ describe('Input', () => {
     const utils = render(
       <Input
         type='text'
-        name='test'
+        name='email'
         size='md'
         value={value}
-        label='test label'
+        label='email label'
         isLabelVisible={isLabelVisible}
         isRequired={isRequired}
         validation={validation}
         message={message}
         onChange={onChange}
-        placeholder='test'
+        placeholder='email'
       />
     );
 
-    const input = screen.getByLabelText('test-input');
+    const input = screen.getByLabelText('email-input');
 
     return { ...utils, input };
   };
@@ -39,7 +39,7 @@ describe('Input', () => {
   });
 
   it('Change Input value', () => {
-    let testValue = 'test value';
+    let testValue = 'email value';
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       testValue = e.target.value;
@@ -62,7 +62,7 @@ describe('Input', () => {
   it('Shows label', () => {
     const { getByText } = setup('', true, false);
 
-    expect(getByText(/test label/)).not.toBeNull();
+    expect(getByText(/email label/)).not.toBeNull();
   });
 
   it('Shows error alert icon', () => {

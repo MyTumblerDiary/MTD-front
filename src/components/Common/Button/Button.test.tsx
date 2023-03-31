@@ -5,7 +5,7 @@ import Button from './Button';
 describe('Button', () => {
   const setup = (onClick: () => void = () => {}) => {
     const utils = render(
-      <Button name='test' size='md' onClick={onClick}>
+      <Button type='button' name='test' size='md' onClick={onClick}>
         테스트
       </Button>
     );
