@@ -299,24 +299,11 @@ export default function SignupForm() {
               </Style.EmailCheckWrapper>
             )}
           </Style.EmailWrapper>
-          {userInput.emailCheck.validation === 'success' && (
-            <Style.PasswordWrapper>
-              <Input {...passwordProps} />
-              <Input {...passwordCheckProps} />
-            </Style.PasswordWrapper>
-          )}
-          {userInput.password.validation === 'success' &&
-            userInput.passwordCheck.validation === 'success' && (
-              <Style.UsernameWrapper>
-                <Input {...usernameProps} />
-              </Style.UsernameWrapper>
-            )}
+          <Input {...passwordProps} />
+          <Input {...passwordCheckProps} />
+          <Input {...usernameProps} />
         </Style.InputWrapper>
-        {!isValidateSubmit && (
-          <Style.SignupButtonWrapper>
-            <Button {...signupButtonProps} />
-          </Style.SignupButtonWrapper>
-        )}
+        <Button {...signupButtonProps} />
       </Style.SignupForm>
     </Style.SignupWrapper>
   );

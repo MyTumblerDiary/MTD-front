@@ -32,22 +32,6 @@ export const InputWrapper = styled.div`
   gap: 20px;
 `;
 
-export const SignupButtonWrapper = styled.div`
-  margin-bottom: 12%;
-  animation-name: Down;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-in;
-
-  @keyframes Down {
-    from {
-      opacity: 0%;
-    }
-    to {
-      opacity: 100%;
-    }
-  }
-`;
-
 export const EmailWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,7 +47,7 @@ export const EamilButtonWrapper = styled.div`
   top: 7px;
   right: 10px;
   animation-name: fadeIn;
-  animation-duration: 0.6s;
+  animation-duration: 0.4s;
   animation-timing-function: ease-out;
 
   @keyframes fadeIn {
@@ -78,44 +62,11 @@ export const EamilButtonWrapper = styled.div`
 
 export const EmailCheckWrapper = styled.div`
   position: relative;
-  animation-name: Down;
-  animation-duration: 0.6s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
   animation-timing-function: ease-in;
 
-  @keyframes Down {
-    from {
-      opacity: 0%;
-    }
-    to {
-      opacity: 100%;
-    }
-  }
-`;
-
-export const PasswordWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  animation-name: Down;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-in;
-
-  @keyframes Down {
-    from {
-      opacity: 0%;
-    }
-    to {
-      opacity: 100%;
-    }
-  }
-`;
-
-export const UsernameWrapper = styled.div`
-  animation-name: Down;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-in;
-
-  @keyframes Down {
+  @keyframes fadeIn {
     from {
       opacity: 0%;
     }
