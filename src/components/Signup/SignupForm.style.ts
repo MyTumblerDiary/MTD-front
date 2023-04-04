@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const SignupWrapper = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ export const SignupForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 export const InputWrapper = styled.div`

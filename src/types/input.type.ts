@@ -8,6 +8,7 @@ export interface InputProps {
   isRequired?: boolean;
   validation?: InputValidationProps;
   message?: string;
+  disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
 }

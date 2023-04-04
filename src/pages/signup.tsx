@@ -6,7 +6,7 @@ export default function Signup() {
   return (
     <>
       <PageHead title='회원가입' />
-      <SignupForm />;
+      <SignupForm />
     </>
   );
 }

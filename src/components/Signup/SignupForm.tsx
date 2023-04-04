@@ -79,7 +79,7 @@ export default function SignupForm() {
     }
   });
 
-  const [isAuthButtonClicked, setIsAuthButtonClicked] = useState(false);
+  const [isEmailAuth, setIsEmailAuth] = useState(false);
 
   useEffect(() => {
     if (userInput.email.validation !== 'success') {
@@ -88,8 +88,8 @@ export default function SignupForm() {
   }, [userInput.email.validation]);
 
   const isEmailCheckVisible = useMemo(
-    () => isAuthButtonClicked && userInput.email.validation === 'success',
-    [isAuthButtonClicked, userInput.email.validation]
+    () => isEmailAuth && userInput.email.validation === 'success',
+    [isEmailAuth, userInput.email.validation]
   );
 
   const isValidateSubmit = useMemo(
@@ -109,7 +109,7 @@ export default function SignupForm() {
   );
 
   const clearEmailCheckValue = () => {
-    setIsAuthButtonClicked(false);
+    setIsEmailAuth(false);
     setUserInput((currentState) => ({
       ...currentState,
       emailCheck: {
@@ -160,7 +160,7 @@ export default function SignupForm() {
   };
 
   const handleEmailCheck = () => {
-    setIsAuthButtonClicked(true);
+    setIsEmailAuth(true);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -177,6 +177,7 @@ export default function SignupForm() {
     value: userInput.email.value,
     validation: userInput.email.validation,
     message: userInput.email.message,
+    disabled: isEmailAuth,
     placeholder: '이메일을 입력해주세요.',
     onChange: handleUserInput
   };
