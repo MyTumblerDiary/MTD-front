@@ -1,4 +1,4 @@
-import Svg from '../components/svg';
+import Svg from '../../components/svg';
 
 const NAVIGATOR = {
   cafe: {

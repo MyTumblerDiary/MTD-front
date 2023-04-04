@@ -15,7 +15,7 @@ import {
   passwordValidation,
   usernameValidation,
   submitValidation
-} from '@/helpers/signup.helper';
+} from '@/utils/helpers/signup.helper';
 
 import Typography from '@/components/Common/Typography/Typography';
 import HeadTitle from '@/components/Common/Heading/HeadTitle';
