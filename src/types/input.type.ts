@@ -25,3 +25,9 @@ export type InputValidationProps = 'default' | 'success' | 'error';
 type InputTypeProps = 'text' | 'password' | 'email';
 
 type InputSizeProps = 'sm' | 'md' | 'lg';
+
+export type UserInputPramProps = {
+  value: string;
+  validation: InputValidationProps;
+  message: string;
+};

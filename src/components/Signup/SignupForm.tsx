@@ -6,7 +6,7 @@ import {
   type InputNameProps,
   type ButtonProps,
   type InputProps,
-  type InputValidationProps
+  type UserInputPramProps
 } from '@/types';
 
 import {
@@ -23,61 +23,44 @@ import Input from '@/components/Common/Input/Input';
 import Button from '@/components/Common/Button/Button';
 
 interface SignupInputProps {
-  email: {
-    value: string;
-    validation: InputValidationProps;
-    message: string;
-  };
-  emailCheck: {
-    value: string;
-    validation: InputValidationProps;
-    message: string;
-  };
-  password: {
-    value: string;
-    validation: InputValidationProps;
-    message: string;
-  };
-  passwordCheck: {
-    value: string;
-    validation: InputValidationProps;
-    message: string;
-  };
-  username: {
-    value: string;
-    validation: InputValidationProps;
-    message: string;
-  };
+  email: UserInputPramProps;
+  emailCheck: UserInputPramProps;
+  password: UserInputPramProps;
+  passwordCheck: UserInputPramProps;
+  username: UserInputPramProps;
 }
 
+const initialUserInput: SignupInputProps = {
+  email: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+  emailCheck: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+  password: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+  passwordCheck: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+  username: {
+    value: '',
+    validation: 'default',
+    message: ''
+  }
+};
+
 export default function SignupForm() {
-  const [userInput, setUserInput] = useState<SignupInputProps>({
-    email: {
-      value: '',
-      validation: 'default',
-      message: ''
-    },
-    emailCheck: {
-      value: '',
-      validation: 'default',
-      message: ''
-    },
-    password: {
-      value: '',
-      validation: 'default',
-      message: ''
-    },
-    passwordCheck: {
-      value: '',
-      validation: 'default',
-      message: ''
-    },
-    username: {
-      value: '',
-      validation: 'default',
-      message: ''
-    }
-  });
+  const [userInput, setUserInput] =
+    useState<SignupInputProps>(initialUserInput);
 
   const [isEmailAuth, setIsEmailAuth] = useState(false);
 
