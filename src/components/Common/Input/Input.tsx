@@ -1,23 +1,27 @@
-import * as Style from './Input.style';
-import { SIZES, INPUT_VARIANTS, LABEL_VARIANTS } from './Input.variant';
+import { forwardRef } from 'react';
 
+import * as Style from './Input.style';
+import { SIZES, INPUT_VARIANTS } from './Input.variant';
 import Svg from '../../svg';
 
 import { type InputProps } from '@/types';
 
 import Typography from '../Typography/Typography';
 
-export default function Input({
-  name,
-  size,
-  label,
-  isLabelVisible = false,
-  isRequired = false,
-  validation = 'default',
-  message = '',
-  onChange,
-  ...rest
-}: InputProps) {
+export default forwardRef<HTMLInputElement, InputProps>(function Input(
+  {
+    name,
+    size,
+    label,
+    isLabelVisible = false,
+    isRequired = false,
+    validation = 'default',
+    message = '',
+    onChange,
+    ...rest
+  },
+  ref
+) {
   const sizeStyle = SIZES[size];
   const inputVariantStyle = INPUT_VARIANTS[validation];
 
@@ -33,6 +37,7 @@ export default function Input({
       )}
       <Style.InputWrapper sizeStyle={sizeStyle}>
         <Style.Input
+          ref={ref}
           id={name}
           name={name}
           variantStyle={inputVariantStyle}
@@ -44,7 +49,13 @@ export default function Input({
           {validation === 'error' && <Svg.AlertFilled />}
         </Style.AlertWrapper>
       </Style.InputWrapper>
-      {message && <Style.ValidationMessage>{message}</Style.ValidationMessage>}
+      {message && (
+        <Style.ValidationMessage>
+          <Typography size='caption' variant={validation}>
+            {message}
+          </Typography>
+        </Style.ValidationMessage>
+      )}
     </Style.InputWithLabel>
   );
-}
+});

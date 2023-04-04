@@ -1,4 +1,15 @@
 import { type ButtonProps } from './button.type';
-import { type InputProps } from './input.type';
+import {
+  type InputProps,
+  type InputNameProps,
+  type InputValidationProps,
+  type UserInputPramProps
+} from './input.type';
 
-export { ButtonProps, InputProps };
+export {
+  ButtonProps,
+  InputProps,
+  InputNameProps,
+  InputValidationProps,
+  UserInputPramProps
+};

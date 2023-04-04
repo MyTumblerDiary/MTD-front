@@ -39,9 +39,12 @@ export const VARIANTS = {
     --typography-color: ${theme.color.g400};
   `,
   success: css`
-    --typography-color: #006eff;
+    --typography-color: ${theme.color.success};
+  `,
+  warning: css`
+    --typography-color: ${theme.color.warning};
   `,
   error: css`
-    --typography-color: #f00001;
+    --typography-color: ${theme.color.error};
   `
 };

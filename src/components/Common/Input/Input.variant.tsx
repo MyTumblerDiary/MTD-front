@@ -8,6 +8,10 @@ export const SIZES = {
   md: css`
     --input-width: 280px;
     --input-height: 48px;
+  `,
+  lg: css`
+    --input-width: 320px;
+    --input-height: 48px;
   `
 };
 

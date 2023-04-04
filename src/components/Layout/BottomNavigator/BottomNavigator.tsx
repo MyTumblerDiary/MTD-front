@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import * as Style from './BottomNavigator.style';
 
-import NAVIGATOR from '@/constants/navigator';
+import NAVIGATOR from '@/utils/constants/navigator';
 
 import Typography from '@/components/Common/Typography/Typography';
 
