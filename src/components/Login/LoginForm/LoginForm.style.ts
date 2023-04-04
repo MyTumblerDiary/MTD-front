@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const LoginForm = styled.form`
   display: flex;
+  flex: 2;
   flex-direction: column;
   align-items: center;
   gap: 34px;

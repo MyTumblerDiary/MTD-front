@@ -1,12 +1,12 @@
 import PageHead from '@/components/Head/Head';
 import Layout from '../components/Layout/Layout';
-import LoginForm from '@/components/Login/LoginForm/LoginForm';
+import LoginComponent from '@/components/Login/Login';
 
 export default function Login() {
   return (
     <div>
       <PageHead title='로그인' />
-      <LoginForm />
+      <LoginComponent />
     </div>
   );
 }
