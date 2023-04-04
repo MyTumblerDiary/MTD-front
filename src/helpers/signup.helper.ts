@@ -137,7 +137,7 @@ export function submitValidation(
   passwordCheck: string,
   username: string
 ) {
-  return !(
+  return (
     email === 'success' &&
     password === 'success' &&
     passwordCheck === 'success' &&

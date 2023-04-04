@@ -228,7 +228,7 @@ export default function SignupForm() {
     type: 'submit',
     size: 'lg',
     name: 'signup',
-    disabled: isValidateSubmit,
+    disabled: !isValidateSubmit,
     children: (
       <Typography size='button1' variant='accent'>
         회원가입
