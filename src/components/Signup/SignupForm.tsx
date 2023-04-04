@@ -6,11 +6,12 @@ import {
   type UserInputPramProps
 } from '@/types';
 
+import useSignup from '@/hooks/useSignup';
+
 import Typography from '@/components/Common/Typography/Typography';
 import HeadTitle from '@/components/Common/Heading/HeadTitle';
 import Input from '@/components/Common/Input/Input';
 import Button from '@/components/Common/Button/Button';
-import useSignup from '@/hooks/useSignup';
 
 interface SignupInputProps {
   email: UserInputPramProps;
