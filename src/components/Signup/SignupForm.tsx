@@ -1,26 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
-
 import * as Style from './SignupForm.style';
 
 import {
-  type InputNameProps,
   type ButtonProps,
   type InputProps,
   type UserInputPramProps
 } from '@/types';
 
-import {
-  emailValidation,
-  passworCheckValidation,
-  passwordValidation,
-  usernameValidation,
-  submitValidation
-} from '@/utils/helpers/signup.helper';
-
 import Typography from '@/components/Common/Typography/Typography';
 import HeadTitle from '@/components/Common/Heading/HeadTitle';
 import Input from '@/components/Common/Input/Input';
 import Button from '@/components/Common/Button/Button';
+import useSignup from '@/hooks/useSignup';
 
 interface SignupInputProps {
   email: UserInputPramProps;
@@ -59,96 +49,16 @@ const initialUserInput: SignupInputProps = {
 };
 
 export default function SignupForm() {
-  const [userInput, setUserInput] =
-    useState<SignupInputProps>(initialUserInput);
-
-  const [isEmailAuth, setIsEmailAuth] = useState(false);
-
-  useEffect(() => {
-    if (userInput.email.validation !== 'success') {
-      clearEmailCheckValue();
-    }
-  }, [userInput.email.validation]);
-
-  const isEmailCheckVisible = useMemo(
-    () => isEmailAuth && userInput.email.validation === 'success',
-    [isEmailAuth, userInput.email.validation]
-  );
-
-  const isValidateSubmit = useMemo(
-    () =>
-      submitValidation(
-        userInput.email.validation,
-        userInput.password.validation,
-        userInput.passwordCheck.validation,
-        userInput.username.validation
-      ),
-    [
-      userInput.email.validation,
-      userInput.password.validation,
-      userInput.passwordCheck.validation,
-      userInput.username.validation
-    ]
-  );
-
-  const clearEmailCheckValue = () => {
-    setIsEmailAuth(false);
-    setUserInput((currentState) => ({
-      ...currentState,
-      emailCheck: {
-        value: '',
-        validation: 'default',
-        message: ''
-      }
-    }));
-  };
-
-  const handleEmailAuth = () => {
-    setUserInput((currentState) => ({
-      ...currentState,
-      emailCheck: {
-        ...currentState.emailCheck,
-        validation: 'success',
-        message: ''
-      }
-    }));
-  };
-
-  const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { name, value }
-    } = event;
-
-    setUserInput((currentState) => ({
-      ...currentState,
-      [name]: {
-        ...handleValidation(name as InputNameProps, value)
-      }
-    }));
-  };
-
-  const handleValidation = (name: InputNameProps, value: string) => {
-    switch (name) {
-      case 'email':
-        return emailValidation(value);
-      case 'password':
-        return passwordValidation(value);
-      case 'passwordCheck':
-        return passworCheckValidation(userInput.password.value, value);
-      case 'username':
-        return usernameValidation(value);
-      default:
-        return { value, validation: 'default', message: '' };
-    }
-  };
-
-  const handleEmailCheck = () => {
-    setIsEmailAuth(true);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
+  const {
+    userInput,
+    isEmailCheckVisible,
+    isEmailAuth,
+    isValidateSubmit,
+    handleUserInput,
+    handleEmailCheck,
+    handleSubmit,
+    handleEmailAuth
+  } = useSignup(initialUserInput);
 
   const emailProps: InputProps = {
     type: 'email',
