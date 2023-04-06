@@ -18,7 +18,7 @@ export const emailValidation = (email: string) => {
 // 로그인 시 비밀번호는 한자리라도 입력되어있으면 통과
 export const passwordValidation = (password: string) => {
   if (!password) {
-    return { validation: 'default', message: '', value: ' ' };
+    return { validation: 'default', message: '', value: '' };
   }
 
   return {
