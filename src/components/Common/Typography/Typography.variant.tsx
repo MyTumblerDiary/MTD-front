@@ -35,8 +35,14 @@ export const VARIANTS = {
   accent: css`
     --typography-color: white;
   `,
+  main: css`
+    --typography-color: ${theme.color.main};
+  `,
   gray: css`
     --typography-color: ${theme.color.g400};
+  `,
+  gray2: css`
+    --typography-color: ${theme.color.g500};
   `,
   success: css`
     --typography-color: ${theme.color.success};
