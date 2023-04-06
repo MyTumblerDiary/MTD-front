@@ -105,8 +105,8 @@ export default function useSignup(initialState: SignupInputProps) {
     setIsEmailAuth(true);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    console.log('회원가입');
   };
 
   return {
