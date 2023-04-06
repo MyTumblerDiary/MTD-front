@@ -32,7 +32,6 @@ const SocialLogin = () => {
 
   useEffect(() => {
     const platform = navigator.userAgent?.toLowerCase();
-    console.log('platform: ', platform);
     if (platform.indexOf('iphone') !== -1 || platform.indexOf('ipad') !== -1) {
       setIsIOS(true);
     }
