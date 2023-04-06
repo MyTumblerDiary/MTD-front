@@ -5,11 +5,19 @@ import {
   type InputValidationProps,
   type UserInputPramProps
 } from './input.type';
+import {
+  type StepProps,
+  type StepArrayProps,
+  type StepButtonNameProps
+} from './stepper.type';
 
 export {
   ButtonProps,
   InputProps,
   InputNameProps,
   InputValidationProps,
-  UserInputPramProps
+  UserInputPramProps,
+  StepProps,
+  StepArrayProps,
+  StepButtonNameProps
 };
