@@ -16,7 +16,6 @@ export default function SignupUsernameStep({
     name: 'username',
     label: '닉네임',
     isLabelVisible: true,
-    isRequired: true,
     size: 'lg',
     value: username.value,
     validation: username.validation,

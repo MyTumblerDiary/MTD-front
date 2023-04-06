@@ -34,7 +34,6 @@ export default function SignupEmailStep({
     name: 'email',
     label: '이메일',
     isLabelVisible: true,
-    isRequired: true,
     size: 'lg',
     value: email.value,
     validation: email.validation,
