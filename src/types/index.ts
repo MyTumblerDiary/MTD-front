@@ -1,4 +1,5 @@
 import { type ButtonProps } from './button.type';
+import { type TypographyProps } from './typography.type';
 import {
   type InputProps,
   type InputNameProps,
@@ -20,4 +21,5 @@ export {
   StepProps,
   StepArrayProps,
   StepButtonNameProps
+  TypographyProps
 };
