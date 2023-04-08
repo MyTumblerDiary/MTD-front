@@ -1,12 +1,12 @@
-import PageHead from '@/components/Head/Head';
+import PageHead from '@/components/Common/Head/Head';
 import Layout from '@/components/Layout/Layout';
-import SignupForm from '@/components/Signup/SignupForm';
+import SignupContainer from '@/components/Signup/SignupContainer';
 
 export default function Signup() {
   return (
     <>
       <PageHead title='회원가입' />
-      <SignupForm />
+      <SignupContainer />
     </>
   );
 }

@@ -18,7 +18,7 @@ const validationMessage = {
   },
   username: {
     isEmpty: '닉네임을 입력해주세요.',
-    notValid: '닉네임은 1자리 이상 15자리 이하입니다.'
+    notValid: '닉네임은 2자리 이상 15자리 이하입니다.'
   }
 };
 

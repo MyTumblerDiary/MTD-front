@@ -1,5 +1,5 @@
 import Layout from '../components/Layout/Layout';
-import PageHead from '@/components/Head/Head';
+import PageHead from '@/components/Common/Head/Head';
 
 export default function Record() {
   return (
