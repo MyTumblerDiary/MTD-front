@@ -55,10 +55,10 @@ export default function Stepper({
   const isStepEndedOfIndex = (index: number) => index === steps.length - 1;
 
   const circleVariantOfIndex = (index: number) =>
-    index <= activeStep ? 'accent' : 'gray2';
+    isStepActive(index) ? 'accent' : 'gray2';
 
   const labelVariantOfIndex = (index: number) =>
-    index <= activeStep ? 'main' : 'gray2';
+    isStepActive(index) ? 'main' : 'gray2';
 
   const nextButtonProps: ButtonProps = {
     name: 'next',
