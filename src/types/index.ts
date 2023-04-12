@@ -20,6 +20,6 @@ export {
   UserInputPramProps,
   StepProps,
   StepArrayProps,
-  StepButtonNameProps
+  StepButtonNameProps,
   TypographyProps
 };

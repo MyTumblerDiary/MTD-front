@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SignupHeaderWrapper = styled.div`
+export const AuthHeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 58px;
@@ -16,4 +16,6 @@ export const SignupHeaderWrapper = styled.div`
 export const LoginLink = styled.div`
   position: absolute;
   right: 30px;
+  width: 24px;
+  height: 24px;
 `;
