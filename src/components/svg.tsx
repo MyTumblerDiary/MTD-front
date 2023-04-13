@@ -7,6 +7,7 @@ import Mug from '../../public/icons/Mug.svg';
 import KakaoLogo from '../../public/icons/KakaoLogo.svg';
 import GoogleLogo from '../../public/icons/GoogleLogo.svg';
 import AppleLogo from '../../public/icons/AppleLogo.svg';
+import LoginButton from '../../public/icons/LoginButton.svg';
 
 export default {
   Home,
@@ -17,5 +18,6 @@ export default {
   Mug,
   KakaoLogo,
   GoogleLogo,
-  AppleLogo
+  AppleLogo,
+  LoginButton
 };
