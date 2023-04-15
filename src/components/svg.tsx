@@ -9,6 +9,8 @@ import GoogleLogo from '../../public/icons/GoogleLogo.svg';
 import AppleLogo from '../../public/icons/AppleLogo.svg';
 import LoginButton from '../../public/icons/LoginButton.svg';
 import CaretRight from '../../public/icons/CaretRight.svg';
+import Plus from '../../public/icons/Plus.svg';
+import XCircle from '../../public/icons/XCircle.svg';
 
 export default {
   Home,
@@ -21,5 +23,7 @@ export default {
   GoogleLogo,
   AppleLogo,
   LoginButton,
-  CaretRight
+  CaretRight,
+  Plus,
+  XCircle
 };
