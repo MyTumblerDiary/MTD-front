@@ -8,6 +8,7 @@ import KakaoLogo from '../../public/icons/KakaoLogo.svg';
 import GoogleLogo from '../../public/icons/GoogleLogo.svg';
 import AppleLogo from '../../public/icons/AppleLogo.svg';
 import LoginButton from '../../public/icons/LoginButton.svg';
+import CaretRight from '../../public/icons/CaretRight.svg';
 
 export default {
   Home,
@@ -19,5 +20,6 @@ export default {
   KakaoLogo,
   GoogleLogo,
   AppleLogo,
-  LoginButton
+  LoginButton,
+  CaretRight
 };
