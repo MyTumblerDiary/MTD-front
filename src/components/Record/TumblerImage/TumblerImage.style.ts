@@ -1,6 +1,6 @@
 import Image from 'next/image';
-
 import styled from 'styled-components';
+
 import theme from '@/styles/theme';
 
 export const AddImageLabel = styled.label`
@@ -16,21 +16,26 @@ export const AddImageButton = styled.div`
   align-items: center;
 `;
 
-export const FileInput = styled.input`
-  display: none;
-`;
-
-export const PreviewImage = styled(Image)`
-  border-radius: 8px;
-`;
-
 export const PreviewImageContainer = styled.div`
   position: relative;
+  border-radius: 8px;
+  width: 150px;
+  height: 150px;
+
   svg {
     position: absolute;
     top: -5px;
     right: -5px;
+    z-index: 1;
     background-color: #fff;
     border-radius: 100%;
   }
+`;
+
+export const PreviewImage = styled(Image)`
+  border-radius: inherit;
+`;
+
+export const FileInput = styled.input`
+  display: none;
 `;

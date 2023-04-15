@@ -28,12 +28,7 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
         ) : (
           <Style.PreviewImageContainer>
             <Svg.XCircle onClick={onClickPreviewDelete} />
-            <Style.PreviewImage
-              src={previewImage}
-              alt='텀블러 이미지'
-              width={150}
-              height={150}
-            />
+            <Style.PreviewImage src={previewImage} alt='텀블러 이미지' fill />
           </Style.PreviewImageContainer>
         )}
       </Style.AddImageButton>
