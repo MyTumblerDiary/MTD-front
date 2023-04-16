@@ -8,9 +8,10 @@ export const PageContainer = styled.div`
 `;
 
 export const Header = styled.div`
+  height: 58px;
   display: flex;
-  justify-content: flex-start;
-  padding: 15px 0 0 15px;
+  align-items: center;
+  padding-left: 10px;
 `;
 
 export const Main = styled.div`

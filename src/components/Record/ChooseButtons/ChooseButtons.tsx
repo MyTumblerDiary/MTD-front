@@ -5,7 +5,7 @@ import Title from '@/components/Common/Heading/Title';
 import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
 
-import * as Style from './ChooseContainer.style';
+import * as Style from './ChooseButtons.style';
 
 import { CHOOSE_BUTTON_PROPS } from '@/utils/constants/recordChooseButton';
 
