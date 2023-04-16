@@ -11,6 +11,7 @@ import LoginButton from '../../public/icons/LoginButton.svg';
 import CaretRight from '../../public/icons/CaretRight.svg';
 import Plus from '../../public/icons/Plus.svg';
 import XCircle from '../../public/icons/XCircle.svg';
+import ArrowLeft from '../../public/icons/ArrowLeft.svg';
 
 export default {
   Home,
@@ -25,5 +26,6 @@ export default {
   LoginButton,
   CaretRight,
   Plus,
-  XCircle
+  XCircle,
+  ArrowLeft
 };
