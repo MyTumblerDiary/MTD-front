@@ -39,6 +39,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: black;
   }
+
+  a, svg, img {
+    -webkit-tap-highlight-color: transparent;
+  }
 `;
 
 export default GlobalStyle;
