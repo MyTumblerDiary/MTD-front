@@ -9,25 +9,28 @@ import {
 import Input from '@/components/Common/Input/Input';
 import Button from '@/components/Common/Button/Button';
 import Typography from '@/components/Common/Typography/Typography';
+import AuthTimer from '@/components/Common/AuthTimer/AuthTimer';
 
 interface SignupEmailStepProps {
   email: UserInputPramProps;
   emailCheck: UserInputPramProps;
-  isEmailAuth: boolean;
-  isEmailCheckVisible: boolean;
+  isEmailVerificationRequested: boolean;
+  isEmailVerificationConfirmed: boolean;
   handleUserInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleEmailCheck: () => void;
-  handleEmailAuth: () => void;
+  handleEmailVerificationRequest: () => void;
+  handleEmailVerificationConfirm: () => void;
+  handleEmailCheckReload: () => void;
 }
 
 export default function SignupEmailStep({
   email,
   emailCheck,
-  isEmailAuth,
-  isEmailCheckVisible,
+  isEmailVerificationRequested,
+  isEmailVerificationConfirmed,
   handleUserInput,
-  handleEmailCheck,
-  handleEmailAuth
+  handleEmailVerificationRequest,
+  handleEmailVerificationConfirm,
+  handleEmailCheckReload
 }: SignupEmailStepProps) {
   const emailProps: InputProps = {
     type: 'email',
@@ -38,7 +41,7 @@ export default function SignupEmailStep({
     value: email.value,
     validation: email.validation,
     message: email.message,
-    disabled: isEmailAuth,
+    disabled: isEmailVerificationRequested,
     placeholder: '이메일을 올바르게 입력해주세요.',
     onChange: handleUserInput
   };
@@ -52,7 +55,8 @@ export default function SignupEmailStep({
     value: emailCheck.value,
     validation: emailCheck.validation,
     message: emailCheck.message,
-    placeholder: '메일로 발송된 인증번호를 입력해주세요.',
+    disabled: isEmailVerificationConfirmed,
+    placeholder: '발송된 인증번호를 입력해주세요.',
     onChange: handleUserInput
   };
 
@@ -60,7 +64,8 @@ export default function SignupEmailStep({
     type: 'button',
     size: 'xsm',
     name: 'emailCheck',
-    onClick: handleEmailCheck,
+    onClick: handleEmailVerificationRequest,
+    disabled: isEmailVerificationRequested,
     children: (
       <Typography size='button2' variant='accent'>
         인증하기
@@ -71,8 +76,9 @@ export default function SignupEmailStep({
   const emailAuthButtonProps: ButtonProps = {
     type: 'button',
     size: 'xsm',
-    name: 'emailCheck',
-    onClick: handleEmailAuth,
+    name: 'emailCheckConfirm',
+    disabled: isEmailVerificationConfirmed,
+    onClick: handleEmailVerificationConfirm,
     children: (
       <Typography size='button2' variant='accent'>
         확인
@@ -90,15 +96,23 @@ export default function SignupEmailStep({
           </Style.EamilButtonWrapper>
         )}
       </Style.Email>
-      {isEmailCheckVisible && (
-        <Style.EmailCheckWrapper>
-          <Input {...emailCheckProps} />
-          {emailCheck.value && (
-            <Style.EamilButtonWrapper>
-              <Button {...emailAuthButtonProps} />
-            </Style.EamilButtonWrapper>
-          )}
-        </Style.EmailCheckWrapper>
+      {isEmailVerificationRequested && (
+        <>
+          <Style.EmailCheckWrapper>
+            <Input {...emailCheckProps} />
+            {emailCheck.value && (
+              <Style.EamilButtonWrapper>
+                <Button {...emailAuthButtonProps} />
+              </Style.EamilButtonWrapper>
+            )}
+          </Style.EmailCheckWrapper>
+          <Style.AuthTimerWarpper>
+            <AuthTimer
+              initialTime={119}
+              handleReload={handleEmailCheckReload}
+            />
+          </Style.AuthTimerWarpper>
+        </>
       )}
     </Style.EmailWrapper>
   );
