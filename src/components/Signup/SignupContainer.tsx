@@ -17,7 +17,7 @@ import {
 import * as Style from './SignupContainer.style';
 
 import Stepper from '@/components/Common/Stepper/Stepper';
-import SignupHeader from './SignupHeader/SignupHeader';
+import AuthHeader from '../Common/AuthHeader/AuthHeader';
 import SignupUsernameStep from './SignupUsernameStep/SignupUsernameStep';
 import SignupEmailStep from './SignupEmailStep/SignupEmailStep';
 import SignupPasswordStep from './SignupPasswordStep/SignupPasswordStep';
@@ -154,7 +154,7 @@ export default function SignupContainer() {
       )
     },
     {
-      label: '암호 설정',
+      label: '비밀번호 설정',
       stepDescription: '비밀번호와 비밀번호 확인을 입력해주세요.',
       isNextButtonActive: userInput.passwordCheck.validation === 'success',
       children: (
@@ -174,7 +174,7 @@ export default function SignupContainer() {
 
   return (
     <Style.SignupWrapper>
-      <SignupHeader />
+      <AuthHeader title={'간편 회원가입'} />
       <Stepper
         steps={steps}
         stepButtonNames={stepButtonNames}
