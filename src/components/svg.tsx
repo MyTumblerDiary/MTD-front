@@ -8,6 +8,8 @@ import KakaoLogo from '../../public/icons/KakaoLogo.svg';
 import GoogleLogo from '../../public/icons/GoogleLogo.svg';
 import AppleLogo from '../../public/icons/AppleLogo.svg';
 import LoginButton from '../../public/icons/LoginButton.svg';
+import Charge from '../../public/icons/Charge.svg';
+import Tumbler from '../../public/icons/Tumbler.svg';
 
 export default {
   Home,
@@ -19,5 +21,7 @@ export default {
   KakaoLogo,
   GoogleLogo,
   AppleLogo,
-  LoginButton
+  LoginButton,
+  Charge,
+  Tumbler
 };
