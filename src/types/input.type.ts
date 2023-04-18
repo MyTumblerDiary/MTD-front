@@ -18,13 +18,14 @@ export type InputNameProps =
   | 'emailCheck'
   | 'username'
   | 'password'
-  | 'passwordCheck';
+  | 'passwordCheck'
+  | 'place';
 
 export type InputValidationProps = 'default' | 'success' | 'error';
 
 type InputTypeProps = 'text' | 'password' | 'email';
 
-type InputSizeProps = 'sm' | 'md' | 'lg';
+type InputSizeProps = 'sm' | 'md' | 'lg' | 'full';
 
 export type UserInputPramProps = {
   value: string;
