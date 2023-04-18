@@ -21,6 +21,12 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout =
     Component.getLayout || ((page: React.ReactNode) => <Layout>{page}</Layout>);
