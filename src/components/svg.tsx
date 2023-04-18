@@ -10,6 +10,7 @@ import AppleLogo from '../../public/icons/AppleLogo.svg';
 import LoginButton from '../../public/icons/LoginButton.svg';
 import Charge from '../../public/icons/Charge.svg';
 import Tumbler from '../../public/icons/Tumbler.svg';
+import Shopping from '../../public/icons/Shopping.svg';
 
 export default {
   Home,
@@ -23,5 +24,6 @@ export default {
   AppleLogo,
   LoginButton,
   Charge,
-  Tumbler
+  Tumbler,
+  Shopping
 };
