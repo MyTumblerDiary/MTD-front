@@ -1,12 +1,20 @@
-import * as Style from './SignupContainer.style';
-
-import useSignup from '@/hooks/useSignup';
+import {
+  useAuthEmail,
+  useCheckEmail,
+  useCheckUsername,
+  useDebounce,
+  useSendEmail,
+  useSignup,
+  useSignupState
+} from '@/hooks';
 
 import {
   type StepButtonNameProps,
   type StepArrayProps,
   type UserInputPramProps
 } from '@/types';
+
+import * as Style from './SignupContainer.style';
 
 import Stepper from '@/components/Common/Stepper/Stepper';
 import AuthHeader from '../Common/AuthHeader/AuthHeader';
@@ -53,14 +61,68 @@ const initialUserInput: SignupInputProps = {
 export default function SignupContainer() {
   const {
     userInput,
-    isEmailAuth,
-    isEmailCheckVisible,
     isValidateSubmit,
+    isEmailVerificationRequested,
+    isEmailVerificationConfirmed,
     handleUserInput,
-    handleEmailAuth,
-    handleEmailCheck,
-    handleSubmit
-  } = useSignup(initialUserInput);
+    setUserNameNotDuplicated,
+    setUserNameDuplicated,
+    setEmailDuplicated,
+    setEmailNotDuplicated,
+    setEmailVerificationConfirmCompleted,
+    setEmailVerificationConfirmFailed,
+    setEmailVerificationRequestCompleted,
+    setEmailVerificationRequestFailed,
+    handleSignupCompleted,
+    handleSignupFailed,
+    handleEmailCheckReload
+  } = useSignupState(initialUserInput);
+
+  const debounceUsername = useDebounce(userInput.username.value, 20);
+  const debounceEmail = useDebounce(userInput.email.value, 20);
+
+  useCheckUsername(
+    debounceUsername,
+    userInput.username.validation,
+    setUserNameNotDuplicated,
+    setUserNameDuplicated
+  );
+
+  useCheckEmail(
+    debounceEmail,
+    userInput.email.validation,
+    setEmailNotDuplicated,
+    setEmailDuplicated
+  );
+
+  const [createUser] = useSignup(
+    userInput.email.value,
+    userInput.username.value,
+    userInput.password.value,
+    handleSignupCompleted,
+    handleSignupFailed
+  );
+
+  const { refetch: emailRequestRefetch } = useSendEmail(
+    debounceEmail,
+    setEmailVerificationRequestCompleted,
+    setEmailVerificationRequestFailed
+  );
+
+  const { refetch: emailConfirmRefetch } = useAuthEmail(
+    debounceEmail,
+    userInput.emailCheck.value,
+    setEmailVerificationConfirmCompleted,
+    setEmailVerificationConfirmFailed
+  );
+
+  const emailVerificationRequest = () => {
+    emailRequestRefetch();
+  };
+
+  const emailVerificationConfirm = () => {
+    emailConfirmRefetch();
+  };
 
   const steps: StepArrayProps = [
     {
@@ -82,11 +144,12 @@ export default function SignupContainer() {
         <SignupEmailStep
           email={userInput.email}
           emailCheck={userInput.emailCheck}
-          isEmailAuth={isEmailAuth}
-          isEmailCheckVisible={isEmailCheckVisible}
+          isEmailVerificationRequested={isEmailVerificationRequested}
+          isEmailVerificationConfirmed={isEmailVerificationConfirmed}
           handleUserInput={handleUserInput}
-          handleEmailAuth={handleEmailAuth}
-          handleEmailCheck={handleEmailCheck}
+          handleEmailVerificationRequest={emailVerificationRequest}
+          handleEmailVerificationConfirm={emailVerificationConfirm}
+          handleEmailCheckReload={handleEmailCheckReload}
         />
       )
     },
@@ -116,7 +179,7 @@ export default function SignupContainer() {
         steps={steps}
         stepButtonNames={stepButtonNames}
         isValidateSubmit={isValidateSubmit}
-        handleSubmit={handleSubmit}
+        handleSubmit={createUser}
       />
     </Style.SignupWrapper>
   );

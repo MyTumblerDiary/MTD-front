@@ -3,7 +3,8 @@ const validationMessage = {
     isEmpty: '이메일을 입력해주세요.',
     notValid: '이메일 형식이 올바르지 않습니다.',
     duplicated: '이미 가입된 이메일입니다.',
-    notAuthorized: '인증번호가 틀렸습니다.'
+    notAuthorized: '인증번호가 틀렸습니다.',
+    valid: '사용가능한 이메일입니다.'
   },
   password: {
     isEmpty: '비밀번호를 입력해주세요.',
@@ -18,7 +19,13 @@ const validationMessage = {
   },
   username: {
     isEmpty: '닉네임을 입력해주세요.',
-    notValid: '닉네임은 2자리 이상 15자리 이하입니다.'
+    notValid: '닉네임은 2자리 이상 15자리 이하입니다.',
+    duplicated: '중복된 닉네임입니다.',
+    valid: '사용가능한 닉네임입니다.'
+  },
+  authRequest: {
+    success: '인증번호 전송 완료',
+    fail: '인증번호 전송 실패'
   }
 };
 
