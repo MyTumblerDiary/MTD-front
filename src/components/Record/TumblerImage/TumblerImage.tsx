@@ -21,24 +21,26 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
   };
 
   return (
-    <Style.AddImageLabel htmlFor='image-input' onChange={addImageHandler}>
-      <Style.AddImageButton>
-        {previewImage === '' ? (
-          <Svg.Plus />
-        ) : (
-          <Style.PreviewImageContainer>
-            <Svg.XCircle onClick={onClickPreviewDelete} />
-            <Style.PreviewImage src={previewImage} alt='텀블러 이미지' fill />
-          </Style.PreviewImageContainer>
-        )}
-      </Style.AddImageButton>
-      <Style.FileInput
-        id='image-input'
-        type='file'
-        accept='image/*'
-        disabled={previewImage !== ''}
-      />
-    </Style.AddImageLabel>
+    <>
+      {previewImage ? (
+        <Style.AddImageContainer>
+          <Style.ImageDeleteButton onClick={onClickPreviewDelete} />
+          <Style.PreviewImage
+            src={previewImage}
+            alt='텀블러 이미지'
+            width={150}
+            height={150}
+          />
+        </Style.AddImageContainer>
+      ) : (
+        <Style.AddImageLabel htmlFor='image-input' onChange={addImageHandler}>
+          <Style.AddImageContainer>
+            <Svg.Plus />
+          </Style.AddImageContainer>
+          <Style.FileInput id='image-input' type='file' accept='image/*' />
+        </Style.AddImageLabel>
+      )}
+    </>
   );
 };
 
