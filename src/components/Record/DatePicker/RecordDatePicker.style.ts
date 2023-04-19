@@ -3,7 +3,8 @@ import DatePicker from 'react-datepicker';
 import themes from '@/styles/theme';
 
 export const DatePickerContainer = styled(DatePicker)`
-  width: 320px;
+  width: 100%;
+  max-width: 400px;
   height: 48px;
   padding: 10px;
   box-sizing: border-box;
