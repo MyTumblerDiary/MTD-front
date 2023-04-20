@@ -23,5 +23,6 @@ export default function SignupUsernameStep({
     placeholder: '2글자 이상 15글자 이하로 작성해주세요!',
     onChange: handleUserInput
   };
+
   return <Style.UserNameInput {...usernameProps} />;
 }

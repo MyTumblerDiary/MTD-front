@@ -135,12 +135,14 @@ export function submitValidation(
   email: string,
   password: string,
   passwordCheck: string,
-  username: string
+  username: string,
+  verification: boolean
 ) {
   return (
     email === 'success' &&
     password === 'success' &&
     passwordCheck === 'success' &&
-    username === 'success'
+    username === 'success' &&
+    verification
   );
 }
