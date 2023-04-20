@@ -126,17 +126,6 @@ export default function SignupContainer() {
 
   const steps: StepArrayProps = [
     {
-      label: '닉네임 등록',
-      stepDescription: '다이어리에 표시될 닉네임을 입력해주세요.',
-      isNextButtonActive: userInput.username.validation === 'success',
-      children: (
-        <SignupUsernameStep
-          username={userInput.username}
-          handleUserInput={handleUserInput}
-        />
-      )
-    },
-    {
       label: '이메일 인증',
       stepDescription: '유효한 이메일을 입력하고 인증해주세요.',
       isNextButtonActive: userInput.emailCheck.validation === 'success',
@@ -153,6 +142,18 @@ export default function SignupContainer() {
         />
       )
     },
+    {
+      label: '닉네임 등록',
+      stepDescription: '다이어리에 표시될 닉네임을 입력해주세요.',
+      isNextButtonActive: userInput.username.validation === 'success',
+      children: (
+        <SignupUsernameStep
+          username={userInput.username}
+          handleUserInput={handleUserInput}
+        />
+      )
+    },
+
     {
       label: '비밀번호 설정',
       stepDescription: '비밀번호와 비밀번호 확인을 입력해주세요.',

@@ -1,5 +1,5 @@
-import PageHead from '@/components/Head/Head';
-import Layout from '../components/Layout/Layout';
+import PageHead from '@/components/Common/Head/Head';
+import Layout from '@/components/Layout/Layout';
 import LoginComponent from '@/components/Login/Login';
 
 export default function Login() {
