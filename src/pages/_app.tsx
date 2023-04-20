@@ -29,6 +29,14 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
 
+    if (!accessToken && router.pathname === '/password-recovery') {
+      return;
+    }
+
+    if (!accessToken && router.pathname === '/signup') {
+      return;
+    }
+
     // Access Token이 없는 상태로 로그인이 아닌 다른 페이지에 접근할 경우 로그인페이지로 리다이렉트
     if (!accessToken && router.pathname !== '/login') {
       router.push('/login');
