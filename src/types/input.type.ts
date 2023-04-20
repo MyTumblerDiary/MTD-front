@@ -11,6 +11,7 @@ export interface InputProps {
   disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  maxLength?: number;
 }
 
 export type InputNameProps =
