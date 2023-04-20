@@ -60,3 +60,8 @@ export const EmailInput = styled(Input)`
     }
   }
 `;
+
+export const AuthTimerWarpper = styled.div`
+  padding-top: 4px;
+  padding-left: 12px;
+`;
