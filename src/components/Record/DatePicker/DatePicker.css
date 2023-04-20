@@ -4,6 +4,10 @@
   border-radius: 12px;
 }
 
+.react-datepicker-popper {
+  z-index: 2;
+}
+
 .react-datepicker-wrapper {
   width: 100%;
 }
