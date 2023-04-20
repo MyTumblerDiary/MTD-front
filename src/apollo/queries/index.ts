@@ -13,8 +13,8 @@ export const CHECK_EMAIL_DUPLICATION = gql`
 `;
 
 export const SEND_EMAIL = gql`
-  query Query($sendEmailId: String!) {
-    sendEmail(id: $sendEmailId)
+  query Query($email: String!) {
+    sendEmail(email: $email)
   }
 `;
 
