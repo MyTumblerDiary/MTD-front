@@ -43,6 +43,17 @@ const GlobalStyle = createGlobalStyle`
   a, svg, img {
     -webkit-tap-highlight-color: transparent;
   }
+
+  select::-ms-expand { 
+	display: none;
+  }
+
+  select {
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 `;
 
 export default GlobalStyle;
