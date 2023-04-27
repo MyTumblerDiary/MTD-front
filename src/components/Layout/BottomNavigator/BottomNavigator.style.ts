@@ -13,6 +13,7 @@ export const NavigatorContainer = styled.nav`
   width: 100%;
   max-width: ${theme.maxWidth};
   border-top: 1px solid ${theme.color.g300};
+  background-color: #ffffff;
 
   display: flex;
   align-items: center;
