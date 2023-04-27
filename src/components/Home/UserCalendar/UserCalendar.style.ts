@@ -1,13 +1,14 @@
+import Typography from '@/components/Common/Typography/Typography';
 import svg from '@/components/svg';
 
 import styled from 'styled-components';
 
 interface ColoredTumblerProps {
-  count: number;
+  variation: string;
 }
 
 export const CalendarWrapper = styled.div`
-  padding: 20px;
+  padding: 0 20px;
 
   .react-calendar {
     width: 100%;
@@ -15,7 +16,6 @@ export const CalendarWrapper = styled.div`
     color: #222;
     border: none;
     padding: 6px;
-
     border-radius: 12px;
   }
   .react-calendar__navigation button {
@@ -35,15 +35,27 @@ export const CalendarWrapper = styled.div`
   abbr[title] {
     text-decoration: none;
   }
-  /* .react-calendar__month-view__days__day--weekend {
- color: #d10000;
-} */
   .react-calendar__tile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 70px;
+    min-height: 70px;
   }
+
+  .react-calendar__month-view__days__day {
+    color: black;
+  }
+
+  .react-calendar__year-view__months__month {
+    color: black;
+  }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #757575;
+  }
+  /* .react-calendar__month-view__days__day--weekend {
+    color: #d10000;
+  } */
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
     background: #f8f8fa;
@@ -112,6 +124,6 @@ export const CalendarContent = styled.div`
 
 export const ColoredTumbler = styled(svg.TumblerMaterial)<ColoredTumblerProps>`
   path {
-    fill: black;
+    fill: ${(props) => props.variation};
   }
 `;

@@ -1,4 +1,5 @@
 import * as Style from './UserCalendar.style';
+import theme from '@/styles/theme';
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -6,6 +7,8 @@ import 'react-calendar/dist/Calendar.css';
 import useToggleSheet from '@/hooks/useToggleSheet';
 
 import activeDayState from '@/store/activeDay';
+
+import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 
 import BottomSheet from '../BottomSheet/BottomSheet';
 import ReactPortal from '@/components/Common/BottomSheetFrame/ReactPortal';
@@ -27,13 +30,25 @@ const data = [
   {
     id: 3,
     date: '2023-04-09',
-    usesCount: 2,
+    usesCount: 1,
     totalDiscountAmount: 400
   },
   {
     id: 4,
     date: '2023-04-16',
-    usesCount: 6,
+    usesCount: 1,
+    totalDiscountAmount: 3200
+  },
+  {
+    id: 5,
+    date: '2023-04-20',
+    usesCount: 3,
+    totalDiscountAmount: 500
+  },
+  {
+    id: 6,
+    date: '2023-04-05',
+    usesCount: 5,
     totalDiscountAmount: 3200
   }
 ];
@@ -41,39 +56,64 @@ const data = [
 export default function UserCalendar() {
   const { sheetState, toggleSheet } = useToggleSheet();
 
-  function leftPad(value: number) {
-    if (value >= 10) {
-      return value;
+  const handleTumblerVariant = (usesCount: number) => {
+    if (usesCount >= 5) {
+      return 'success';
     }
 
-    return `0${value}`;
-  }
+    if (usesCount >= 3) {
+      return 'warning';
+    }
 
-  const toStringByFormatting = (source: Date, delimiter = '-') => {
-    const year = source.getFullYear();
-    const month = leftPad(source.getMonth() + 1);
-    const day = leftPad(source.getDate());
+    if (usesCount >= 0) {
+      return 'default';
+    }
+  };
 
-    return [year, month, day].join(delimiter);
+  const handleVariation = (variation: string | undefined) => {
+    switch (variation) {
+      case 'success':
+        return theme.color.success;
+      case 'warning':
+        return theme.color.warning;
+      case 'default':
+        return 'black';
+      default:
+        break;
+    }
+  };
+
+  const handleClickDay = (day: Date) => {
+    toggleSheet();
+    activeDayState(day);
   };
 
   return (
     <Style.CalendarWrapper>
       <Calendar
         locale='ko'
-        onClickDay={(day) => {
-          toggleSheet();
-          activeDayState(day);
-        }}
-        tileContent={({ date }) => {
+        calendarType='US'
+        formatDay={(_, date) => date.getDate().toString()}
+        onClickDay={handleClickDay}
+        tileContent={({ date, view }) => {
+          if (view !== 'month') {
+            return;
+          }
           const existsData = data.filter(
             (item) => item.date === toStringByFormatting(date)
           );
           if (existsData.length) {
             return (
               <Style.CalendarContent>
-                <Style.ColoredTumbler count={existsData[0].usesCount} />
-                <Typography size='caption'>
+                <Style.ColoredTumbler
+                  variation={handleVariation(
+                    handleTumblerVariant(existsData[0].usesCount)
+                  )}
+                />
+                <Typography
+                  size='caption'
+                  variant={handleTumblerVariant(existsData[0].usesCount)}
+                >
                   {existsData[0].totalDiscountAmount}원
                 </Typography>
               </Style.CalendarContent>
