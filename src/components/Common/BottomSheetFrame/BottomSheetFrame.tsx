@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Typography from '../Typography/Typography';
 import * as Style from './BottomSheetFrame.style';
 
@@ -14,6 +15,14 @@ export default function BottomSheetFrame({
   state,
   children
 }: BottomSheetFrameProps) {
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+
+    return () => {
+      document.body.style.overflowY = 'scroll';
+    };
+  }, []);
+
   return state ? (
     <Style.BottomSheetWrapper>
       <Style.Background onClick={(e) => handleSheet(e)} />

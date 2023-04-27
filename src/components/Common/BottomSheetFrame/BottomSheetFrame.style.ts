@@ -14,7 +14,7 @@ export const BottomSheetWrapper = styled.div`
 `;
 
 export const SheetBlock = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   animation: sheet-show 0.5s;
