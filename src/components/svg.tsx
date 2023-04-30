@@ -9,6 +9,11 @@ import GoogleLogo from '../../public/icons/GoogleLogo.svg';
 import AppleLogo from '../../public/icons/AppleLogo.svg';
 import Reload from '../../public/icons/Reload.svg';
 import LoginButton from '../../public/icons/LoginButton.svg';
+import Charge from '../../public/icons/Charge.svg';
+import TumblerColored from '../../public/icons/TumblerColored.svg';
+import TumblerMaterial from '../../public/icons/TumblerMaterial.svg';
+import Shopping from '../../public/icons/Shopping.svg';
+import Close from '../../public/icons/Close.svg';
 
 export default {
   Home,
@@ -20,6 +25,11 @@ export default {
   KakaoLogo,
   GoogleLogo,
   AppleLogo,
-  Reload,
-  LoginButton
+  LoginButton,
+  Charge,
+  TumblerColored,
+  TumblerMaterial,
+  Shopping,
+  Close,
+  Reload
 };
