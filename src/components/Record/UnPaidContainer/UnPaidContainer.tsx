@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
 import Input from '@/components/Common/Input/Input';
+import Textarea from '@/components/Common/Textarea/Textarea';
 import Button from '@/components/Common/Button/Button';
 import Header from '../../Common/Header/Header';
 import RecordDatePicker from '../DatePicker/RecordDatePicker';
@@ -11,7 +12,8 @@ import TumblerImage from '../TumblerImage/TumblerImage';
 import {
   type InputProps,
   type ButtonProps,
-  type TypographyProps
+  type TypographyProps,
+  type TextareaProps
 } from '@/types';
 
 import * as Style from './UnPaidContainer.style';
@@ -20,10 +22,16 @@ const UnPaidContainer = () => {
   const [recordDate, setRecordDate] = useState(new Date());
   const [previewImage, setPreviewImage] = useState('');
   const [place, setPlace] = useState('');
+  const [memo, setMemo] = useState('');
 
-  const handlePlaceInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPlace(value);
+  };
+
+  const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setMemo(value);
   };
 
   const RecordDatePickerProps = {
@@ -44,7 +52,16 @@ const UnPaidContainer = () => {
     value: place,
     maxLength: 10,
     placeholder: '장소를 입력해주세요.',
-    onChange: handlePlaceInput
+    onChange: handleChangePlace
+  };
+
+  const MemoProps: TextareaProps = {
+    name: 'memo',
+    value: memo,
+    lengthLimit: 50,
+    size: 'full',
+    height: 'md',
+    onChange: handleChangeMemo
   };
 
   const SubmitButtonTextProps: TypographyProps = {
@@ -89,11 +106,16 @@ const UnPaidContainer = () => {
             <Title variant='main'>텀블러를 어디에서 사용했나요?</Title>
             <Input {...PlaceInputProps} />
           </Style.ElementContainer>
-        </Style.FormMain>
 
-        <Style.SubmitButtonContainer>
-          <Button {...SubmitButtonProps} />
-        </Style.SubmitButtonContainer>
+          <Style.ElementContainer>
+            <Title variant='main'>메모</Title>
+            <Textarea {...MemoProps} />
+          </Style.ElementContainer>
+
+          <Style.SubmitButtonContainer>
+            <Button {...SubmitButtonProps} />
+          </Style.SubmitButtonContainer>
+        </Style.FormMain>
       </Style.FormContainer>
     </Style.Container>
   );

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
 import Input from '@/components/Common/Input/Input';
+import Textarea from '@/components/Common/Textarea/Textarea';
 import Button from '@/components/Common/Button/Button';
 import Header from '../../Common/Header/Header';
 import RecordDatePicker from '../DatePicker/RecordDatePicker';
@@ -12,7 +13,8 @@ import SearchResultPopup from '../SearchResultPopup/SearchResultPopup';
 import {
   type InputProps,
   type ButtonProps,
-  type TypographyProps
+  type TypographyProps,
+  TextareaProps
 } from '@/types';
 import { KakaoResultType } from '@/types/kakaoSearchResult.type';
 
@@ -29,6 +31,7 @@ const PaidContainer = () => {
   );
   const [place, setPlace] = useState('');
   const [isDiscountChecked, setIsDiscountChecked] = useState(false);
+  const [memo, setMemo] = useState('');
 
   const [timer, setTimer] = useState<NodeJS.Timeout>();
 
@@ -71,6 +74,11 @@ const PaidContainer = () => {
         }
       );
     });
+  };
+
+  const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setMemo(value);
   };
 
   const onClickSearchResult = (place: string) => {
@@ -118,6 +126,15 @@ const PaidContainer = () => {
     value: placeSearchWord,
     placeholder: '장소를 입력해주세요.',
     onChange: handlePlaceInput
+  };
+
+  const MemoProps: TextareaProps = {
+    name: 'memo',
+    value: memo,
+    lengthLimit: 50,
+    size: 'full',
+    height: 'md',
+    onChange: handleChangeMemo
   };
 
   return (
@@ -187,6 +204,11 @@ const PaidContainer = () => {
             </Style.DiscountedAmountSelect>
           </Style.ElementContainer>
         )}
+
+        <Style.ElementContainer>
+          <Title variant='main'>메모</Title>
+          <Textarea {...MemoProps} />
+        </Style.ElementContainer>
 
         <Style.SubmitButtonContainer>
           <Button {...SubmitButtonProps} />

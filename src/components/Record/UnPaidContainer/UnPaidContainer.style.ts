@@ -5,9 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-
-  height: 100vh;
-  position: relative;
+  padding-bottom: 50px;
 `;
 
 export const FormContainer = styled.form`
@@ -32,10 +30,7 @@ export const ElementContainer = styled.div`
 `;
 
 export const SubmitButtonContainer = styled.div`
-  width: 100%;
-  position: absolute;
-  bottom: 30px;
-
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 `;
