@@ -104,11 +104,15 @@ const PaidContainer = () => {
     setIsDiscountChecked(e.target.checked);
   };
 
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <Style.Container>
       <Header title='텀블러 기록하기' />
 
-      <Style.FormMain>
+      <Style.FormMain onSubmit={onSubmitHandler}>
         <div>
           <Title variant='main'>날짜</Title>
           <Style.DatePickerContainer>
