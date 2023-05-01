@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SheetHeader = styled.div`
   position: sticky;
   top: 0;
+  z-index: 9;
   display: flex;
   flex-direction: column;
   gap: 18px;

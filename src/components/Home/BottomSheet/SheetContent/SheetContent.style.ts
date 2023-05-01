@@ -18,9 +18,11 @@ export const RecordImage = styled.img`
 `;
 
 export const RecordInfoWrapper = styled.div`
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 `;
 
 export const RecordInfo = styled.div`
@@ -29,27 +31,15 @@ export const RecordInfo = styled.div`
   gap: 10px;
 `;
 
+export const RecordAmount = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+`;
+
 export const RecordButtonWrapper = styled.div`
   display: flex;
   gap: 10px;
-`;
-
-export const RecordMofidyButton = styled.button`
-  margin: 0;
-  padding: 0;
-  width: 80px;
-  height: 26px;
-  background-color: rgba(255, 216, 59, 0.1);
-  border-radius: 8px;
-`;
-
-export const RecordDeleteButton = styled.button`
-  margin: 0;
-  padding: 0;
-  width: 80px;
-  height: 26px;
-  background-color: rgba(240, 0, 1, 0.1);
-  border-radius: 8px;
 `;
 
 export const HorizontalRule = styled.hr`

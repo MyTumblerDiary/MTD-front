@@ -7,6 +7,7 @@ interface DiaryDataProps {
   id: number;
   imageUrl: string;
   address: string;
+  memo: string;
   discountAmount: number;
 }
 
@@ -21,7 +22,7 @@ export default function SheetContent({ data }: SheetContentProps) {
 
   return (
     <>
-      {data.map(({ id, imageUrl, address, discountAmount }, idx) => (
+      {data.map(({ id, imageUrl, address, memo, discountAmount }, idx) => (
         <Style.SheetContent key={id}>
           <Style.DiaryRecord>
             <Style.RecordImage
@@ -31,22 +32,11 @@ export default function SheetContent({ data }: SheetContentProps) {
             <Style.RecordInfoWrapper>
               <Style.RecordInfo>
                 <Typography size='button1'>{address}</Typography>
-                <Typography size='body2'>
-                  {discountAmount}원 할인받았어요
-                </Typography>
+                <Typography size='body2'>{memo}</Typography>
               </Style.RecordInfo>
-              <Style.RecordButtonWrapper>
-                <Style.RecordMofidyButton>
-                  <Typography size='button2' variant='warning'>
-                    수정하기
-                  </Typography>
-                </Style.RecordMofidyButton>
-                <Style.RecordDeleteButton>
-                  <Typography size='button2' variant='error'>
-                    삭제하기
-                  </Typography>
-                </Style.RecordDeleteButton>
-              </Style.RecordButtonWrapper>
+              <Style.RecordAmount>
+                <Typography size='button2'>{discountAmount}원 할인</Typography>
+              </Style.RecordAmount>
             </Style.RecordInfoWrapper>
           </Style.DiaryRecord>
           {data.length - 1 !== idx && <Style.HorizontalRule />}
