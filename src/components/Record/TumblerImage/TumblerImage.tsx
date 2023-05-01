@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React from 'react';
 
 import Svg from '../../svg';
 
@@ -6,7 +6,7 @@ import * as Style from './TumblerImage.style';
 
 interface TumblerImageProps {
   previewImage: string;
-  setPreviewImage: React.Dispatch<SetStateAction<string>>;
+  setPreviewImage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
