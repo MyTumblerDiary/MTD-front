@@ -55,6 +55,7 @@ export const Close = styled.button`
   margin: 0;
   padding: 0;
   position: absolute;
+  z-index: 99;
   right: 22px;
   top: 26px;
   width: 62px;
