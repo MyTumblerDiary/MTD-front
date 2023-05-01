@@ -1,5 +1,3 @@
-import { SetStateAction } from 'react';
-
 import { ko } from 'date-fns/locale';
 import { getYear, getMonth } from 'date-fns';
 
@@ -11,10 +9,18 @@ import Svg from '../../svg';
 
 interface DatePickerProps {
   recordDate: Date;
-  setRecordDate: React.Dispatch<SetStateAction<Date>>;
+  setRecordDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 const RecordDatePicker = ({ recordDate, setRecordDate }: DatePickerProps) => {
+  const handleDateChange = (date: Date) => {
+    setRecordDate(date);
+  };
+
+  const handleFocusBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    e.target.blur();
+  };
+
   return (
     <Style.DatePickerContainer
       renderCustomHeader={({
@@ -39,14 +45,11 @@ const RecordDatePicker = ({ recordDate, setRecordDate }: DatePickerProps) => {
         </Style.DatePickerHeader>
       )}
       selected={recordDate}
-      onChange={(date: Date) => setRecordDate(date)}
       dateFormat='yyyy년 MM월 dd일'
       maxDate={new Date()}
       locale={ko}
-      onFocus={(e) => e.target.blur()}
-      onKeyDown={(e) => {
-        e.preventDefault();
-      }}
+      onFocus={handleFocusBlur}
+      onChange={handleDateChange}
     />
   );
 };
