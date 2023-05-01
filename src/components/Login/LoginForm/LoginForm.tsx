@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import { useMutation } from '@apollo/client';
 
 import Input from '@/components/Common/Input/Input';
 import Button from '@/components/Common/Button/Button';
@@ -18,6 +20,8 @@ import {
   submitValidation
 } from '@/utils/helpers/login.helper';
 
+import { POST_LOGIN } from '@/apollo/mutations';
+
 import * as Style from './LoginForm.style';
 
 interface LoginInputTypes {
@@ -26,6 +30,7 @@ interface LoginInputTypes {
 }
 
 const LoginForm = () => {
+  const router = useRouter();
   const [userInput, setUserInput] = useState<LoginInputTypes>({
     email: {
       value: '',
@@ -38,6 +43,7 @@ const LoginForm = () => {
       message: ''
     }
   });
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
   const isValidateSubmit = useMemo(() => {
     return submitValidation(
@@ -68,8 +74,23 @@ const LoginForm = () => {
     }
   };
 
+  const [loginMutation] = useMutation(POST_LOGIN, {
+    variables: {
+      email: userInput.email.value,
+      password: userInput.password.value
+    },
+    onCompleted: (data) => {
+      localStorage.setItem('accessToken', data.login);
+      router.push('/');
+    },
+    onError: (err) => {
+      setLoginErrorMessage(err.message);
+    }
+  });
+
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    loginMutation();
   };
 
   const emailProps: InputProps = {
@@ -115,6 +136,9 @@ const LoginForm = () => {
       <Style.InputWrapper>
         <Input {...emailProps} />
         <Input {...passwordProps} />
+        <Typography size='body2' variant='error'>
+          {loginErrorMessage}
+        </Typography>
       </Style.InputWrapper>
 
       <Button {...loginButtonProps} />

@@ -39,6 +39,21 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: black;
   }
+
+  a, svg, img {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  select::-ms-expand { 
+	display: none;
+  }
+
+  select {
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 `;
 
 export default GlobalStyle;
