@@ -18,11 +18,12 @@ export type InputNameProps =
   | 'emailCheck'
   | 'username'
   | 'password'
-  | 'passwordCheck';
+  | 'passwordCheck'
+  | 'search';
 
 export type InputValidationProps = 'default' | 'success' | 'error';
 
-type InputTypeProps = 'text' | 'password' | 'email';
+type InputTypeProps = 'text' | 'password' | 'email' | 'search';
 
 type InputSizeProps = 'sm' | 'md' | 'lg';
 
