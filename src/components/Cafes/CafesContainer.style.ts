@@ -5,7 +5,7 @@ export const CafesContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 12px;
   align-items: center;
+  gap: 18px;
   background-color: #f5f5f5;
 `;
