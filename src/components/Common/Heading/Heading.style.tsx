@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
+
+interface TitleProps {
+  variantStyle: CSSProp;
+}
 
 export const HeadTitle = styled.h1`
   font-size: 36px;
@@ -10,7 +14,9 @@ export const SubTitle = styled.h2`
   font-weight: bold;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h3<TitleProps>`
+  ${(props) => props.variantStyle}
   font-size: 18px;
   font-weight: bold;
+  color: var(--typography-color, black);
 `;

@@ -12,6 +12,10 @@ export const SIZES = {
   lg: css`
     --input-width: 320px;
     --input-height: 48px;
+  `,
+  full: css`
+    --input-width: 100%;
+    --input-height: 48px;
   `
 };
 

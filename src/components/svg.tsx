@@ -9,6 +9,10 @@ import GoogleLogo from '../../public/icons/GoogleLogo.svg';
 import AppleLogo from '../../public/icons/AppleLogo.svg';
 import Reload from '../../public/icons/Reload.svg';
 import LoginButton from '../../public/icons/LoginButton.svg';
+import CaretRight from '../../public/icons/CaretRight.svg';
+import Plus from '../../public/icons/Plus.svg';
+import XCircle from '../../public/icons/XCircle.svg';
+import ArrowLeft from '../../public/icons/ArrowLeft.svg';
 
 export default {
   Home,
@@ -20,6 +24,10 @@ export default {
   KakaoLogo,
   GoogleLogo,
   AppleLogo,
-  Reload,
-  LoginButton
+  LoginButton,
+  CaretRight,
+  Plus,
+  XCircle,
+  ArrowLeft,
+  Reload
 };

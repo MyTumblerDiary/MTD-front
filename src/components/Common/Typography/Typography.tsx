@@ -1,6 +1,8 @@
 import * as Style from './Typography.style';
 
-import { SIZES, VARIANTS } from './Typography.variant';
+import { SIZES } from './Typography.variant';
+
+import { VARIANTS } from '@/styles/typo.variant';
 
 import { TypographyProps } from '../../../types/typography.type';
 
