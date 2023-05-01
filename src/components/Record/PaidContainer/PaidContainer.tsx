@@ -30,6 +30,8 @@ const PaidContainer = () => {
   const [place, setPlace] = useState('');
   const [isDiscountChecked, setIsDiscountChecked] = useState(false);
 
+  const [timer, setTimer] = useState<NodeJS.Timeout>();
+
   const handlePlaceInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPlaceSearchWord(value);
@@ -39,44 +41,21 @@ const PaidContainer = () => {
       return;
     }
 
-    searchAutoComplete(value);
-  };
+    if (timer) {
+      clearTimeout(timer);
+    }
 
-  const RecordDatePickerProps = {
-    recordDate,
-    setRecordDate
-  };
+    const newTimer = setTimeout(() => {
+      searchAutoComplete(value);
+    }, 100);
 
-  const TumblerImageProps = {
-    previewImage,
-    setPreviewImage
-  };
-
-  const PlaceInputProps: InputProps = {
-    type: 'text',
-    name: 'place',
-    size: 'full',
-    label: 'place',
-    value: placeSearchWord,
-    placeholder: '장소를 입력해주세요.',
-    onChange: handlePlaceInput
-  };
-
-  const SubmitButtonTextProps: TypographyProps = {
-    size: 'button1',
-    variant: 'accent',
-    children: '기록하기'
-  };
-
-  const SubmitButtonProps: ButtonProps = {
-    type: 'submit',
-    size: 'lg',
-    name: 'record',
-    children: <Typography {...SubmitButtonTextProps} />
+    setTimer(newTimer);
   };
 
   const searchAutoComplete = (searchKeyword: string) => {
     const { kakao } = window;
+
+    console.log('히히');
 
     kakao.maps.load(() => {
       const placeObj = new kakao.maps.services.Places();
@@ -106,6 +85,39 @@ const PaidContainer = () => {
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+  };
+
+  const RecordDatePickerProps = {
+    recordDate,
+    setRecordDate
+  };
+
+  const TumblerImageProps = {
+    previewImage,
+    setPreviewImage
+  };
+
+  const SubmitButtonTextProps: TypographyProps = {
+    size: 'button1',
+    variant: 'accent',
+    children: '기록하기'
+  };
+
+  const SubmitButtonProps: ButtonProps = {
+    type: 'submit',
+    size: 'lg',
+    name: 'record',
+    children: <Typography {...SubmitButtonTextProps} />
+  };
+
+  const PlaceInputProps: InputProps = {
+    type: 'text',
+    name: 'place',
+    size: 'full',
+    label: 'place',
+    value: placeSearchWord,
+    placeholder: '장소를 입력해주세요.',
+    onChange: handlePlaceInput
   };
 
   return (
