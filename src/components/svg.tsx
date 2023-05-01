@@ -14,6 +14,8 @@ import TumblerColored from '../../public/icons/TumblerColored.svg';
 import TumblerMaterial from '../../public/icons/TumblerMaterial.svg';
 import Shopping from '../../public/icons/Shopping.svg';
 import Close from '../../public/icons/Close.svg';
+import Search from '../../public/icons/Search.svg';
+import SearchLogo from '../../public/icons/SearchLogo.svg';
 
 export default {
   Home,
@@ -31,5 +33,7 @@ export default {
   TumblerMaterial,
   Shopping,
   Close,
-  Reload
+  Reload,
+  Search,
+  SearchLogo
 };
