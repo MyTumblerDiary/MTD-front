@@ -8,6 +8,7 @@ import Button from '@/components/Common/Button/Button';
 import Header from '../../Common/Header/Header';
 import RecordDatePicker from '../DatePicker/RecordDatePicker';
 import TumblerImage from '../TumblerImage/TumblerImage';
+import MemoContainer from '../MemoContainer/MemoContainer';
 
 import {
   type InputProps,
@@ -90,35 +91,16 @@ const UnPaidContainer = () => {
 
       <Style.FormContainer onSubmit={onSubmitHandler}>
         <Style.FormMain>
-          <div>
-            <Title variant='main'>날짜</Title>
-            <Style.DatePickerContainer>
-              <RecordDatePicker {...RecordDatePickerProps} />
-            </Style.DatePickerContainer>
-          </div>
+          <RecordDatePicker {...RecordDatePickerProps} />
 
-          <Style.ElementContainer>
-            <Title variant='main'>텀블러 이미지</Title>
-            <Typography size='body3' variant='gray2'>
-              이미지는 1장만 넣을 수 있습니다.
-            </Typography>
-            <TumblerImage {...TumblerImageProps} />
-          </Style.ElementContainer>
+          <TumblerImage {...TumblerImageProps} />
 
           <Style.ElementContainer>
             <Title variant='main'>텀블러를 어디에서 사용했나요?</Title>
             <Input {...PlaceInputProps} />
           </Style.ElementContainer>
 
-          <Style.ElementContainer>
-            <Style.MemoTitleContainer>
-              <Title variant='main'>메모</Title>
-              <Typography size='body3' variant='gray2'>
-                (선택사항)
-              </Typography>
-            </Style.MemoTitleContainer>
-            <Textarea {...MemoProps} />
-          </Style.ElementContainer>
+          <MemoContainer {...MemoProps} />
 
           <Style.SubmitButtonContainer>
             <Button {...SubmitButtonProps} />

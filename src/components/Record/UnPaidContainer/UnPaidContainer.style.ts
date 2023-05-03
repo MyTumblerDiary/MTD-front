@@ -12,10 +12,6 @@ export const FormContainer = styled.form`
   padding-top: 80px;
 `;
 
-export const DatePickerContainer = styled.div`
-  margin-top: 10px;
-`;
-
 export const FormMain = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,14 +29,4 @@ export const SubmitButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
-`;
-
-export const MemoTitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  span {
-    display: inline-block;
-    margin-left: 5px;
-  }
 `;
