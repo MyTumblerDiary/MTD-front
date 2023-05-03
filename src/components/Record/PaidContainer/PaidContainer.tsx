@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
 import Input from '@/components/Common/Input/Input';
-import Textarea from '@/components/Common/Textarea/Textarea';
 import Button from '@/components/Common/Button/Button';
 import Header from '../../Common/Header/Header';
 import RecordDatePicker from '../DatePicker/RecordDatePicker';
@@ -78,17 +77,6 @@ const PaidContainer = () => {
     });
   };
 
-  const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-
-    if (value.length > MEMO_MAX_LENGTH) {
-      const txt = value.slice(0, MEMO_MAX_LENGTH);
-      setMemo(txt);
-      return;
-    }
-    setMemo(value);
-  };
-
   const onClickSearchResult = (place: string) => {
     setPlace(place);
     setPlaceSearchResult([]);
@@ -143,7 +131,7 @@ const PaidContainer = () => {
     size: 'full',
     height: 'md',
     placeholder: '오늘의 텀블러 사용은 어땠나요?',
-    onChange: handleChangeMemo
+    setValue: setMemo
   };
 
   return (

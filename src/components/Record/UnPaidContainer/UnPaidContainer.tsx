@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
 import Input from '@/components/Common/Input/Input';
-import Textarea from '@/components/Common/Textarea/Textarea';
 import Button from '@/components/Common/Button/Button';
 import Header from '../../Common/Header/Header';
 import RecordDatePicker from '../DatePicker/RecordDatePicker';
@@ -30,11 +29,6 @@ const UnPaidContainer = () => {
   const handleChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPlace(value);
-  };
-
-  const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setMemo(value);
   };
 
   const RecordDatePickerProps = {
@@ -65,7 +59,7 @@ const UnPaidContainer = () => {
     size: 'full',
     height: 'md',
     placeholder: '오늘의 텀블러 사용은 어땠나요?',
-    onChange: handleChangeMemo
+    setValue: setMemo
   };
 
   const SubmitButtonTextProps: TypographyProps = {

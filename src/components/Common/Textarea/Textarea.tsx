@@ -12,19 +12,30 @@ const Textarea = ({
   lengthLimit,
   placeholder,
   value,
-  onChange,
+  setValue,
   ...rest
 }: TextareaProps) => {
   const sizeStyle = SIZES[size];
   const heightStyle = TEXTAREA_HEIGHT[height];
   const memoLength = value.length;
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = e.target;
+
+    if (value.length > lengthLimit) {
+      const text = value.slice(0, lengthLimit);
+      setValue(text);
+      return;
+    }
+    setValue(value);
+  };
+
   return (
     <Style.Container sizeStyle={sizeStyle}>
       <Style.Textarea
         name={name}
         heightStyle={heightStyle}
-        onChange={onChange}
+        onChange={onChangeHandler}
         value={value}
         placeholder={placeholder}
         {...rest}
