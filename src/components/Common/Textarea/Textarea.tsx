@@ -10,6 +10,7 @@ const Textarea = ({
   size,
   height,
   lengthLimit,
+  placeholder,
   value,
   onChange,
   ...rest
@@ -24,7 +25,8 @@ const Textarea = ({
         name={name}
         heightStyle={heightStyle}
         onChange={onChange}
-        maxLength={lengthLimit}
+        value={value}
+        placeholder={placeholder}
         {...rest}
       />
       <Style.TextLength>

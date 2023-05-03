@@ -4,6 +4,7 @@ export interface TextareaProps {
   lengthLimit: number;
   size: TextareaSizeProps;
   height: TextareaHeightProps;
+  placeholder: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 

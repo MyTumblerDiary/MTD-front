@@ -27,7 +27,7 @@ export const Textarea = styled.textarea<TextareaProps>`
 
   &:focus {
     outline: 1px solid ${theme.color.main};
-    border: none;
+    border: 1px solid white;
   }
 `;
 
