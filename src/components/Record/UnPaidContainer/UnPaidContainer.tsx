@@ -16,6 +16,8 @@ import {
   type TextareaProps
 } from '@/types';
 
+import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
+
 import * as Style from './UnPaidContainer.style';
 
 const UnPaidContainer = () => {
@@ -58,9 +60,10 @@ const UnPaidContainer = () => {
   const MemoProps: TextareaProps = {
     name: 'memo',
     value: memo,
-    lengthLimit: 50,
+    lengthLimit: MEMO_MAX_LENGTH,
     size: 'full',
     height: 'md',
+    placeholder: '오늘의 텀블러 사용은 어땠나요?',
     onChange: handleChangeMemo
   };
 
@@ -108,7 +111,12 @@ const UnPaidContainer = () => {
           </Style.ElementContainer>
 
           <Style.ElementContainer>
-            <Title variant='main'>메모</Title>
+            <Style.MemoTitleContainer>
+              <Title variant='main'>메모</Title>
+              <Typography size='body3' variant='gray2'>
+                (선택사항)
+              </Typography>
+            </Style.MemoTitleContainer>
             <Textarea {...MemoProps} />
           </Style.ElementContainer>
 

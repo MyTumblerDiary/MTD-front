@@ -34,3 +34,13 @@ export const SubmitButtonContainer = styled.div`
   justify-content: center;
   margin-top: 20px;
 `;
+
+export const MemoTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  span {
+    display: inline-block;
+    margin-left: 5px;
+  }
+`;

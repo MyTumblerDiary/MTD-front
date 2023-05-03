@@ -18,6 +18,7 @@ import {
 } from '@/types';
 import { KakaoResultType } from '@/types/kakaoSearchResult.type';
 
+import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
 
 import * as Style from './PaidContainer.style';
@@ -78,6 +79,12 @@ const PaidContainer = () => {
 
   const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+
+    if (value.length > MEMO_MAX_LENGTH) {
+      const txt = value.slice(0, MEMO_MAX_LENGTH);
+      setMemo(txt);
+      return;
+    }
     setMemo(value);
   };
 
@@ -131,9 +138,10 @@ const PaidContainer = () => {
   const MemoProps: TextareaProps = {
     name: 'memo',
     value: memo,
-    lengthLimit: 50,
+    lengthLimit: MEMO_MAX_LENGTH,
     size: 'full',
     height: 'md',
+    placeholder: '오늘의 텀블러 사용은 어땠나요?',
     onChange: handleChangeMemo
   };
 
@@ -206,7 +214,12 @@ const PaidContainer = () => {
         )}
 
         <Style.ElementContainer>
-          <Title variant='main'>메모</Title>
+          <Style.MemoTitleContainer>
+            <Title variant='main'>메모</Title>
+            <Typography size='body3' variant='gray2'>
+              (선택사항)
+            </Typography>
+          </Style.MemoTitleContainer>
           <Textarea {...MemoProps} />
         </Style.ElementContainer>
 
