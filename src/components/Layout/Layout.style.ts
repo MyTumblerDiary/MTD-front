@@ -7,12 +7,14 @@ interface MainProps {
 
 export const LayoutContainer = styled.div`
   max-width: ${theme.maxWidth};
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const Main = styled.main<MainProps>`
-  height: ${({ hasBottomNavigator }) =>
+  min-height: ${({ hasBottomNavigator }) =>
     hasBottomNavigator
       ? `calc(100vh - ${theme.bottomNavigatorHeight})`
       : '100vh'};
+  padding-bottom: ${({ hasBottomNavigator }) =>
+    hasBottomNavigator ? `${theme.bottomNavigatorHeight}` : '0px'};
 `;

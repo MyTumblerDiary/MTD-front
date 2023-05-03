@@ -5,6 +5,7 @@ export interface TypographyProps {
     | 'accent'
     | 'gray'
     | 'gray2'
+    | 'gray3'
     | 'success'
     | 'warning'
     | 'error'
