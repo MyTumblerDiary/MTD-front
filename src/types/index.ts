@@ -6,6 +6,7 @@ import {
   type InputValidationProps,
   type UserInputPramProps
 } from './input.type';
+import { type TextareaProps } from './textarea.type';
 import {
   type StepProps,
   type StepArrayProps,
@@ -21,5 +22,6 @@ export {
   StepProps,
   StepArrayProps,
   StepButtonNameProps,
-  TypographyProps
+  TypographyProps,
+  TextareaProps
 };

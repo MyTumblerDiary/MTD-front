@@ -7,7 +7,7 @@ import * as Style from './SubArea.style';
 const SubArea = () => {
   return (
     <Style.SubContainer>
-      <Link href='/'>
+      <Link href='/password-recovery'>
         <Typography size='button1'>비밀번호 찾기</Typography>
       </Link>
       <Link href='/signup'>

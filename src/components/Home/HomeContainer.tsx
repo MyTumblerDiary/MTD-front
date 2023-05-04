@@ -6,7 +6,7 @@ import UserCalendar from './UserCalendar/UserCalendar';
 import DataCardList from './DataCardList/DataCardList';
 import Button from '../Common/Button/Button';
 import Typography from '../Common/Typography/Typography';
-import Header from '../Common/Header/Header';
+import MainHeader from '../Common/MainHeader/MainHeader';
 import Svg from '../svg';
 
 interface CardDataProps {
@@ -64,7 +64,7 @@ export default function HomeContainer() {
 
   return (
     <Style.HomeContainer>
-      <Header title='나의 텀블러 다이어리' />
+      <MainHeader title='나의 텀블러 다이어리' />
       <Button {...recordButtonProps} />
       <UserCalendar />
       <DataCardList cardData={tempData} />

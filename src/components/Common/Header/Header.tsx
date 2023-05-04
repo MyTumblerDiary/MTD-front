@@ -1,15 +1,29 @@
-import * as Style from './Header.style';
+import { useRouter } from 'next/router';
 
-import { Title } from '@/components/Common/Heading/Heading.style';
+import Title from '@/components/Common/Heading/Title';
+import Svg from '@/components/svg';
+
+import * as Style from './Header.style';
 
 interface HeaderProps {
   title: string;
 }
 
-export default function Header({ title }: HeaderProps) {
+const Header = ({ title }: HeaderProps) => {
+  const router = useRouter();
+
+  const onClickBack = () => {
+    router.back();
+  };
+
   return (
-    <Style.HeaderWrapper>
+    <Style.Container>
       <Title>{title}</Title>
-    </Style.HeaderWrapper>
+      <Style.LoginLink onClick={onClickBack}>
+        <Svg.ArrowLeft />
+      </Style.LoginLink>
+    </Style.Container>
   );
-}
+};
+
+export default Header;

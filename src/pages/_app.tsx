@@ -13,6 +13,9 @@ import { RecoilRoot } from 'recoil';
 
 import Layout from '@/components/Layout/Layout';
 
+import 'react-datepicker/dist/react-datepicker.css';
+import '../components/Record/DatePicker/DatePicker.css';
+
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };
@@ -20,6 +23,12 @@ export type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
