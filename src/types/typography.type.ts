@@ -1,5 +1,13 @@
 export interface TypographyProps {
-  size: 'body1' | 'body2' | 'body3' | 'caption' | 'button1' | 'button2';
+  size:
+    | 'body1'
+    | 'body2'
+    | 'body3'
+    | 'caption'
+    | 'button1'
+    | 'button2'
+    | 'button3'
+    | 'captionBold';
   variant?:
     | 'default'
     | 'accent'
