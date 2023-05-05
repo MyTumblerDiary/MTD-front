@@ -8,6 +8,8 @@ import { useState } from 'react';
 
 interface CafeSearchWrapperProps {
   isSearching: boolean;
+  keyword: string;
+  handleChangeKeyword: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchingState: () => void;
   handleSearchSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
@@ -22,10 +24,20 @@ interface SearchModeFilterProps {
 
 export default function CafeSearchWrapper({
   isSearching,
+  keyword,
+  handleChangeKeyword,
   handleSearchingState,
   handleSearchSubmit
 }: CafeSearchWrapperProps) {
   const [searchMode, setSearchMode] = useState<searchModeProps>('storeName');
+
+  const handleModeStorename = () => {
+    setSearchMode('storeName');
+  };
+
+  const handleModeAddress = () => {
+    setSearchMode('address');
+  };
 
   const searchModeFilter: SearchModeFilterProps = {
     storeName: searchMode === 'storeName' ? 'main' : 'default',
@@ -42,9 +54,9 @@ export default function CafeSearchWrapper({
     size: 'lg',
     label: '검색',
     isLabelVisible: false,
-    value: '',
+    value: keyword,
     placeholder: searchModeFilter.placeholder,
-    onChange: () => {}
+    onChange: handleChangeKeyword
   };
 
   return (
@@ -53,12 +65,18 @@ export default function CafeSearchWrapper({
         {isSearching ? (
           <Style.SearchForm onSubmit={handleSearchSubmit}>
             <Style.SearchModeWrapper>
-              <Style.SearchMode onClick={() => setSearchMode('storeName')}>
+              <Style.SearchMode
+                onClick={handleModeStorename}
+                borderVariant={searchModeFilter.storeName}
+              >
                 <Typography size='button2' variant={searchModeFilter.storeName}>
                   가게명으로 검색
                 </Typography>
               </Style.SearchMode>
-              <Style.SearchMode onClick={() => setSearchMode('address')}>
+              <Style.SearchMode
+                onClick={handleModeAddress}
+                borderVariant={searchModeFilter.address}
+              >
                 <Typography size='button2' variant={searchModeFilter.address}>
                   주소로 검색
                 </Typography>
@@ -66,14 +84,14 @@ export default function CafeSearchWrapper({
             </Style.SearchModeWrapper>
             <Style.SearchInputWrapper>
               <Input {...searchInputProps} />
-              <Style.SearchButton />
+              <Style.SearchButton onClick={handleSearchSubmit} />
             </Style.SearchInputWrapper>
           </Style.SearchForm>
         ) : (
-          <>
+          <Style.SearchLanding>
             <Typography size='button2'>카페 검색하기</Typography>
             <Svg.SearchLogo />
-          </>
+          </Style.SearchLanding>
         )}
       </Style.CafeSearch>
     </Style.CafeSearchWrapper>
