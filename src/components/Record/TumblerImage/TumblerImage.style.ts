@@ -5,6 +5,12 @@ import theme from '@/styles/theme';
 
 import Svg from '../../svg';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 export const AddImageLabel = styled.label`
   width: 150px;
 `;

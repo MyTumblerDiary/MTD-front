@@ -1,3 +1,5 @@
+import Title from '@/components/Common/Heading/Title';
+import Typography from '@/components/Common/Typography/Typography';
 import React from 'react';
 
 import Svg from '../../svg';
@@ -21,7 +23,11 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
   };
 
   return (
-    <>
+    <Style.Container>
+      <Title variant='main'>텀블러 이미지</Title>
+      <Typography size='body3' variant='gray2'>
+        이미지는 1장만 넣을 수 있습니다.
+      </Typography>
       {previewImage ? (
         <Style.AddImageContainer>
           <Style.ImageDeleteButton onClick={onClickPreviewDelete} />
@@ -40,7 +46,7 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
           <Style.FileInput id='image-input' type='file' accept='image/*' />
         </Style.AddImageLabel>
       )}
-    </>
+    </Style.Container>
   );
 };
 

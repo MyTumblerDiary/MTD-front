@@ -4,7 +4,8 @@ export interface TextareaProps {
   lengthLimit: number;
   size: TextareaSizeProps;
   height: TextareaHeightProps;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  placeholder: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 type TextareaSizeProps = 'sm' | 'md' | 'lg' | 'full';

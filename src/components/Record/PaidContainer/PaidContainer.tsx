@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
 import Input from '@/components/Common/Input/Input';
-import Textarea from '@/components/Common/Textarea/Textarea';
 import Button from '@/components/Common/Button/Button';
 import Header from '../../Common/Header/Header';
 import RecordDatePicker from '../DatePicker/RecordDatePicker';
 import TumblerImage from '../TumblerImage/TumblerImage';
 import SearchResultPopup from '../SearchResultPopup/SearchResultPopup';
+import MemoContainer from '../MemoContainer/MemoContainer';
 
 import {
   type InputProps,
@@ -18,6 +18,7 @@ import {
 } from '@/types';
 import { KakaoResultType } from '@/types/kakaoSearchResult.type';
 
+import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
 
 import * as Style from './PaidContainer.style';
@@ -76,11 +77,6 @@ const PaidContainer = () => {
     });
   };
 
-  const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setMemo(value);
-  };
-
   const onClickSearchResult = (place: string) => {
     setPlace(place);
     setPlaceSearchResult([]);
@@ -131,10 +127,11 @@ const PaidContainer = () => {
   const MemoProps: TextareaProps = {
     name: 'memo',
     value: memo,
-    lengthLimit: 50,
+    lengthLimit: MEMO_MAX_LENGTH,
     size: 'full',
     height: 'md',
-    onChange: handleChangeMemo
+    placeholder: '오늘의 텀블러 사용은 어땠나요?',
+    setValue: setMemo
   };
 
   return (
@@ -142,20 +139,9 @@ const PaidContainer = () => {
       <Header title='텀블러 기록하기' />
 
       <Style.FormMain onSubmit={onSubmitHandler}>
-        <div>
-          <Title variant='main'>날짜</Title>
-          <Style.DatePickerContainer>
-            <RecordDatePicker {...RecordDatePickerProps} />
-          </Style.DatePickerContainer>
-        </div>
+        <RecordDatePicker {...RecordDatePickerProps} />
 
-        <Style.ElementContainer>
-          <Title variant='main'>텀블러 이미지</Title>
-          <Typography size='body3' variant='gray2'>
-            이미지는 1장만 넣을 수 있습니다.
-          </Typography>
-          <TumblerImage {...TumblerImageProps} />
-        </Style.ElementContainer>
+        <TumblerImage {...TumblerImageProps} />
 
         <Style.ElementContainer>
           <Title variant='main'>텀블러를 어디에서 사용했나요?</Title>
@@ -205,10 +191,7 @@ const PaidContainer = () => {
           </Style.ElementContainer>
         )}
 
-        <Style.ElementContainer>
-          <Title variant='main'>메모</Title>
-          <Textarea {...MemoProps} />
-        </Style.ElementContainer>
+        <MemoContainer {...MemoProps} />
 
         <Style.SubmitButtonContainer>
           <Button {...SubmitButtonProps} />

@@ -6,6 +6,7 @@ export const DatePickerContainer = styled(DatePicker)`
   width: 100%;
   max-width: 400px;
   height: 48px;
+  margin-top: 10px;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 8px;
