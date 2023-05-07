@@ -8,10 +8,3 @@ export const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-export const Container = styled.div`
-  width: 270px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
