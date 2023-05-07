@@ -7,6 +7,12 @@ import { KAKAO_CODE } from '@/apollo/mutations';
 import IsLogin from '@/components/Oauth/isLogin';
 import Layout from '@/components/Layout/Layout';
 
+interface ErrorType {
+  error: string;
+  message: string;
+  statusCode: number;
+}
+
 const OauthKakao = () => {
   const router = useRouter();
   const kakaoCode = router.query.code;
@@ -16,20 +22,27 @@ const OauthKakao = () => {
       code: kakaoCode
     },
     onCompleted: (data) => {
-      console.log('성공: ', data);
       localStorage.setItem('accessToken', data.kakaoLogin);
       router.push('/');
     },
     onError: (err) => {
-      console.log('실패: ', err);
-      console.log('메세지: ', err.message);
-      // console.log('코드: ', err.statusCode);
+      const response = err.graphQLErrors[0]?.extensions.response as ErrorType;
+      if (response?.statusCode === 422) {
+        router.replace({
+          pathname: '/login/existing-email',
+          query: {
+            email: response.error
+          }
+        });
+      }
     }
   });
 
   useEffect(() => {
-    codeMutation();
-  }, [codeMutation, kakaoCode]);
+    if (kakaoCode) {
+      codeMutation();
+    }
+  }, [kakaoCode, codeMutation]);
 
   return <IsLogin />;
 };
