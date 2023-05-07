@@ -19,6 +19,7 @@ import Plus from '../../public/icons/Plus.svg';
 import XCircle from '../../public/icons/XCircle.svg';
 import ArrowLeft from '../../public/icons/ArrowLeft.svg';
 import LoginTumbler from '../../public/icons/LoginTumbler.svg';
+import Tree from '../../public/icons/Tree.svg';
 
 export default {
   Home,
@@ -41,5 +42,6 @@ export default {
   XCircle,
   ArrowLeft,
   Reload,
-  LoginTumbler
+  LoginTumbler,
+  Tree
 };
