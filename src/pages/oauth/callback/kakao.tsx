@@ -22,10 +22,11 @@ const OauthKakao = () => {
       code: kakaoCode
     },
     onCompleted: (data) => {
-      localStorage.setItem('accessToken', data.kakaoLogin);
+      localStorage.setItem('accessToken', data.kakaoLogin.accessToken);
       router.push('/');
     },
     onError: (err) => {
+      console.log('err: ', err);
       const response = err.graphQLErrors[0]?.extensions.response as ErrorType;
       if (response?.statusCode === 422) {
         router.replace({

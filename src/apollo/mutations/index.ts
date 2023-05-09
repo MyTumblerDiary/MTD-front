@@ -16,6 +16,8 @@ export const POST_LOGIN = gql`
 
 export const KAKAO_CODE = gql`
   mutation KakaoLogin($code: String!) {
-    kakaoLogin(code: $code)
+    kakaoLogin(code: $code) {
+      accessToken
+    }
   }
 `;
