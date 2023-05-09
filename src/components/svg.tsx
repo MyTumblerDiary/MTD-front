@@ -22,6 +22,7 @@ import XCircle from '../../public/icons/XCircle.svg';
 import ArrowLeft from '../../public/icons/ArrowLeft.svg';
 import Marker from '../../public/icons/Marker.svg';
 import Location from '../../public/icons/Location.svg';
+import CrossArrow from '../../public/icons/CrossArrow.svg';
 
 export default {
   Home,
@@ -47,5 +48,6 @@ export default {
   XCircle,
   ArrowLeft,
   Marker,
-  Location
+  Location,
+  CrossArrow
 };
