@@ -21,3 +21,11 @@ export const KAKAO_CODE = gql`
     }
   }
 `;
+
+export const GOOGLE_CODE = gql`
+  mutation Mutation($code: String!) {
+    googleLogin(code: $code) {
+      accessToken
+    }
+  }
+`;

@@ -12,7 +12,10 @@ const SocialLogin = () => {
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_RESTAPI_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_CALLBACK_URL}&response_type=code`;
     window.location.href = KAKAO_AUTH_URL;
   };
-  const onClickGoogleLoginButton = () => {};
+  const onClickGoogleLoginButton = () => {
+    const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_CALLBACK_URL}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
+    window.location.href = GOOGLE_AUTH_URL;
+  };
   const onClickAppleLoginButton = () => {};
 
   const KakaoLoginProps: SocialLoginButtonType = {
