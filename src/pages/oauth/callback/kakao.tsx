@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 
 import { KAKAO_CODE } from '@/apollo/mutations';
 
-import IsLogin from '@/components/Oauth/isLogin';
+import LoadingTumbler from '@/components/Common/LoadingTumbler/LoadingTumbler';
 import Layout from '@/components/Layout/Layout';
 
 interface ErrorType {
@@ -26,7 +26,6 @@ const OauthKakao = () => {
       router.push('/');
     },
     onError: (err) => {
-      console.log('err: ', err);
       const response = err.graphQLErrors[0]?.extensions.response as ErrorType;
       if (response?.statusCode === 422) {
         router.replace({
@@ -45,7 +44,7 @@ const OauthKakao = () => {
     }
   }, [kakaoCode, codeMutation]);
 
-  return <IsLogin />;
+  return <LoadingTumbler>로그인 중입니다.</LoadingTumbler>;
 };
 
 export default OauthKakao;
