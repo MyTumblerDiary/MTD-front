@@ -20,7 +20,8 @@ export type InputNameProps =
   | 'username'
   | 'password'
   | 'passwordCheck'
-  | 'place';
+  | 'place'
+  | 'tumblerImage';
 
 export type InputValidationProps = 'default' | 'success' | 'error';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
@@ -13,22 +13,65 @@ import {
   type InputProps,
   type ButtonProps,
   type TypographyProps,
-  type TextareaProps
+  type TextareaProps,
+  type InputNameProps,
+  type RecordInputTypes
 } from '@/types';
 
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
+import {
+  imageValidation,
+  placeValidation,
+  submitValidation
+} from '@/utils/helpers/record.helper';
 
 import * as Style from './UnPaidContainer.style';
 
 const UnPaidContainer = () => {
   const [recordDate, setRecordDate] = useState(new Date());
   const [previewImage, setPreviewImage] = useState('');
-  const [place, setPlace] = useState('');
   const [memo, setMemo] = useState('');
+  const [userInput, setUserInput] = useState<RecordInputTypes>({
+    tumblerImage: {
+      value: '',
+      validation: 'default',
+      message: ''
+    },
+    place: {
+      value: '',
+      validation: 'default',
+      message: ''
+    }
+  });
 
-  const handleChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPlace(value);
+  const isValidateSubmit = useMemo(() => {
+    return submitValidation(
+      userInput.tumblerImage.validation,
+      userInput.place.validation
+    );
+  }, [userInput.tumblerImage.validation, userInput.place.validation]);
+
+  const handlePlaceInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, files } = e.target;
+    const inputData = files ? files[0] : value;
+
+    setUserInput((currentState) => ({
+      ...currentState,
+      [name]: {
+        ...handleValidation(name as InputNameProps, inputData)
+      }
+    }));
+  };
+
+  const handleValidation = (name: InputNameProps, value: string | File) => {
+    switch (name) {
+      case 'tumblerImage':
+        return imageValidation(value as File);
+      case 'place':
+        return placeValidation(value as string);
+      default:
+        return { validation: 'default', value, message: '' };
+    }
   };
 
   const RecordDatePickerProps = {
@@ -38,7 +81,9 @@ const UnPaidContainer = () => {
 
   const TumblerImageProps = {
     previewImage,
-    setPreviewImage
+    setPreviewImage,
+    setUserInput,
+    handlePlaceInput
   };
 
   const PlaceInputProps: InputProps = {
@@ -46,10 +91,10 @@ const UnPaidContainer = () => {
     name: 'place',
     size: 'full',
     label: 'place',
-    value: place,
+    value: userInput.place.value,
     maxLength: 10,
     placeholder: '장소를 입력해주세요.',
-    onChange: handleChangePlace
+    onChange: handlePlaceInput
   };
 
   const MemoProps: TextareaProps = {
@@ -72,6 +117,7 @@ const UnPaidContainer = () => {
     type: 'submit',
     size: 'lg',
     name: 'record',
+    disabled: !isValidateSubmit,
     children: <Typography {...SubmitButtonTextProps} />
   };
 

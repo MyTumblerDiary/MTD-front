@@ -1,6 +1,9 @@
+import React from 'react';
+
 import Title from '@/components/Common/Heading/Title';
 import Typography from '@/components/Common/Typography/Typography';
-import React from 'react';
+
+import { type RecordInputTypes } from '@/types';
 
 import Svg from '../../svg';
 
@@ -9,17 +12,33 @@ import * as Style from './TumblerImage.style';
 interface TumblerImageProps {
   previewImage: string;
   setPreviewImage: React.Dispatch<React.SetStateAction<string>>;
+  setUserInput: React.Dispatch<React.SetStateAction<RecordInputTypes>>;
+  handlePlaceInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
+const TumblerImage = ({
+  previewImage,
+  setPreviewImage,
+  setUserInput,
+  handlePlaceInput
+}: TumblerImageProps) => {
   const addImageHandler = (e: React.ChangeEvent<any>) => {
     if (e.target.files[0]) {
+      handlePlaceInput(e);
       setPreviewImage(URL?.createObjectURL(e.target.files[0]));
     }
   };
 
   const onClickPreviewDelete = () => {
     setPreviewImage('');
+    setUserInput((currentState) => ({
+      ...currentState,
+      ['tumblerImage']: {
+        value: '',
+        validation: 'default',
+        message: ''
+      }
+    }));
   };
 
   return (
@@ -43,7 +62,12 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
           <Style.AddImageContainer>
             <Svg.Plus />
           </Style.AddImageContainer>
-          <Style.FileInput id='image-input' type='file' accept='image/*' />
+          <Style.FileInput
+            id='image-input'
+            type='file'
+            accept='image/*'
+            name='tumblerImage'
+          />
         </Style.AddImageLabel>
       )}
     </Style.Container>
