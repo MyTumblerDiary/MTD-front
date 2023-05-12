@@ -29,7 +29,7 @@ export const SearchForm = styled.form`
   flex-direction: column;
   height: 110px;
   gap: 15px;
-  animation: longerHeight 700ms ease-out;
+  animation: longerHeight 700ms;
   overflow: hidden;
 
   @keyframes longerHeight {

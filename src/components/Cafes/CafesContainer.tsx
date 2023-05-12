@@ -9,6 +9,7 @@ import CafeSearchWrapper from './CafeSearchWrapper/CafeSearchWrapper';
 import { useToggleSheet } from '@/hooks';
 import ReactPortal from '../Common/BottomSheetFrame/ReactPortal';
 import BottomSheet from './BottomSheet/BottomSheet';
+import Router from 'next/router';
 
 type CafesProps = CafeProps[];
 
@@ -96,7 +97,7 @@ export default function CafesContainer() {
       return;
     }
 
-    console.log(keyword);
+    Router.push(`/cafes/search?keyword=${keyword}`);
   };
 
   const handleSetLocation = () => {
