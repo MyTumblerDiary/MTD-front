@@ -12,7 +12,8 @@ export default function SuggestAmountReasonField() {
     lengthLimit: 50,
     size: 'full',
     height: 'md',
-    onChange: () => {}
+    placeholder: '제안 사유를 입력해주세요.',
+    setValue: () => {}
   };
 
   return (
