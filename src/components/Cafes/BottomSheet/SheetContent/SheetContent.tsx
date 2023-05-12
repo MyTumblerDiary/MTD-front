@@ -36,7 +36,7 @@ export default function SheetContent({
         </Typography>
         <Style.VerticalLine />
         <Typography size='button1' variant='warning'>
-          평균 {discountAmount}원
+          {discountAmount}원
         </Typography>
       </Style.LinkToSuggestionPage>
     </Style.SheetContent>

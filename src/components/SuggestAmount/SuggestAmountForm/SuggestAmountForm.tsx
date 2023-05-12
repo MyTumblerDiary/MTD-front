@@ -15,7 +15,7 @@ export default function SuggestAmountForm({
       <Style.AmountWrapper>
         <Typography size='button1'>기존 표시 금액</Typography>
         <Style.ExistingAmount>
-          <Typography size='body2'>평균 {discountAmount} 원</Typography>
+          <Typography size='body2'>{discountAmount} 원</Typography>
         </Style.ExistingAmount>
       </Style.AmountWrapper>
       <Svg.CrossArrow />
