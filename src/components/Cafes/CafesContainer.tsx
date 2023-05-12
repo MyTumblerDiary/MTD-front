@@ -1,4 +1,7 @@
+import Router from 'next/router';
 import { useState } from 'react';
+
+import { useToggleSheet } from '@/hooks';
 
 import * as Style from './CafesContainer.style';
 
@@ -6,10 +9,8 @@ import MainHeader from '../Common/MainHeader/MainHeader';
 import CafeList from './CafeList/CafeList';
 import UserLocation from './UserLocation/UserLocation';
 import CafeSearchWrapper from './CafeSearchWrapper/CafeSearchWrapper';
-import { useToggleSheet } from '@/hooks';
 import ReactPortal from '../Common/BottomSheetFrame/ReactPortal';
 import BottomSheet from './BottomSheet/BottomSheet';
-import Router from 'next/router';
 
 type CafesProps = CafeProps[];
 

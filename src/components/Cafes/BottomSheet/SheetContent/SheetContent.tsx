@@ -1,9 +1,11 @@
+import Router from 'next/router';
+
+import { useToggleSheet } from '@/hooks';
+
 import * as Style from './SheetContent.style';
 
 import Typography from '@/components/Common/Typography/Typography';
 import Map from '../Map/Map';
-import Router from 'next/router';
-import { useToggleSheet } from '@/hooks';
 
 interface SheetContentProps {
   discountAmount: number;

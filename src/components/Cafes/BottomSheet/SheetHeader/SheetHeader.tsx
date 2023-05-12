@@ -1,8 +1,5 @@
 import * as Style from './SheetHeader.style';
 
-import { useReactiveVar } from '@apollo/client';
-import activeDayState from '@/store/activeDay';
-
 import Typography from '@/components/Common/Typography/Typography';
 import Title from '@/components/Common/Heading/Title';
 import Svg from '@/components/svg';

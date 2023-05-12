@@ -1,5 +1,6 @@
-import Typography from '@/components/Common/Typography/Typography';
 import * as Style from './SuggestAmountTitle.style';
+
+import Typography from '@/components/Common/Typography/Typography';
 
 interface SuggestAmountTitleProps {
   title: string;

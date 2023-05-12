@@ -1,6 +1,8 @@
-import Typography from '@/components/Common/Typography/Typography';
 import * as Style from './CafeList.style';
+
 import { useToggleSheet } from '@/hooks';
+
+import Typography from '@/components/Common/Typography/Typography';
 
 type CafesProps = CafeProps[];
 

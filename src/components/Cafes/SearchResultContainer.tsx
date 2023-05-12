@@ -1,6 +1,8 @@
-import { useRouter } from 'next/router';
-import CafeList from './CafeList/CafeList';
 import * as Style from './CafesContainer.style';
+
+import { useRouter } from 'next/router';
+
+import CafeList from './CafeList/CafeList';
 import Header from '../Common/Header/Header';
 import SearchResultHeader from './SearchResultHeader/SearchResultHeader';
 

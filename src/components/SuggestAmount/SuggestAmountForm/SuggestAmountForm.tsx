@@ -1,5 +1,6 @@
-import Typography from '@/components/Common/Typography/Typography';
 import * as Style from './SuggestAmountForm.style';
+
+import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
 
 interface SuggestAmountFormProps {

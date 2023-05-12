@@ -1,8 +1,9 @@
-import Typography from '@/components/Common/Typography/Typography';
 import * as Style from './SuggestAmountReasonField.style';
 
+import { type TextareaProps } from '@/types';
+
+import Typography from '@/components/Common/Typography/Typography';
 import Textarea from '@/components/Common/Textarea/Textarea';
-import { TextareaProps } from '@/types';
 
 export default function SuggestAmountReasonField() {
   const textareaProps: TextareaProps = {

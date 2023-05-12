@@ -1,10 +1,12 @@
-import Input from '@/components/Common/Input/Input';
+import { useState } from 'react';
+
 import * as Style from './CafeSearchWrapper.style';
 
+import { type InputProps } from '@/types';
+
+import Input from '@/components/Common/Input/Input';
 import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
-import { type InputProps } from '@/types';
-import { useState } from 'react';
 
 interface CafeSearchWrapperProps {
   isSearching: boolean;
