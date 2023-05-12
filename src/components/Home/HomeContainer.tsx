@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import * as Style from './HomeContainer.style';
 
 import { type ButtonProps } from '@/types';
@@ -20,6 +22,8 @@ interface CardDataProps {
 }
 
 export default function HomeContainer() {
+  const router = useRouter();
+
   const tempData: CardDataProps[] = [
     {
       id: 1,
@@ -50,11 +54,15 @@ export default function HomeContainer() {
     }
   ];
 
+  const onClickRecordHandler = () => {
+    router.push('/record');
+  };
+
   const recordButtonProps: ButtonProps = {
     name: 'record',
     type: 'button',
     size: 'lg',
-    onClick: () => {},
+    onClick: onClickRecordHandler,
     children: (
       <Typography size='button1' variant='accent'>
         텀블러 다이어리에 기록하기

@@ -23,6 +23,8 @@ import ArrowLeft from '../../public/icons/ArrowLeft.svg';
 import Marker from '../../public/icons/Marker.svg';
 import Location from '../../public/icons/Location.svg';
 import CrossArrow from '../../public/icons/CrossArrow.svg';
+import LoginTumbler from '../../public/icons/LoginTumbler.svg';
+import Tree from '../../public/icons/Tree.svg';
 
 export default {
   Home,
@@ -49,5 +51,7 @@ export default {
   ArrowLeft,
   Marker,
   Location,
-  CrossArrow
+  CrossArrow,
+  LoginTumbler,
+  Tree
 };

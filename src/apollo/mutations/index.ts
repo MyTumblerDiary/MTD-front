@@ -13,3 +13,19 @@ export const POST_LOGIN = gql`
     login(email: $email, password: $password)
   }
 `;
+
+export const KAKAO_CODE = gql`
+  mutation KakaoLogin($code: String!) {
+    kakaoLogin(code: $code) {
+      accessToken
+    }
+  }
+`;
+
+export const GOOGLE_CODE = gql`
+  mutation Mutation($code: String!) {
+    googleLogin(code: $code) {
+      accessToken
+    }
+  }
+`;

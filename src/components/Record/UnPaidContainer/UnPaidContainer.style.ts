@@ -12,10 +12,6 @@ export const FormContainer = styled.form`
   padding-top: 80px;
 `;
 
-export const DatePickerContainer = styled.div`
-  margin-top: 10px;
-`;
-
 export const FormMain = styled.div`
   display: flex;
   flex-direction: column;
