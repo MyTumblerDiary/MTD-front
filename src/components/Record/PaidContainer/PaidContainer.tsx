@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useRecordState from '@/hooks/useRecordState';
 
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
@@ -14,91 +15,74 @@ import {
   type InputProps,
   type ButtonProps,
   type TypographyProps,
-  TextareaProps
+  type TextareaProps,
+  type RecordInputTypes
 } from '@/types';
-import { KakaoResultType } from '@/types/kakaoSearchResult.type';
 
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
 
 import * as Style from './PaidContainer.style';
 
+const initialState: RecordInputTypes = {
+  recordDate: {
+    value: new Date()
+  },
+  tumblerImage: {
+    value: '' as unknown as File,
+    validation: 'default',
+    message: ''
+  },
+  previewImage: {
+    value: ''
+  },
+  place: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+  placeSearchWord: {
+    value: ''
+  },
+  placeSearchResult: {
+    value: []
+  },
+  isDiscounted: {
+    value: false
+  },
+  price: {
+    value: 0
+  },
+  coordinate: {
+    value: {
+      latitude: 0,
+      longitude: 0
+    }
+  }
+};
+
 const PaidContainer = () => {
-  const [recordDate, setRecordDate] = useState(new Date());
-  const [previewImage, setPreviewImage] = useState('');
-  const [placeSearchWord, setPlaceSearchWord] = useState('');
-  const [placeSearchResult, setPlaceSearchResult] = useState<KakaoResultType[]>(
-    []
-  );
-  const [place, setPlace] = useState('');
-  const [isDiscountChecked, setIsDiscountChecked] = useState(false);
   const [memo, setMemo] = useState('');
 
-  const [timer, setTimer] = useState<NodeJS.Timeout>();
-
-  const handlePlaceInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPlaceSearchWord(value);
-
-    if (value.length <= 1) {
-      setPlaceSearchResult([]);
-      return;
-    }
-
-    if (timer) {
-      clearTimeout(timer);
-    }
-
-    const newTimer = setTimeout(() => {
-      searchAutoComplete(value);
-    }, 100);
-
-    setTimer(newTimer);
-  };
-
-  const searchAutoComplete = (searchKeyword: string) => {
-    const { kakao } = window;
-
-    console.log('히히');
-
-    kakao.maps.load(() => {
-      const placeObj = new kakao.maps.services.Places();
-
-      placeObj.keywordSearch(
-        searchKeyword,
-        (result: KakaoResultType[]) => {
-          setPlaceSearchResult(result);
-        },
-        {
-          category_group_code: ['CE7'],
-          size: 5
-        }
-      );
-    });
-  };
-
-  const onClickSearchResult = (place: string) => {
-    setPlace(place);
-    setPlaceSearchResult([]);
-    setPlaceSearchWord('');
-  };
-
-  const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsDiscountChecked(e.target.checked);
-  };
-
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  const {
+    isValidateSubmit,
+    userInput,
+    setUserInput,
+    handleUserInput,
+    handlePlaceInput,
+    onClickSearchResult,
+    onChangePriceHandler
+  } = useRecordState(initialState);
 
   const RecordDatePickerProps = {
-    recordDate,
-    setRecordDate
+    recordDate: userInput.recordDate.value,
+    setUserInput
   };
 
   const TumblerImageProps = {
-    previewImage,
-    setPreviewImage
+    userInput,
+    setUserInput,
+    handleUserInput
   };
 
   const SubmitButtonTextProps: TypographyProps = {
@@ -111,6 +95,7 @@ const PaidContainer = () => {
     type: 'submit',
     size: 'lg',
     name: 'record',
+    disabled: !isValidateSubmit,
     children: <Typography {...SubmitButtonTextProps} />
   };
 
@@ -119,7 +104,7 @@ const PaidContainer = () => {
     name: 'place',
     size: 'full',
     label: 'place',
-    value: placeSearchWord,
+    value: userInput?.placeSearchWord?.value || '',
     placeholder: '장소를 입력해주세요.',
     onChange: handlePlaceInput
   };
@@ -132,6 +117,10 @@ const PaidContainer = () => {
     height: 'md',
     placeholder: '오늘의 텀블러 사용은 어땠나요?',
     setValue: setMemo
+  };
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   return (
@@ -147,17 +136,18 @@ const PaidContainer = () => {
           <Title variant='main'>텀블러를 어디에서 사용했나요?</Title>
           <Style.SearchContainer>
             <Input {...PlaceInputProps} />
-            {placeSearchResult.length > 0 && (
-              <SearchResultPopup
-                placeSearchResult={placeSearchResult}
-                onClickSearchResult={onClickSearchResult}
-              />
-            )}
+            {userInput.placeSearchResult &&
+              userInput.placeSearchResult.value.length > 0 && (
+                <SearchResultPopup
+                  placeSearchResult={userInput.placeSearchResult.value}
+                  onClickSearchResult={onClickSearchResult}
+                />
+              )}
           </Style.SearchContainer>
-          {place && (
+          {userInput.place.value && (
             <div>
               <Style.SelectedPlace>
-                <Typography size='body2'>{place}</Typography>
+                <Typography size='body2'>{userInput.place.value}</Typography>
               </Style.SelectedPlace>
             </div>
           )}
@@ -168,20 +158,21 @@ const PaidContainer = () => {
           <Style.DiscountCheckboxContainer>
             <Style.DiscountCheckbox
               type='checkbox'
-              id='discount'
-              checked={isDiscountChecked}
-              onChange={onChangeCheckbox}
+              id='isDiscounted'
+              name='isDiscounted'
+              checked={userInput?.isDiscounted?.value}
+              onChange={handleUserInput}
             />
-            <Style.DiscountCheckboxLabel htmlFor='discount'>
+            <Style.DiscountCheckboxLabel htmlFor='isDiscounted'>
               네, 할인 받았어요!
             </Style.DiscountCheckboxLabel>
           </Style.DiscountCheckboxContainer>
         </Style.ElementContainer>
 
-        {isDiscountChecked && (
+        {userInput?.isDiscounted?.value && (
           <Style.ElementContainer>
             <Title variant='main'>할인 금액</Title>
-            <Style.DiscountedAmountSelect name='discounted_amount'>
+            <Style.DiscountedAmountSelect onChange={onChangePriceHandler}>
               {DISCOUNTED_AMOUNT.map((amount) => (
                 <option key={amount} value={amount}>
                   {amount}원

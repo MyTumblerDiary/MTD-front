@@ -1,4 +1,5 @@
 import { InputValidationProps, UserInputPramProps } from '.';
+import { type KakaoResultType } from '@/types';
 
 type UserFileInputPramProps = {
   value: File;
@@ -7,12 +8,36 @@ type UserFileInputPramProps = {
 };
 
 export interface RecordInputTypes {
-  tumblerImage: UserFileInputPramProps;
-  place: UserInputPramProps;
   recordDate: {
     value: Date;
   };
+  tumblerImage: UserFileInputPramProps;
   previewImage: {
     value: string;
   };
+  place: UserInputPramProps;
+  placeSearchWord?: {
+    value: string;
+  };
+  placeSearchResult?: {
+    value: KakaoResultType[];
+  };
+  isDiscounted?: {
+    value: boolean;
+  };
+  price?: {
+    value: number;
+  };
+  coordinate?: {
+    value: {
+      latitude: number;
+      longitude: number;
+    };
+  };
+}
+
+export interface SelectedPlaceType {
+  place: string;
+  latitude: number;
+  longitude: number;
 }

@@ -21,7 +21,8 @@ export type InputNameProps =
   | 'password'
   | 'passwordCheck'
   | 'place'
-  | 'tumblerImage';
+  | 'tumblerImage'
+  | 'isDiscounted';
 
 export type InputValidationProps = 'default' | 'success' | 'error';
 

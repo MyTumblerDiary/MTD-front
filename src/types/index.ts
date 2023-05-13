@@ -12,7 +12,8 @@ import {
   type StepArrayProps,
   type StepButtonNameProps
 } from './stepper.type';
-import { type RecordInputTypes } from './record.type';
+import { type RecordInputTypes, type SelectedPlaceType } from './record.type';
+import { type KakaoResultType } from './/kakaoSearchResult.type';
 
 export {
   ButtonProps,
@@ -25,5 +26,7 @@ export {
   StepButtonNameProps,
   TypographyProps,
   TextareaProps,
-  RecordInputTypes
+  RecordInputTypes,
+  KakaoResultType,
+  SelectedPlaceType
 };
