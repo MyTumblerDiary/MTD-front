@@ -10,33 +10,38 @@ import Svg from '../../svg';
 import * as Style from './TumblerImage.style';
 
 interface TumblerImageProps {
-  previewImage: string;
-  setPreviewImage: React.Dispatch<React.SetStateAction<string>>;
+  userInput: RecordInputTypes;
   setUserInput: React.Dispatch<React.SetStateAction<RecordInputTypes>>;
-  handlePlaceInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleUserInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TumblerImage = ({
-  previewImage,
-  setPreviewImage,
+  userInput,
   setUserInput,
-  handlePlaceInput
+  handleUserInput
 }: TumblerImageProps) => {
   const addImageHandler = (e: React.ChangeEvent<any>) => {
     if (e.target.files[0]) {
-      handlePlaceInput(e);
-      setPreviewImage(URL?.createObjectURL(e.target.files[0]));
+      handleUserInput(e);
+      setUserInput((currentState) => ({
+        ...currentState,
+        ['previewImage']: {
+          value: URL?.createObjectURL(e.target.files[0])
+        }
+      }));
     }
   };
 
   const onClickPreviewDelete = () => {
-    setPreviewImage('');
     setUserInput((currentState) => ({
       ...currentState,
       ['tumblerImage']: {
-        value: '',
+        value: '' as unknown as File,
         validation: 'default',
         message: ''
+      },
+      ['previewImage']: {
+        value: ''
       }
     }));
   };
@@ -47,11 +52,11 @@ const TumblerImage = ({
       <Typography size='body3' variant='gray2'>
         이미지는 1장만 넣을 수 있습니다.
       </Typography>
-      {previewImage ? (
+      {userInput.previewImage.value ? (
         <Style.AddImageContainer>
           <Style.ImageDeleteButton onClick={onClickPreviewDelete} />
           <Style.PreviewImage
-            src={previewImage}
+            src={userInput.previewImage.value}
             alt='텀블러 이미지'
             width={150}
             height={150}

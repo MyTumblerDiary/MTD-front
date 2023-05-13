@@ -1,6 +1,18 @@
-import { UserInputPramProps } from '.';
+import { InputValidationProps, UserInputPramProps } from '.';
+
+type UserFileInputPramProps = {
+  value: File;
+  validation: InputValidationProps;
+  message: string;
+};
 
 export interface RecordInputTypes {
-  tumblerImage: UserInputPramProps;
+  tumblerImage: UserFileInputPramProps;
   place: UserInputPramProps;
+  recordDate: {
+    value: Date;
+  };
+  previewImage: {
+    value: string;
+  };
 }

@@ -7,15 +7,21 @@ import * as Style from './RecordDatePicker.style';
 
 import Svg from '../../svg';
 import Title from '@/components/Common/Heading/Title';
+import { RecordInputTypes } from '@/types';
 
 interface DatePickerProps {
   recordDate: Date;
-  setRecordDate: React.Dispatch<React.SetStateAction<Date>>;
+  setUserInput: React.Dispatch<React.SetStateAction<RecordInputTypes>>;
 }
 
-const RecordDatePicker = ({ recordDate, setRecordDate }: DatePickerProps) => {
+const RecordDatePicker = ({ recordDate, setUserInput }: DatePickerProps) => {
   const handleDateChange = (date: Date) => {
-    setRecordDate(date);
+    setUserInput((currentState) => ({
+      ...currentState,
+      ['recordDate']: {
+        value: date
+      }
+    }));
   };
 
   const handleFocusBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
