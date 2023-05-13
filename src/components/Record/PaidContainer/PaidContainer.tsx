@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useRecordState from '@/hooks/useRecordState';
 
 import Title from '../../Common/Heading/Title';
@@ -73,6 +73,24 @@ const PaidContainer = () => {
     onClickSearchResult,
     onChangePriceHandler
   } = useRecordState(initialState);
+
+  useEffect(() => {
+    if (userInput?.isDiscounted?.value) {
+      setUserInput((currentState) => ({
+        ...currentState,
+        ['price']: {
+          value: 100
+        }
+      }));
+    } else {
+      setUserInput((currentState) => ({
+        ...currentState,
+        ['price']: {
+          value: 0
+        }
+      }));
+    }
+  }, [setUserInput, userInput?.isDiscounted?.value]);
 
   const RecordDatePickerProps = {
     recordDate: userInput.recordDate.value,
