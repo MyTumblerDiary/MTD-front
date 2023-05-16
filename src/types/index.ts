@@ -12,6 +12,7 @@ import {
   type StepArrayProps,
   type StepButtonNameProps
 } from './stepper.type';
+import { type StorePagenationProps } from './store.type';
 
 export {
   ButtonProps,
@@ -23,5 +24,6 @@ export {
   StepArrayProps,
   StepButtonNameProps,
   TypographyProps,
-  TextareaProps
+  TextareaProps,
+  StorePagenationProps
 };

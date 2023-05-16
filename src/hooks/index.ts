@@ -6,6 +6,8 @@ import useSendEmail from './useSendEmail';
 import useAuthEmail from './useAuthEmail';
 import useSignupState from './useSignupState';
 import useToggleSheet from './useToggleSheet';
+import useStoreList from './useStoreList';
+import useCurrentLocation from './useCurrentLocation';
 
 export {
   useDebounce,
@@ -15,5 +17,7 @@ export {
   useSendEmail,
   useAuthEmail,
   useSignupState,
-  useToggleSheet
+  useToggleSheet,
+  useStoreList,
+  useCurrentLocation
 };

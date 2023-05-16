@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import { useState } from 'react';
 
-import { useToggleSheet } from '@/hooks';
+import { useStoreList, useCurrentLocation, useToggleSheet } from '@/hooks';
 
 import * as Style from './CafesContainer.style';
 
@@ -79,6 +79,18 @@ export default function CafesContainer() {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('서울 용산구 백범로90길 90');
   const { sheetState } = useToggleSheet();
+
+  const { data, loading } = useStoreList(
+    { limit: 6, page: 1 },
+    () => {},
+    () => {}
+  );
+  const { location: position, error } = useCurrentLocation();
+
+  console.log(position);
+  console.log(error);
+
+  console.log(data);
 
   const handleSearchingState = () => {
     setIsSearching(true);
