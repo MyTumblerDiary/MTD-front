@@ -20,14 +20,17 @@ export const SIZES = {
   button2: css`
     --typography-size: 14px;
     --typography-weight: 700;
-  `
-};
-
-export const VARIANTS = {
-  default: css`
-    --typography-color: black;
   `,
-  accent: css`
-    --typography-color: white;
+  button3: css`
+    --typography-size: 12px;
+    --typography-weight: 700;
+  `,
+  caption: css`
+    --typography-size: 10px;
+    --typography-weight: 400;
+  `,
+  captionBold: css`
+    --typography-size: 10px;
+    --typography-weight: 600;
   `
 };

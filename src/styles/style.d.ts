@@ -24,5 +24,6 @@ declare module 'styled-components' {
 
     maxWidth: string;
     bottomNavigatorHeight: string;
+    mobileScreenPadding: string;
   }
 }

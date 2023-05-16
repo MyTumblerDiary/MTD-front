@@ -22,7 +22,8 @@ const theme: DefaultTheme = {
   },
 
   maxWidth: '768px',
-  bottomNavigatorHeight: '70px'
+  bottomNavigatorHeight: '56px',
+  mobileScreenPadding: '20px'
 };
 
 export default theme;

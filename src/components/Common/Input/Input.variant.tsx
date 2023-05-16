@@ -8,12 +8,32 @@ export const SIZES = {
   md: css`
     --input-width: 280px;
     --input-height: 48px;
+  `,
+  lg: css`
+    --input-width: 320px;
+    --input-height: 48px;
+  `,
+  full: css`
+    --input-width: 100%;
+    --input-height: 48px;
   `
 };
 
-export const VARIANTS = {
+export const LABEL_VARIANTS = {
   default: css`
-    --input-border: #d1d1d1;
+    --label-color: black;
+  `,
+  success: css`
+    --label-color: #006eff;
+  `,
+  error: css`
+    --label-color: #f00001;
+  `
+};
+
+export const INPUT_VARIANTS = {
+  default: css`
+    --input-border: #f5f5f5;
   `,
   success: css`
     --input-border: #006eff;
