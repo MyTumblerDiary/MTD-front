@@ -1,10 +1,11 @@
 import PageHead from '@/components/Common/Head/Head';
+import CafesContainer from '@/components/Cafes/CafesContainer';
 
 export default function Cafes() {
   return (
-    <div>
+    <>
       <PageHead title='카페' />
-      카페 목록
-    </div>
+      <CafesContainer />
+    </>
   );
 }

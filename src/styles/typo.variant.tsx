@@ -17,6 +17,9 @@ export const VARIANTS = {
   gray2: css`
     --typography-color: ${theme.color.g500};
   `,
+  gray3: css`
+    --typography-color: ${theme.color.g600};
+  `,
   success: css`
     --typography-color: ${theme.color.success};
   `,

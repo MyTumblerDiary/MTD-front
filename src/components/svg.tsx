@@ -14,10 +14,15 @@ import TumblerColored from '../../public/icons/TumblerColored.svg';
 import TumblerMaterial from '../../public/icons/TumblerMaterial.svg';
 import Shopping from '../../public/icons/Shopping.svg';
 import Close from '../../public/icons/Close.svg';
+import Search from '../../public/icons/Search.svg';
+import SearchLogo from '../../public/icons/SearchLogo.svg';
 import CaretRight from '../../public/icons/CaretRight.svg';
 import Plus from '../../public/icons/Plus.svg';
 import XCircle from '../../public/icons/XCircle.svg';
 import ArrowLeft from '../../public/icons/ArrowLeft.svg';
+import Marker from '../../public/icons/Marker.svg';
+import Location from '../../public/icons/Location.svg';
+import CrossArrow from '../../public/icons/CrossArrow.svg';
 import LoginTumbler from '../../public/icons/LoginTumbler.svg';
 import Tree from '../../public/icons/Tree.svg';
 
@@ -37,11 +42,16 @@ export default {
   TumblerMaterial,
   Shopping,
   Close,
+  Reload,
+  Search,
+  SearchLogo,
   CaretRight,
   Plus,
   XCircle,
   ArrowLeft,
-  Reload,
+  Marker,
+  Location,
+  CrossArrow,
   LoginTumbler,
   Tree
 };
