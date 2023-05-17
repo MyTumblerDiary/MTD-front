@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import MainHeader from '../Common/MainHeader/MainHeader';
-import Typography from '../Common/Typography/Typography';
+import MainHeader from '../../Common/MainHeader/MainHeader';
+import Typography from '../../Common/Typography/Typography';
 
 import SUB_INFORMATION from '@/utils/constants/mypageSubInfo';
-import Svg from '../svg';
+import Svg from '../../svg';
 
-import * as Style from './MypageContainer.style';
+import * as Style from './MainContainer.style';
 
 const MypageContainer = () => {
   return (
@@ -14,7 +14,7 @@ const MypageContainer = () => {
       <Style.MainContainer>
         <Style.NicknameContainer>
           <Typography size='button1'>뚱당뚱당</Typography>
-          <Link href='/'>
+          <Link href='/mypage/change-nickname'>
             <Svg.Pencil />
           </Link>
         </Style.NicknameContainer>
