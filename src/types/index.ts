@@ -13,6 +13,11 @@ import {
   type StepButtonNameProps
 } from './stepper.type';
 import { type StorePagenationProps } from './store.type';
+import {
+  type MessageInfoProps,
+  type NotifyMessageProps
+} from './messageInfo.type';
+import { type CafeProps, type CafesProps } from './cafe.type';
 
 export {
   ButtonProps,
@@ -25,5 +30,9 @@ export {
   StepButtonNameProps,
   TypographyProps,
   TextareaProps,
-  StorePagenationProps
+  StorePagenationProps,
+  MessageInfoProps,
+  NotifyMessageProps,
+  CafeProps,
+  CafesProps
 };
