@@ -5,10 +5,14 @@ import Svg from '@/components/svg';
 
 interface SuggestAmountFormProps {
   discountAmount: number;
+  handleChangePriceOption: (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
 }
 
 export default function SuggestAmountForm({
-  discountAmount
+  discountAmount,
+  handleChangePriceOption
 }: SuggestAmountFormProps) {
   return (
     <Style.SuggestAmountForm>
@@ -24,13 +28,13 @@ export default function SuggestAmountForm({
           수정 제안 금액
         </Typography>
         <Style.AmountSelectWrapper>
-          <Style.AmountSelect>
-            <option value='none'>할인 금액</option>
-            <option value='100'>100</option>
-            <option value='200'>200</option>
-            <option value='300'>300</option>
-            <option value='400'>400</option>
-            <option value='500'>500</option>
+          <Style.AmountSelect onChange={handleChangePriceOption}>
+            <option value={discountAmount}>할인 금액</option>
+            <option value={100}>100</option>
+            <option value={200}>200</option>
+            <option value={300}>300</option>
+            <option value={400}>400</option>
+            <option value={500}>500</option>
           </Style.AmountSelect>
           <Typography size='body2'>원</Typography>
         </Style.AmountSelectWrapper>

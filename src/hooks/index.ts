@@ -8,6 +8,8 @@ import useSignupState from './useSignupState';
 import useToggleSheet from './useToggleSheet';
 import useStoreList from './useStoreList';
 import useCurrentLocation from './useCurrentLocation';
+import useNotifyToSlack from './useNotifyToSlack';
+import useSelectState from './useSelectState';
 
 export {
   useDebounce,
@@ -19,5 +21,7 @@ export {
   useSignupState,
   useToggleSheet,
   useStoreList,
-  useCurrentLocation
+  useCurrentLocation,
+  useNotifyToSlack,
+  useSelectState
 };
