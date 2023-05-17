@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const HomeContainer = styled.div`
+export const SuggestAmountWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 30px;
   background-color: #f5f5f5;
 `;

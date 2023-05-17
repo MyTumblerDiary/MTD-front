@@ -21,8 +21,16 @@ export const SIZES = {
     --typography-size: 14px;
     --typography-weight: 700;
   `,
+  button3: css`
+    --typography-size: 12px;
+    --typography-weight: 700;
+  `,
   caption: css`
     --typography-size: 10px;
     --typography-weight: 400;
+  `,
+  captionBold: css`
+    --typography-size: 10px;
+    --typography-weight: 600;
   `
 };

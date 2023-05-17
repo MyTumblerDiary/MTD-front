@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const HomeContainer = styled.div`
+export const CafesContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 18px;
   background-color: #f5f5f5;
 `;
