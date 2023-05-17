@@ -8,7 +8,8 @@
     "format:check": "prettier src/**/*.ts{,x} --check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix src/**/*.ts{,x}",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start"
