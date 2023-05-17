@@ -14,7 +14,7 @@ const SUB_INFORMATION = {
   account_setting: {
     icon: <Svg.Setting />,
     title: '계정 설정',
-    path: '/'
+    path: '/mypage/account-setting'
   }
 };
 
