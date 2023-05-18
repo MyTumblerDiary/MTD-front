@@ -12,12 +12,12 @@ export default function useAddressByCoords(coords: useAddressByCoordProps) {
   const [userAddress, setUserAddress] = useState('');
   const { latitude, longitude } = coords;
 
-  const getAddressByCoord = async () => {
+  const getAddressByCoord = async (lat: number, lng: number) => {
     setIsLoading(true);
 
     try {
       const result = await fetch(
-        `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${longitude}&y=${latitude}&input_coord=WGS84`,
+        `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}&input_coord=WGS84`,
         {
           method: 'GET',
           headers: {
@@ -40,8 +40,8 @@ export default function useAddressByCoords(coords: useAddressByCoordProps) {
     }
   };
 
-  const getUserAddress = async () => {
-    const result = await getAddressByCoord();
+  const getUserAddress = async (lat: number, lng: number) => {
+    const result = await getAddressByCoord(lat, lng);
 
     const address =
       (result.documents[0].road_address
@@ -54,8 +54,8 @@ export default function useAddressByCoords(coords: useAddressByCoordProps) {
   };
 
   useEffect(() => {
-    getUserAddress();
-  }, [coords.latitude, coords.longitude]);
+    getUserAddress(latitude, longitude);
+  }, [latitude, longitude]);
 
   return { isLoading, isSuccess, error, userAddress, getAddressByCoord };
 }
