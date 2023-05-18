@@ -40,22 +40,22 @@ export default function useAddressByCoords(coords: useAddressByCoordProps) {
     }
   };
 
-  const getUserAddress = async (lat: number, lng: number) => {
-    const result = await getAddressByCoord(lat, lng);
-
-    const address =
-      (result.documents[0].road_address
-        ? result.documents[0].road_address.address_name +
-          ' ' +
-          result.documents[0].road_address.building_name
-        : result.documents[0].address.address_name) || '';
-
-    setUserAddress(address);
-  };
-
   useEffect(() => {
-    getUserAddress(latitude, longitude);
+    const getUserAddress = async () => {
+      const result = await getAddressByCoord(latitude, longitude);
+
+      const address =
+        (result.documents[0].road_address
+          ? result.documents[0].road_address.address_name +
+            ' ' +
+            result.documents[0].road_address.building_name
+          : result.documents[0].address.address_name) || '';
+
+      setUserAddress(address);
+    };
+
+    getUserAddress();
   }, [latitude, longitude]);
 
-  return { isLoading, isSuccess, error, userAddress, getAddressByCoord };
+  return { isLoading, isSuccess, error, userAddress };
 }
