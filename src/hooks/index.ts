@@ -7,9 +7,10 @@ import useAuthEmail from './useAuthEmail';
 import useSignupState from './useSignupState';
 import useToggleSheet from './useToggleSheet';
 import useStoreList from './useStoreList';
-import useCurrentLocation from './useCurrentLocation';
+import useCurrentCoords from './useCurrentCoords';
 import useNotifyToSlack from './useNotifyToSlack';
 import useSelectState from './useSelectState';
+import useAddressByCoords from './useAddressByCoords';
 
 export {
   useDebounce,
@@ -21,7 +22,8 @@ export {
   useSignupState,
   useToggleSheet,
   useStoreList,
-  useCurrentLocation,
+  useCurrentCoords,
   useNotifyToSlack,
-  useSelectState
+  useSelectState,
+  useAddressByCoords
 };

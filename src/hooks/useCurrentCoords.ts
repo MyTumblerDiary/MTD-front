@@ -1,15 +1,22 @@
-// src/hooks/useCurrentPosition.js
+import { useState } from 'react';
 
-import { useState, useEffect } from 'react';
+interface CoordsProps {
+  longitude: number;
+  latitude: number;
+}
 
-export default function useCurrentLocation(options = {}) {
-  const [location, setLocation] = useState({});
+export default function useCurrentCoords(options = {}) {
+  const [coords, setCoords] = useState<CoordsProps>({
+    longitude: 127.05515387709,
+    latitude: 37.544820710541
+  });
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSuccess = (pos: GeolocationPosition) => {
     const { latitude, longitude } = pos.coords;
 
-    setLocation({
+    setCoords({
       latitude,
       longitude
     });
@@ -19,7 +26,7 @@ export default function useCurrentLocation(options = {}) {
     setError(error.message);
   };
 
-  useEffect(() => {
+  const getUserCoords = () => {
     const { geolocation } = navigator;
 
     if (!geolocation) {
@@ -28,7 +35,7 @@ export default function useCurrentLocation(options = {}) {
     }
 
     geolocation.getCurrentPosition(handleSuccess, handleError, options);
-  }, []);
+  };
 
-  return { location, error };
+  return { coords, error, isLoading, getUserCoords };
 }
