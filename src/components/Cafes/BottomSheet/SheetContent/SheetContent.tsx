@@ -8,14 +8,14 @@ import Typography from '@/components/Common/Typography/Typography';
 import Map from '../Map/Map';
 
 interface SheetContentProps {
-  discountAmount: number;
+  discountPrice: number;
   thumbnail: string;
   latitude: number;
   longitude: number;
 }
 
 export default function SheetContent({
-  discountAmount,
+  discountPrice,
   thumbnail,
   latitude,
   longitude
@@ -36,7 +36,7 @@ export default function SheetContent({
         </Typography>
         <Style.VerticalLine />
         <Typography size='button1' variant='warning'>
-          {discountAmount}원
+          {discountPrice}원
         </Typography>
       </Style.LinkToSuggestionPage>
     </Style.SheetContent>

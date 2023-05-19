@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
+import { useReactiveVar } from '@apollo/client';
+import cafeDetailState from '@/store/cafeDetail';
+
 import * as Style from './SuggestAmountConatiner.style';
 
-import {
-  type MessageInfoProps,
-  type ButtonProps,
-  type CafeProps
-} from '@/types';
+import { type MessageInfoProps, type ButtonProps } from '@/types';
 
 import { useNotifyToSlack, useSelectState } from '@/hooks';
 
@@ -20,26 +19,17 @@ import SuggestAmountInfo from './SuggestAmountInfo/SuggestAmountInfo';
 import Button from '../Common/Button/Button';
 import Typography from '../Common/Typography/Typography';
 
-const data: CafeProps = {
-  id: 1,
-  name: '투썸 플레이스 리첸시아점',
-  thumbnail: 'https://picsum.photos/150/120',
-  street_name_address: '서울 용산구 백범로 90길 120',
-  latitude: 37.54699,
-  longitude: 127.09598,
-  discount_price: 300
-};
-
 export default function SuggestAmountContainer() {
   const [text, setText] = useState('');
-  const { selectedOption: newPrice, handleChangeOption } = useSelectState(
-    data.discount_price
-  );
+  const { name, discount_price: discountPrice } =
+    useReactiveVar(cafeDetailState);
+  const { selectedOption: newPrice, handleChangeOption } =
+    useSelectState(discountPrice);
 
   const info: MessageInfoProps = {
-    title: data.name,
+    title: name,
     message: text,
-    price: data.discount_price,
+    price: discountPrice,
     newPrice: newPrice as number
   };
 
@@ -66,15 +56,14 @@ export default function SuggestAmountContainer() {
   return (
     <Style.SuggestAmountWrapper>
       <Header title='금액 수정 제안' />
-      <SuggestAmountTitle title={data.name} />
+      <SuggestAmountTitle title={name} />
       <SuggestAmountForm
-        discountAmount={data.discount_price}
+        discountAmount={discountPrice}
         handleChangePriceOption={handleChangeOption}
       />
       <SuggestAmountReasonField text={text} setText={setText} />
       <SuggestAmountInfo />
       <Button {...submitButtonProps} />
-      {error && <div>{error}</div>}
     </Style.SuggestAmountWrapper>
   );
 }

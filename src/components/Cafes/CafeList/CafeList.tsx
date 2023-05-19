@@ -2,7 +2,9 @@ import * as Style from './CafeList.style';
 
 import { useToggleSheet } from '@/hooks';
 
-import { type CafesProps } from '@/types';
+import { type CafeProps, type CafesProps } from '@/types';
+
+import cafeDetailState from '@/store/cafeDetail';
 
 import Typography from '@/components/Common/Typography/Typography';
 
@@ -13,10 +15,15 @@ interface CafeListProps {
 export default function CafeList({ cafes }: CafeListProps) {
   const { toggleSheet } = useToggleSheet();
 
+  const handleCardClick = (cafe: CafeProps) => {
+    cafeDetailState(cafe);
+    toggleSheet();
+  };
+
   return (
     <Style.CafeListWrapper>
       {cafes.map((item) => (
-        <Style.CafeCard key={item.id} onClick={toggleSheet}>
+        <Style.CafeCard key={item.id} onClick={() => handleCardClick(item)}>
           <Style.CafeSummary>
             <Style.CafeThumbnail
               src={item.thumbnail}

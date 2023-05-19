@@ -5,11 +5,13 @@ import Typography from '@/components/Common/Typography/Typography';
 
 interface UserLocationProps {
   location: string;
+  isLoading: boolean;
   handleSetLocation: () => void;
 }
 
 export default function UserLocation({
   location,
+  isLoading,
   handleSetLocation
 }: UserLocationProps) {
   return (
@@ -19,11 +21,17 @@ export default function UserLocation({
           <Style.SetLocation>
             <Svg.Marker />
             <Typography size='button3' variant='gray3'>
-              설정 위치
+              위치
             </Typography>
           </Style.SetLocation>
           <Style.Location>
-            <Typography size='body3'>{location}</Typography>
+            {isLoading ? (
+              <Typography size='body3' variant='gray2'>
+                주소 가져오는중..
+              </Typography>
+            ) : (
+              <Typography size='body3'>{location}</Typography>
+            )}
           </Style.Location>
         </Style.UserLocation>
         <Style.SetButtonWrapper>
