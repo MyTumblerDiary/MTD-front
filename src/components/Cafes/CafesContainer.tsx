@@ -89,6 +89,8 @@ export default function CafesContainer() {
   const { isLoading, coords, getUserCoords } = useCurrentCoords();
   const { userAddress } = useAddressByCoords(coords);
 
+  console.log(data);
+
   const handleSearchingState = () => {
     setIsSearching(true);
   };
