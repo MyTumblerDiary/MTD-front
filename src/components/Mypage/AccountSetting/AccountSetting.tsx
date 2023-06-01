@@ -1,31 +1,37 @@
+import { useRouter } from 'next/router';
+
 import Header from '@/components/Common/Header/Header';
 import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
 
 import * as Style from './AccountSetting.style';
 
-const ACCOUNT_SETTING_INFO = [
-  {
-    title: '비밀번호 수정',
-    onClick: () => {
-      console.log('비밀번호 수정 페이지로 이동');
-    }
-  },
-  {
-    title: '로그아웃',
-    onClick: () => {
-      console.log('로그아웃 할거냐는 팝업 뜸');
-    }
-  },
-  {
-    title: '회원 탈퇴',
-    onClick: () => {
-      console.log('회원탈퇴 팝업 뜸');
-    }
-  }
-];
-
 const AccountSetting = () => {
+  const router = useRouter();
+
+  const onClickChangePassword = () => {
+    router.push('/mypage/account-setting/change-password');
+  };
+
+  const ACCOUNT_SETTING_INFO = [
+    {
+      title: '비밀번호 수정',
+      onClick: onClickChangePassword
+    },
+    {
+      title: '로그아웃',
+      onClick: () => {
+        console.log('로그아웃 할거냐는 팝업 뜸');
+      }
+    },
+    {
+      title: '회원 탈퇴',
+      onClick: () => {
+        console.log('회원탈퇴 팝업 뜸');
+      }
+    }
+  ];
+
   return (
     <div>
       <Header title='계정 설정' />
