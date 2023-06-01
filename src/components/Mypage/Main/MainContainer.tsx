@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import MainHeader from '../../Common/MainHeader/MainHeader';
 import Typography from '../../Common/Typography/Typography';
+import DiscountInformation from '../DiscountInformation/DiscountInformation';
 
 import SUB_INFORMATION from '@/utils/constants/mypageSubInfo';
 import Svg from '../../svg';
@@ -8,6 +9,12 @@ import Svg from '../../svg';
 import * as Style from './MainContainer.style';
 
 const MypageContainer = () => {
+  const DiscountInformationProps = {
+    count: 26,
+    amount: 5900,
+    href: '/mypage/discount-report'
+  };
+
   return (
     <Style.MypageContainer>
       <MainHeader title='마이페이지' />
@@ -19,17 +26,7 @@ const MypageContainer = () => {
           </Link>
         </Style.NicknameContainer>
 
-        <Style.MainInfoContainer>
-          <Style.MainInfo>
-            <Typography size='button1'>26회</Typography>
-            <Typography size='body2'>할인 받은 횟수</Typography>
-          </Style.MainInfo>
-          <Style.VerticalLine />
-          <Style.MainInfo>
-            <Typography size='button1'>5,900원</Typography>
-            <Typography size='body2'>할인 받은 금액</Typography>
-          </Style.MainInfo>
-        </Style.MainInfoContainer>
+        <DiscountInformation {...DiscountInformationProps} />
 
         <Style.SubInfoContainer>
           {Object.values(SUB_INFORMATION).map((info) => {

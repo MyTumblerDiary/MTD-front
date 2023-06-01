@@ -27,28 +27,6 @@ export const NicknameContainer = styled(ContentContainer)`
   align-items: center;
 `;
 
-export const MainInfoContainer = styled(ContentContainer)`
-  display: flex;
-  justify-content: space-around;
-  height: 80px;
-  align-items: center;
-`;
-
-export const MainInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-`;
-
-export const VerticalLine = styled.div`
-  width: 1px;
-  height: 50px;
-  background-color: ${theme.color.g300};
-`;
-
 export const SubInfoContainer = styled(ContentContainer)``;
 
 export const SubInfo = styled.div`
