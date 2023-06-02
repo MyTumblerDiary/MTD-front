@@ -4,14 +4,14 @@ import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
 
 interface SuggestAmountFormProps {
-  discountAmount: number;
+  discountPrice: number;
   handleChangePriceOption: (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => void;
 }
 
 export default function SuggestAmountForm({
-  discountAmount,
+  discountPrice,
   handleChangePriceOption
 }: SuggestAmountFormProps) {
   return (
@@ -19,7 +19,7 @@ export default function SuggestAmountForm({
       <Style.AmountWrapper>
         <Typography size='button1'>기존 표시 금액</Typography>
         <Style.ExistingAmount>
-          <Typography size='body2'>{discountAmount} 원</Typography>
+          <Typography size='body2'>{discountPrice} 원</Typography>
         </Style.ExistingAmount>
       </Style.AmountWrapper>
       <Svg.CrossArrow />
@@ -29,7 +29,7 @@ export default function SuggestAmountForm({
         </Typography>
         <Style.AmountSelectWrapper>
           <Style.AmountSelect onChange={handleChangePriceOption}>
-            <option value={discountAmount}>할인 금액</option>
+            <option value={discountPrice}>할인 금액</option>
             <option value={100}>100</option>
             <option value={200}>200</option>
             <option value={300}>300</option>

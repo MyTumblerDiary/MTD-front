@@ -11,6 +11,7 @@ import useCurrentCoords from './useCurrentCoords';
 import useNotifyToSlack from './useNotifyToSlack';
 import useSelectState from './useSelectState';
 import useAddressByCoords from './useAddressByCoords';
+import useIntersectionObserver from './useIntersectionObserver';
 
 export {
   useDebounce,
@@ -25,5 +26,6 @@ export {
   useCurrentCoords,
   useNotifyToSlack,
   useSelectState,
-  useAddressByCoords
+  useAddressByCoords,
+  useIntersectionObserver
 };

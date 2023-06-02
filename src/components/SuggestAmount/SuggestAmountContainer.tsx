@@ -21,8 +21,7 @@ import Typography from '../Common/Typography/Typography';
 
 export default function SuggestAmountContainer() {
   const [text, setText] = useState('');
-  const { name, discount_price: discountPrice } =
-    useReactiveVar(cafeDetailState);
+  const { name, discountPrice } = useReactiveVar(cafeDetailState);
   const { selectedOption: newPrice, handleChangeOption } =
     useSelectState(discountPrice);
 
@@ -58,7 +57,7 @@ export default function SuggestAmountContainer() {
       <Header title='금액 수정 제안' />
       <SuggestAmountTitle title={name} />
       <SuggestAmountForm
-        discountAmount={discountPrice}
+        discountPrice={discountPrice}
         handleChangePriceOption={handleChangeOption}
       />
       <SuggestAmountReasonField text={text} setText={setText} />
