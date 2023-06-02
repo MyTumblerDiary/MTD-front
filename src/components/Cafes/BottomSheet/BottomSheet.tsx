@@ -9,8 +9,8 @@ import SheetHeader from './SheetHeader/SheetHeader';
 export default function BottomSheet() {
   const {
     name,
-    street_name_address,
-    discount_price,
+    streetNameAddress,
+    discountPrice,
     thumbnail,
     latitude,
     longitude
@@ -18,9 +18,9 @@ export default function BottomSheet() {
 
   return (
     <Style.SheetWrapper>
-      <SheetHeader name={name} address={street_name_address} />
+      <SheetHeader name={name} address={streetNameAddress} />
       <SheetContent
-        discountPrice={discount_price}
+        discountPrice={discountPrice}
         thumbnail={thumbnail}
         latitude={latitude}
         longitude={longitude}

@@ -9,3 +9,7 @@ export const CafesContainer = styled.div`
   gap: 18px;
   background-color: #f5f5f5;
 `;
+
+export const Target = styled.div`
+  height: 10px;
+`;

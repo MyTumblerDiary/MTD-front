@@ -13,55 +13,55 @@ const cafes: CafesProps = [
     id: 1,
     name: '투썸 플레이스 리첸시아점',
     thumbnail: 'https://picsum.photos/150/120',
-    street_name_address: '서울 용산구 백범로 90길 120',
+    streetNameAddress: '서울 용산구 백범로 90길 120',
     latitude: 37.54699,
     longitude: 127.09598,
-    discount_price: 500
+    discountPrice: 500
   },
   {
     id: 2,
     name: '투썸 플레이스 리첸시아점2',
     thumbnail: 'https://picsum.photos/150/120',
-    street_name_address: '서울 용산구 백범로 90길 120',
+    streetNameAddress: '서울 용산구 백범로 90길 120',
     latitude: 37.54699,
     longitude: 127.09798,
-    discount_price: 300
+    discountPrice: 300
   },
   {
     id: 3,
     name: '투썸 플레이스 리첸시아점3',
     thumbnail: 'https://picsum.photos/150/120',
-    street_name_address: '서울 용산구 백범로 90길 120',
+    streetNameAddress: '서울 용산구 백범로 90길 120',
     latitude: 37.5599,
     longitude: 127.09598,
-    discount_price: 300
+    discountPrice: 300
   },
   {
     id: 4,
     name: '투썸 플레이스 리첸시아점4',
     thumbnail: 'https://picsum.photos/150/120',
-    street_name_address: '서울 용산구 백범로 90길 120',
+    streetNameAddress: '서울 용산구 백범로 90길 120',
     latitude: 37.54699,
     longitude: 127.09598,
-    discount_price: 300
+    discountPrice: 300
   },
   {
     id: 5,
     name: '투썸 플레이스 리첸시아점5',
     thumbnail: 'https://picsum.photos/150/120',
-    street_name_address: '서울 용산구 백범로 90길 120',
+    streetNameAddress: '서울 용산구 백범로 90길 120',
     latitude: 37.54699,
     longitude: 127.09598,
-    discount_price: 300
+    discountPrice: 300
   },
   {
     id: 6,
     name: '투썸 플레이스 리첸시아점',
     thumbnail: 'https://picsum.photos/150/120',
-    street_name_address: '서울 용산구 백범로 90길 120',
+    streetNameAddress: '서울 용산구 백범로 90길 120',
     latitude: 37.54699,
     longitude: 127.09598,
-    discount_price: 300
+    discountPrice: 300
   }
 ];
 

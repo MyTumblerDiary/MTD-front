@@ -4,8 +4,8 @@ export interface CafeProps {
   id: number;
   name: string;
   thumbnail: string;
-  street_name_address: string;
+  streetNameAddress: string;
   latitude: number;
   longitude: number;
-  discount_price: number;
+  discountPrice: number;
 }

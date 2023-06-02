@@ -6,10 +6,10 @@ const initialState: CafeProps = {
   id: 0,
   name: '',
   thumbnail: '',
-  street_name_address: '',
+  streetNameAddress: '',
   latitude: 0,
   longitude: 0,
-  discount_price: 0
+  discountPrice: 0
 };
 
 const cafeDetailState = makeVar(initialState);
