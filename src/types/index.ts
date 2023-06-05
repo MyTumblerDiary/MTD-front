@@ -12,7 +12,10 @@ import {
   type StepArrayProps,
   type StepButtonNameProps
 } from './stepper.type';
-import { type StorePagenationProps } from './store.type';
+import {
+  type StorePaginationProps,
+  type StoreSearchStoreInput
+} from './store.type';
 import {
   type MessageInfoProps,
   type NotifyMessageProps
@@ -30,9 +33,10 @@ export {
   StepButtonNameProps,
   TypographyProps,
   TextareaProps,
-  StorePagenationProps,
+  StorePaginationProps,
   MessageInfoProps,
   NotifyMessageProps,
   CafeProps,
-  CafesProps
+  CafesProps,
+  StoreSearchStoreInput
 };
