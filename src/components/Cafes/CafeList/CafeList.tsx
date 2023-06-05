@@ -1,13 +1,15 @@
 import { useEffect, useRef } from 'react';
 
-import { useIntersectionObserver, useStoreList, useToggleSheet } from '@/hooks';
+import { client } from '@/apollo/client';
+import { useReactiveVar } from '@apollo/client';
+import saerchQueryState from '@/store/searchQuery';
+import cafeDetailState from '@/store/cafeDetail';
 
-import * as Style from './CafeList.style';
+import { useIntersectionObserver, useStoreList, useToggleSheet } from '@/hooks';
 
 import { type CafeProps } from '@/types';
 
-import { client } from '@/apollo/client';
-import cafeDetailState from '@/store/cafeDetail';
+import * as Style from './CafeList.style';
 
 import Typography from '@/components/Common/Typography/Typography';
 import ReactPortal from '@/components/Common/BottomSheetFrame/ReactPortal';
@@ -15,7 +17,7 @@ import BottomSheet from '../BottomSheet/BottomSheet';
 
 export default function CafeList() {
   const { sheetState, toggleSheet } = useToggleSheet();
-
+  const searchQuery = useReactiveVar(saerchQueryState);
   const page = useRef(1);
 
   const {
@@ -24,6 +26,7 @@ export default function CafeList() {
     loading: fetchStoreLoading
   } = useStoreList(
     { limit: 6, page: page.current },
+    Object.keys(searchQuery).length === 0 ? {} : searchQuery,
     () => {},
     () => {}
   );
@@ -60,7 +63,15 @@ export default function CafeList() {
   }, []);
 
   if (!data?.stores.length) {
-    return <div>데이터가 없습니다.</div>;
+    return (
+      <Style.EmptyDataWrapper>
+        <Style.EmptyData>
+          <Typography size='button2' variant='main'>
+            데이터가 없습니다.
+          </Typography>
+        </Style.EmptyData>
+      </Style.EmptyDataWrapper>
+    );
   }
 
   return (
