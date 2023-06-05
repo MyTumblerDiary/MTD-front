@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 
-interface useAddressByCoordProps {
-  latitude: number;
-  longitude: number;
-}
+import userLocationState from '@/store/userLocation';
+import { useReactiveVar } from '@apollo/client';
 
-export default function useAddressByCoords(coords: useAddressByCoordProps) {
+export default function useAddressByCoords() {
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [userAddress, setUserAddress] = useState('');
-  const { latitude, longitude } = coords;
+  const userLocation = useReactiveVar(userLocationState);
 
   const getAddressByCoord = async (lat: number, lng: number) => {
     setIsLoading(true);
@@ -42,7 +39,10 @@ export default function useAddressByCoords(coords: useAddressByCoordProps) {
 
   useEffect(() => {
     const getUserAddress = async () => {
-      const result = await getAddressByCoord(latitude, longitude);
+      const result = await getAddressByCoord(
+        userLocation.latitude,
+        userLocation.longitude
+      );
 
       const address =
         (result.documents[0].road_address
@@ -51,11 +51,14 @@ export default function useAddressByCoords(coords: useAddressByCoordProps) {
             result.documents[0].road_address.building_name
           : result.documents[0].address.address_name) || '';
 
-      setUserAddress(address);
+      userLocationState({
+        ...userLocation,
+        address
+      });
     };
 
     getUserAddress();
-  }, [latitude, longitude]);
+  }, [userLocation.latitude, userLocation.longitude]);
 
-  return { isLoading, isSuccess, error, userAddress };
+  return { isLoading, isSuccess, error };
 }
