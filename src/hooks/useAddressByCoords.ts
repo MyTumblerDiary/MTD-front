@@ -58,7 +58,7 @@ export default function useAddressByCoords() {
     };
 
     getUserAddress();
-  }, []);
+  }, [userLocation]);
 
   return { isLoading, isSuccess, error };
 }
