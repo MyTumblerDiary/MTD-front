@@ -44,3 +44,7 @@ export const CafeDiscountAmountWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+
+export const Target = styled.div`
+  height: 10px;
+`;
