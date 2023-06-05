@@ -13,8 +13,6 @@ export default function UserLocation() {
   const { isLoading, getUserCoords } = useCurrentCoords();
   useAddressByCoords();
 
-  console.log(userLocation);
-
   return (
     <Style.UserLocationWrapper>
       <Style.UserLocationBar>
