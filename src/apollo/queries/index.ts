@@ -25,8 +25,14 @@ export const CHECK_EMAIL_AUTH = gql`
 `;
 
 export const FETCH_STORES = gql`
-  query Stores($paginationInput: PaginationInput) {
-    stores(paginationInput: $paginationInput) {
+  query Stores(
+    $paginationInput: PaginationInput
+    $searchStoreInput: SearchStoreInput
+  ) {
+    stores(
+      paginationInput: $paginationInput
+      searchStoreInput: $searchStoreInput
+    ) {
       updatedAt
       createdAt
       deletedAt

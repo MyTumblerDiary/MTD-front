@@ -1,15 +1,19 @@
 import { useQuery } from '@apollo/client';
 import { FETCH_STORES } from '@/apollo/queries';
 
-import { type StorePagenationProps } from '@/types';
+import { type StoreSearchStoreInput, type StorePaginationProps } from '@/types';
 
 export default function useStoreList(
-  paginationInput: StorePagenationProps,
+  paginationInput: StorePaginationProps,
+  searchStoreInput: StoreSearchStoreInput,
   handleComplete: () => void,
   handleError: () => void
 ) {
   return useQuery(FETCH_STORES, {
-    variables: { paginationInput },
+    variables: {
+      paginationInput,
+      searchStoreInput
+    },
     onCompleted: () => {
       handleComplete();
     },
