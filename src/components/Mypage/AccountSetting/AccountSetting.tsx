@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 
+import activeModalNameVar from '@/store/modal';
+
 import Header from '@/components/Common/Header/Header';
 import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
@@ -13,6 +15,10 @@ const AccountSetting = () => {
     router.push('/mypage/account-setting/change-password');
   };
 
+  const openLogoutModal = () => {
+    activeModalNameVar('logout');
+  };
+
   const ACCOUNT_SETTING_INFO = [
     {
       title: '비밀번호 수정',
@@ -20,9 +26,7 @@ const AccountSetting = () => {
     },
     {
       title: '로그아웃',
-      onClick: () => {
-        console.log('로그아웃 할거냐는 팝업 뜸');
-      }
+      onClick: openLogoutModal
     },
     {
       title: '회원 탈퇴',
