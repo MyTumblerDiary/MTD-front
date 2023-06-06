@@ -11,9 +11,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "next dev -p 8080",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export"
+    "build": "next build && next export",
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "^3.7.9",
