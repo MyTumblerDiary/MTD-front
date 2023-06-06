@@ -11,7 +11,7 @@ export default function useNotifyToSlack(text: string) {
 
     try {
       const result = await fetch(
-        'https://hooks.slack.com/services/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',
+        `${process.env.NEXT_PUBLIC_SLACK_WEBHOOK_URL}`,
         {
           method: 'POST',
           headers: {
