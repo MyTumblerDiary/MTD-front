@@ -2,8 +2,8 @@ import * as Style from './AuthHeader.style';
 
 import Link from 'next/link';
 
-import { Title } from '@/components/Common/Heading/Heading.style';
 import Svg from '@/components/svg';
+import Title from '../Heading/Title';
 
 interface AuthHeaderProps {
   title: string;

@@ -6,12 +6,12 @@
     "postinstall": "husky install",
     "format": "prettier src/**/*.ts{,x} --write",
     "format:check": "prettier src/**/*.ts{,x} --check",
-    "lint": "eslint .",
+    "lint": "eslint src/**/*.ts{,x}",
     "lint:fix": "eslint . --fix src/**/*.ts{,x}",
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "next dev -p 8080",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
