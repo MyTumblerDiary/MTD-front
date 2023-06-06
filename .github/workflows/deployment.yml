@@ -8,12 +8,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+  strategy:
+      matrix:
+        node-version: [18.x]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up AWS credentials
+      - name: 체크아웃 액션을 사용합니다.
+        uses: actions/checkout@v3
+      - name: Node.js ${{ matrix.node-version }}을 설치합니다.
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: AWS credentials을 세팅합니다.
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
