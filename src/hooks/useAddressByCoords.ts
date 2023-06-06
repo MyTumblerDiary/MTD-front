@@ -44,6 +44,10 @@ export default function useAddressByCoords() {
         userLocation.longitude
       );
 
+      if (!result.documents) {
+        return;
+      }
+
       const address =
         (result.documents[0].road_address
           ? result.documents[0].road_address.address_name +
