@@ -19,6 +19,10 @@ const AccountSetting = () => {
     activeModalNameVar('logout');
   };
 
+  const openWithdrawalModal = () => {
+    activeModalNameVar('withdrawal');
+  };
+
   const ACCOUNT_SETTING_INFO = [
     {
       title: '비밀번호 수정',
@@ -30,9 +34,7 @@ const AccountSetting = () => {
     },
     {
       title: '회원 탈퇴',
-      onClick: () => {
-        console.log('회원탈퇴 팝업 뜸');
-      }
+      onClick: openWithdrawalModal
     }
   ];
 
