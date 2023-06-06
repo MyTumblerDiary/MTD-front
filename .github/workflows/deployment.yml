@@ -2,13 +2,11 @@ name: Continuous Deployment to AWS S3 and CloudFront when merge main
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [main]
 jobs:
-  deploy:
+  Continuous_Deployment:
     runs-on: ubuntu-latest
-  strategy:
+    strategy:
       matrix:
         node-version: [18.x]
     steps:
