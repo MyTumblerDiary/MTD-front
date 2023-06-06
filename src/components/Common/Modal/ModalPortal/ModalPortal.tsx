@@ -23,21 +23,26 @@ const ModalPortal = () => {
   const { closeModal } = useModal();
   const activeModalName = useReactiveVar(activeModalNameVar);
 
-  const selectedElement = document.getElementById('portal-root') as HTMLElement;
+  const selectedElement =
+    typeof window !== 'undefined' &&
+    (document.getElementById('portal-root') as HTMLElement);
+
   if (selectedElement === null || activeModalName === '') {
     return <div></div>;
   }
 
   const Modal = MODAL_COMPONENTS[activeModalName];
 
-  return createPortal(
-    <Style.Backdrop onClick={closeModal}>
-      <div onClick={(e) => e.stopPropagation()}>
-        <Modal />
-      </div>
-    </Style.Backdrop>,
-    selectedElement
-  );
+  return selectedElement
+    ? createPortal(
+        <Style.Backdrop onClick={closeModal}>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Modal />
+          </div>
+        </Style.Backdrop>,
+        selectedElement
+      )
+    : null;
 };
 
 export default ModalPortal;
