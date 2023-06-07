@@ -76,8 +76,10 @@ const LoginForm = () => {
 
   const [loginMutation] = useMutation(POST_LOGIN, {
     variables: {
-      email: userInput.email.value,
-      password: userInput.password.value
+      loginInput: {
+        email: userInput.email.value,
+        password: userInput.password.value
+      }
     },
     onCompleted: (data) => {
       localStorage.setItem('accessToken', data.login);
