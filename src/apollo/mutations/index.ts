@@ -29,3 +29,12 @@ export const GOOGLE_CODE = gql`
     }
   }
 `;
+
+export const IMAGE_PRESIGN = gql`
+  mutation Mutation($presignedUrlInput: S3PresignedUrlInput!) {
+    getPresignedUrl(presignedUrlInput: $presignedUrlInput) {
+      presignedUrl
+      fileKey
+    }
+  }
+`;
