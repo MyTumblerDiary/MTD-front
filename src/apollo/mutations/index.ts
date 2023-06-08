@@ -38,3 +38,11 @@ export const IMAGE_PRESIGN = gql`
     }
   }
 `;
+
+export const RECORD_TUMBLER_PRIVATE_SPACE = gql`
+  mutation Mutation($input: CreateTumblerRecordOnPrivateSpaceInput!) {
+    createTumblerRecordOnPrivateSpace(input: $input) {
+      id
+    }
+  }
+`;

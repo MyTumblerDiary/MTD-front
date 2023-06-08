@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import useRecordState from '@/hooks/useRecordState';
+import useImagePresign from '@/hooks/useImagePresign';
+import useImageUpload from '@/hooks/useImageUpload';
+
+import { RECORD_TUMBLER_PRIVATE_SPACE } from '@/apollo/mutations';
 
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
@@ -18,9 +23,11 @@ import {
   type RecordInputTypes
 } from '@/types';
 
+import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 
 import * as Style from './UnPaidContainer.style';
+import { useMutation } from '@apollo/client';
 
 const initialState: RecordInputTypes = {
   tumblerImage: {
@@ -42,10 +49,40 @@ const initialState: RecordInputTypes = {
 };
 
 const UnPaidContainer = () => {
+  const router = useRouter();
+
   const { userInput, isValidateSubmit, handleUserInput, setUserInput } =
     useRecordState(initialState);
-
   const [memo, setMemo] = useState('');
+
+  const [imagePresign] = useImagePresign({
+    imageData: userInput.tumblerImage.value
+  });
+  const { handleImageUpload } = useImageUpload();
+  const [recordTumblerPrivate] = useMutation(RECORD_TUMBLER_PRIVATE_SPACE);
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const response = await imagePresign();
+    const { presignedUrl, fileKey } = response.data.getPresignedUrl;
+
+    await handleImageUpload(userInput.tumblerImage.value, presignedUrl);
+
+    await recordTumblerPrivate({
+      variables: {
+        input: {
+          imageFileKey: fileKey,
+          memo: memo,
+          placeType: userInput.place.value,
+          usedAt: toStringByFormatting(userInput.recordDate.value)
+        }
+      },
+      onCompleted: () => {
+        router.push('/');
+      }
+    });
+  };
 
   const RecordDatePickerProps = {
     recordDate: userInput.recordDate.value,
@@ -91,10 +128,6 @@ const UnPaidContainer = () => {
     name: 'record',
     disabled: !isValidateSubmit,
     children: <Typography {...SubmitButtonTextProps} />
-  };
-
-  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
   return (
