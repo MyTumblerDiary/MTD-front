@@ -19,6 +19,9 @@ import {
   type RecordInputTypes
 } from '@/types';
 
+import { FRANCHISE_DISCOUNT_PRICE } from '@/apollo/queries';
+import { useQuery } from '@apollo/client';
+
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
 
@@ -136,6 +139,18 @@ const PaidContainer = () => {
     placeholder: '오늘의 텀블러 사용은 어땠나요?',
     setValue: setMemo
   };
+
+  useQuery(FRANCHISE_DISCOUNT_PRICE, {
+    variables: {
+      searchInput: {
+        searchBy: 'name',
+        value: '투썸플레이스'
+      }
+    },
+    onCompleted: (data) => {
+      console.log('성공: ', data.franchisesBySearch[0].discountPrice);
+    }
+  });
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
