@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+
+import { client } from '@/apollo/client';
 import { useReactiveVar } from '@apollo/client';
 import saerchQueryState from '@/store/searchQuery';
 import cafeDetailState from '@/store/cafeDetail';
@@ -45,6 +48,13 @@ export default function CafeList() {
     cafeDetailState(cafe);
     toggleSheet();
   };
+
+  useEffect(() => {
+    return () => {
+      client.cache.evict({ fieldName: 'stores' });
+      client.cache.gc();
+    };
+  }, []);
 
   if (!data?.stores.totalCount) {
     return (
