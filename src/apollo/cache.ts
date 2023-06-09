@@ -6,11 +6,19 @@ export const cache = new InMemoryCache({
       fields: {
         stores: {
           keyArgs: false,
-          merge(existing = [], incoming) {
-            if (!incoming.length) {
+          merge(existing = {}, incoming) {
+            if (!incoming.stores.length) {
               return existing;
             }
-            return [...existing, ...incoming];
+
+            if (!!existing.stores) {
+              return {
+                ...incoming,
+                stores: [...existing.stores, ...incoming.stores]
+              };
+            }
+
+            return incoming;
           }
         }
       }

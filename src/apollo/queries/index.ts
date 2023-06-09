@@ -26,25 +26,27 @@ export const CHECK_EMAIL_AUTH = gql`
 
 export const FETCH_STORES = gql`
   query Stores(
-    $paginationInput: PaginationInput
     $searchStoreInput: SearchStoreInput
+    $paginationInput: PaginationInput
   ) {
     stores(
-      paginationInput: $paginationInput
       searchStoreInput: $searchStoreInput
+      paginationInput: $paginationInput
     ) {
-      updatedAt
-      createdAt
-      deletedAt
-      detailAddress
-      discountPrice
-      id
-      imageFileKey
-      latitude
-      longitude
-      name
-      lotNumberAddress
-      streetNameAddress
+      currentPage
+      pagesCount
+      searchedCount
+      totalCount
+      stores {
+        id
+        latitude
+        longitude
+        streetNameAddress
+        name
+        lotNumberAddress
+        discountPrice
+        imageFileKey
+      }
     }
   }
 `;
