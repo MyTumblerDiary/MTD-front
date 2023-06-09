@@ -12,6 +12,11 @@ import {
   type StepArrayProps,
   type StepButtonNameProps
 } from './stepper.type';
+import {
+  type TumblerRecordProps,
+  type TumblerRecordsProps,
+  type ViewProps
+} from './tumblerRecord.type';
 
 export {
   ButtonProps,
@@ -23,5 +28,8 @@ export {
   StepArrayProps,
   StepButtonNameProps,
   TypographyProps,
-  TextareaProps
+  TextareaProps,
+  TumblerRecordProps,
+  TumblerRecordsProps,
+  ViewProps
 };
