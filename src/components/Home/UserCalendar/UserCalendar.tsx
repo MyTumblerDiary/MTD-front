@@ -24,7 +24,6 @@ import Typography from '@/components/Common/Typography/Typography';
 export default function UserCalendar() {
   const { sheetState, toggleSheet } = useToggleSheet();
   const { data } = useTumblerRecord({});
-  console.log(data);
 
   const handleTumblerVariant = (usesCount: number) => {
     if (usesCount >= 5) {
