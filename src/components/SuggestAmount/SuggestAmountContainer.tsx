@@ -1,6 +1,15 @@
+import { useState } from 'react';
+
+import { useReactiveVar } from '@apollo/client';
+import cafeDetailState from '@/store/cafeDetail';
+
 import * as Style from './SuggestAmountConatiner.style';
 
-import { type ButtonProps } from '@/types';
+import { type MessageInfoProps, type ButtonProps } from '@/types';
+
+import { useNotifyToSlack, useSelectState } from '@/hooks';
+
+import { formatNotifyMessage } from '@/utils/helpers/notify.helper';
 
 import Header from '../Common/Header/Header';
 import SuggestAmountTitle from './SuggestAmountTitle/SuggestAmountTitle';
@@ -10,30 +19,22 @@ import SuggestAmountInfo from './SuggestAmountInfo/SuggestAmountInfo';
 import Button from '../Common/Button/Button';
 import Typography from '../Common/Typography/Typography';
 
-const data: CardDataProps = {
-  id: 1,
-  thumbnail: 'https://picsum.photos/150/120',
-  cafe: '투썸 플레이스',
-  branch: '리첸시아점',
-  address: '서울 용산구 백범로 90길 120',
-  lat: 37.54699,
-  lng: 127.09598,
-  discountAmount: 300
-};
-
-interface CardDataProps {
-  id: number;
-  thumbnail: string;
-  cafe: string;
-  branch: string;
-  address: string;
-  lat: number;
-  lng: number;
-  discountAmount: number;
-}
-
 export default function SuggestAmountContainer() {
-  const suggestAmountTitle = data.cafe + data.branch;
+  const [text, setText] = useState('');
+  const { name, discountPrice } = useReactiveVar(cafeDetailState);
+  const { selectedOption: newPrice, handleChangeOption } =
+    useSelectState(discountPrice);
+
+  const info: MessageInfoProps = {
+    title: name,
+    message: text,
+    price: discountPrice,
+    newPrice: newPrice as number
+  };
+
+  const { isLoading, isSuccess, error, notifySlackOnClick } = useNotifyToSlack(
+    formatNotifyMessage(info, 'suggest')
+  );
 
   const submitButtonProps: ButtonProps = {
     type: 'button',
@@ -44,15 +45,22 @@ export default function SuggestAmountContainer() {
         수정 제안하기
       </Typography>
     ),
-    onClick: () => {}
+    onClick: notifySlackOnClick
   };
+
+  if (isLoading) {
+    return <div>로딩</div>;
+  }
 
   return (
     <Style.SuggestAmountWrapper>
       <Header title='금액 수정 제안' />
-      <SuggestAmountTitle title={suggestAmountTitle} />
-      <SuggestAmountForm discountAmount={data.discountAmount} />
-      <SuggestAmountReasonField />
+      <SuggestAmountTitle title={name} />
+      <SuggestAmountForm
+        discountPrice={discountPrice}
+        handleChangePriceOption={handleChangeOption}
+      />
+      <SuggestAmountReasonField text={text} setText={setText} />
       <SuggestAmountInfo />
       <Button {...submitButtonProps} />
     </Style.SuggestAmountWrapper>

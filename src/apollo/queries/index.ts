@@ -23,3 +23,30 @@ export const CHECK_EMAIL_AUTH = gql`
     checkcode(email: $email, code: $code)
   }
 `;
+
+export const FETCH_STORES = gql`
+  query Stores(
+    $searchStoreInput: SearchStoreInput
+    $paginationInput: PaginationInput
+  ) {
+    stores(
+      searchStoreInput: $searchStoreInput
+      paginationInput: $paginationInput
+    ) {
+      currentPage
+      pagesCount
+      searchedCount
+      totalCount
+      stores {
+        id
+        latitude
+        longitude
+        streetNameAddress
+        name
+        lotNumberAddress
+        discountPrice
+        imageFileKey
+      }
+    }
+  }
+`;
