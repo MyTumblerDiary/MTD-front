@@ -19,9 +19,9 @@ const Header = ({ title }: HeaderProps) => {
   return (
     <Style.Container>
       <Title>{title}</Title>
-      <Style.LoginLink onClick={onClickBack}>
+      <Style.BackButton onClick={onClickBack}>
         <Svg.ArrowLeft />
-      </Style.LoginLink>
+      </Style.BackButton>
     </Style.Container>
   );
 };
