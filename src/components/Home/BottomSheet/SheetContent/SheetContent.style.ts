@@ -13,7 +13,7 @@ export const DiaryRecord = styled.div`
 
 export const RecordImage = styled.img`
   border-radius: 20px;
-  width: 100px;
+  width: 150px;
   height: 100px;
 `;
 
@@ -34,7 +34,7 @@ export const RecordInfo = styled.div`
 export const RecordHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 `;
 
 export const RecordAmount = styled.div`

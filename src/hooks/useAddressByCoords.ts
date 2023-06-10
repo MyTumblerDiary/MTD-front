@@ -62,7 +62,8 @@ export default function useAddressByCoords() {
     };
 
     getUserAddress();
-  }, [userLocation, userLocation.latitude, userLocation.longitude]);
+    // eslint-disable-next-line
+  }, [userLocation.latitude, userLocation.longitude]);
 
   return { isLoading, isSuccess, error };
 }
