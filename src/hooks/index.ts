@@ -7,7 +7,6 @@ import useAuthEmail from './useAuthEmail';
 import useSignupState from './useSignupState';
 import useToggleSheet from './useToggleSheet';
 import useTumblerRecord from './useTumblerRecord';
-import useTumblerTotalRecord from './useTumblerTotalRecords';
 import useStoreList from './useStoreList';
 import useCurrentCoords from './useCurrentCoords';
 import useNotifyToSlack from './useNotifyToSlack';
@@ -15,6 +14,7 @@ import useSelectState from './useSelectState';
 import useAddressByCoords from './useAddressByCoords';
 import useIntersectionObserver from './useIntersectionObserver';
 import useLogout from './useLogout';
+import useMypageInfo from './useMypageInfo';
 
 export {
   useDebounce,
@@ -26,12 +26,12 @@ export {
   useSignupState,
   useToggleSheet,
   useTumblerRecord,
-  useTumblerTotalRecord,
   useStoreList,
   useCurrentCoords,
   useNotifyToSlack,
   useSelectState,
   useAddressByCoords,
   useIntersectionObserver,
-  useLogout
+  useLogout,
+  useMypageInfo
 };

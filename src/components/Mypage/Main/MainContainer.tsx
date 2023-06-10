@@ -4,7 +4,7 @@ import MainHeader from '../../Common/MainHeader/MainHeader';
 import Typography from '../../Common/Typography/Typography';
 import DiscountInformation from '../DiscountInformation/DiscountInformation';
 
-import { useTumblerTotalRecord } from '@/hooks';
+import { useMypageInfo } from '@/hooks';
 
 import SUB_INFORMATION from '@/utils/constants/mypageSubInfo';
 import Svg from '../../svg';
@@ -12,7 +12,7 @@ import Svg from '../../svg';
 import * as Style from './MainContainer.style';
 
 const MypageContainer = () => {
-  const { data } = useTumblerTotalRecord({});
+  const { data } = useMypageInfo();
 
   const DiscountInformationProps = {
     count: data?.tumblerRecords.totalUsedTumbler,
@@ -25,7 +25,7 @@ const MypageContainer = () => {
       <MainHeader title='마이페이지' />
       <Style.MainContainer>
         <Style.NicknameContainer>
-          <Typography size='button1'>뚱당뚱당</Typography>
+          <Typography size='button1'>{data?.user.nickname}</Typography>
           <Link href='/mypage/change-nickname'>
             <Svg.Pencil />
           </Link>

@@ -77,11 +77,14 @@ export const FETCH_STORES = gql`
   }
 `;
 
-export const GET_TUMBLER_TOTAL_RECORDS = gql`
-  query TumblerRecords($searchTumblerRecordInput: SearchTumblerRecordInput!) {
-    tumblerRecords(searchTumblerRecordInput: $searchTumblerRecordInput) {
-      totalUsedTumbler
+export const GET_MYPAGE_INFO = gql`
+  query Query {
+    user {
+      nickname
+    }
+    tumblerRecords {
       totalDiscount
+      totalUsedTumbler
     }
   }
 `;
