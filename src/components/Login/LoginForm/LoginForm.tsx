@@ -82,7 +82,7 @@ const LoginForm = () => {
       }
     },
     onCompleted: (data) => {
-      localStorage.setItem('accessToken', data.login);
+      localStorage.setItem('accessToken', data.login.accessToken);
       router.push('/');
     },
     onError: (err) => {
