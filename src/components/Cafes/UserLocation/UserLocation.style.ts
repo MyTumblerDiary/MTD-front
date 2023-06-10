@@ -32,6 +32,7 @@ export const Location = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  word-break: break-all;
 `;
 
 export const SetButtonWrapper = styled.div`

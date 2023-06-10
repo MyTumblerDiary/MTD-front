@@ -12,6 +12,21 @@ import {
   type StepArrayProps,
   type StepButtonNameProps
 } from './stepper.type';
+import {
+  type TumblerRecordProps,
+  type TumblerRecordsProps,
+  type ViewProps
+} from './tumblerRecord.type';
+
+import {
+  type StorePaginationProps,
+  type StoreSearchStoreInput
+} from './store.type';
+import {
+  type MessageInfoProps,
+  type NotifyMessageProps
+} from './messageInfo.type';
+import { type CafeProps, type CafesProps } from './cafe.type';
 
 export {
   ButtonProps,
@@ -23,5 +38,14 @@ export {
   StepArrayProps,
   StepButtonNameProps,
   TypographyProps,
-  TextareaProps
+  TextareaProps,
+  TumblerRecordProps,
+  TumblerRecordsProps,
+  ViewProps,
+  StorePaginationProps,
+  MessageInfoProps,
+  NotifyMessageProps,
+  CafeProps,
+  CafesProps,
+  StoreSearchStoreInput
 };

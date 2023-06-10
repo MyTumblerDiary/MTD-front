@@ -25,6 +25,10 @@ import Location from '../../public/icons/Location.svg';
 import CrossArrow from '../../public/icons/CrossArrow.svg';
 import LoginTumbler from '../../public/icons/LoginTumbler.svg';
 import Tree from '../../public/icons/Tree.svg';
+import Pencil from '../../public/icons/Pencil.svg';
+import Graph from '../../public/icons/Graph.svg';
+import Headset from '../../public/icons/Headset.svg';
+import Setting from '../../public/icons/Setting.svg';
 
 export default {
   Home,
@@ -53,5 +57,9 @@ export default {
   Location,
   CrossArrow,
   LoginTumbler,
-  Tree
+  Tree,
+  Pencil,
+  Graph,
+  Headset,
+  Setting
 };

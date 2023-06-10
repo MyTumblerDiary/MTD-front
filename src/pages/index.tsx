@@ -1,5 +1,5 @@
 import PageHead from '@/components/Common/Head/Head';
-import HomeContainer from '@/components/Home/HomeContainer';
+import HomeContainer from '@/components/Home/HomeContainer/HomeContainer';
 
 export default function Home() {
   return (

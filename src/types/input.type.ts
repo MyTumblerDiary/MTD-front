@@ -21,7 +21,8 @@ export type InputNameProps =
   | 'password'
   | 'passwordCheck'
   | 'search'
-  | 'place';
+  | 'place'
+  | 'currentPassword';
 
 export type InputValidationProps = 'default' | 'success' | 'error';
 

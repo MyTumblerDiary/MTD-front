@@ -9,8 +9,10 @@ export const CREATE_USER = gql`
 `;
 
 export const POST_LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password)
+  mutation Login($loginInput: LoginInputDto!) {
+    login(loginInput: $loginInput) {
+      accessToken
+    }
   }
 `;
 
@@ -26,6 +28,14 @@ export const GOOGLE_CODE = gql`
   mutation Mutation($code: String!) {
     googleLogin(code: $code) {
       accessToken
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation Mutation($updateUserInput: UpdateUserInput!) {
+    updateUser(updateUserInput: $updateUserInput) {
+      nickname
     }
   }
 `;
