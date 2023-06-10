@@ -1,7 +1,10 @@
 import Link from 'next/link';
+
 import MainHeader from '../../Common/MainHeader/MainHeader';
 import Typography from '../../Common/Typography/Typography';
 import DiscountInformation from '../DiscountInformation/DiscountInformation';
+
+import { useTumblerTotalRecord } from '@/hooks';
 
 import SUB_INFORMATION from '@/utils/constants/mypageSubInfo';
 import Svg from '../../svg';
@@ -9,9 +12,11 @@ import Svg from '../../svg';
 import * as Style from './MainContainer.style';
 
 const MypageContainer = () => {
+  const { data } = useTumblerTotalRecord({});
+
   const DiscountInformationProps = {
-    count: 26,
-    amount: 5900,
+    count: data?.tumblerRecords.totalUsedTumbler,
+    amount: data?.tumblerRecords.totalDiscount,
     href: '/mypage/discount-report'
   };
 
