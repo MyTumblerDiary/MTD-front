@@ -8,6 +8,7 @@ interface MainProps {
 export const LayoutContainer = styled.div`
   max-width: ${theme.maxWidth};
   min-height: 100vh;
+  margin: 0 auto;
 `;
 
 export const Main = styled.main<MainProps>`
