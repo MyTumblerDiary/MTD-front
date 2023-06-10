@@ -44,3 +44,23 @@ export const CafeDiscountAmountWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+
+export const Target = styled.div`
+  height: 10px;
+`;
+
+export const EmptyDataWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 0px 20px;
+`;
+
+export const EmptyData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 15px;
+  border-radius: 12px;
+  background-color: #ffffff;
+`;

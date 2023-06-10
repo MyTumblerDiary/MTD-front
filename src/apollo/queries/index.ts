@@ -27,12 +27,13 @@ export const CHECK_EMAIL_AUTH = gql`
 export const GET_TUMBLER_RECORDS = gql`
   query TumblerRecords($searchTumblerRecordInput: SearchTumblerRecordInput!) {
     tumblerRecords(searchTumblerRecordInput: $searchTumblerRecordInput) {
-      filteredDiscount
-      filteredTumbler
-      totalDiscount
       totalUsedTumbler
+      totalDiscount
+      filteredTumbler
+      filteredDiscount
       tumblerRecords {
         usedAt
+        updatedAt
         prices
         placeType
         memo
@@ -44,6 +45,33 @@ export const GET_TUMBLER_RECORDS = gql`
           name
           streetNameAddress
         }
+      }
+    }
+  }
+`;
+
+export const FETCH_STORES = gql`
+  query Stores(
+    $searchStoreInput: SearchStoreInput
+    $paginationInput: PaginationInput
+  ) {
+    stores(
+      searchStoreInput: $searchStoreInput
+      paginationInput: $paginationInput
+    ) {
+      currentPage
+      pagesCount
+      searchedCount
+      totalCount
+      stores {
+        id
+        latitude
+        longitude
+        streetNameAddress
+        name
+        lotNumberAddress
+        discountPrice
+        imageFileKey
       }
     }
   }

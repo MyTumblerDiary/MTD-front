@@ -13,7 +13,7 @@ export const Container = styled.div`
   z-index: 100;
 `;
 
-export const LoginLink = styled.div`
+export const BackButton = styled.div`
   position: absolute;
   left: 10px;
   width: 36px;

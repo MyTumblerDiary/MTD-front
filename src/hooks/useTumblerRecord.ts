@@ -11,16 +11,6 @@ export default function useTumblerRecord(
   searchTumblerRecordInput: SearchTumblerRecordInputProps
 ) {
   return useQuery(GET_TUMBLER_RECORDS, {
-    context: {
-      headers: {
-        authorization: `Bearer ${
-          typeof window !== 'undefined'
-            ? localStorage.getItem('accessToken')
-            : ''
-        } `,
-        'Content-Type': 'application/json'
-      }
-    },
     variables: { searchTumblerRecordInput },
     onError: (error) => {
       console.error(error);

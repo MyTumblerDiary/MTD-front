@@ -18,6 +18,16 @@ import {
   type ViewProps
 } from './tumblerRecord.type';
 
+import {
+  type StorePaginationProps,
+  type StoreSearchStoreInput
+} from './store.type';
+import {
+  type MessageInfoProps,
+  type NotifyMessageProps
+} from './messageInfo.type';
+import { type CafeProps, type CafesProps } from './cafe.type';
+
 export {
   ButtonProps,
   InputProps,
@@ -31,5 +41,11 @@ export {
   TextareaProps,
   TumblerRecordProps,
   TumblerRecordsProps,
-  ViewProps
+  ViewProps,
+  StorePaginationProps,
+  MessageInfoProps,
+  NotifyMessageProps,
+  CafeProps,
+  CafesProps,
+  StoreSearchStoreInput
 };

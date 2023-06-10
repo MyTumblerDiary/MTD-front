@@ -121,7 +121,7 @@ export function usernameValidation(username: string) {
 
   const validation =
     username.length <= RegExp.NAME_MAX_LENGTH &&
-    username.length > RegExp.NAME_MIN_LENGTH
+    username.length >= RegExp.NAME_MIN_LENGTH
       ? 'success'
       : 'error';
 

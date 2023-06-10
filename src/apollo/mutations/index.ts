@@ -31,3 +31,11 @@ export const GOOGLE_CODE = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation Mutation($updateUserInput: UpdateUserInput!) {
+    updateUser(updateUserInput: $updateUserInput) {
+      nickname
+    }
+  }
+`;
