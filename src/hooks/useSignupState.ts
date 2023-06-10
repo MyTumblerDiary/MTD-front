@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { type InputNameProps, type UserInputPramProps } from '@/types';
@@ -99,6 +99,7 @@ export default function useSignupState(initialState: SignupInputProps) {
       ...currentState,
       email: {
         ...currentState.email,
+        validation: 'success',
         message: validationMessage.authRequest.success
       }
     }));
@@ -110,6 +111,7 @@ export default function useSignupState(initialState: SignupInputProps) {
       ...currentState,
       email: {
         ...currentState.email,
+        validation: 'error',
         message: validationMessage.authRequest.fail
       }
     }));

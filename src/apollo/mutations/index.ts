@@ -45,3 +45,11 @@ export const LOGOUT = gql`
     logout
   }
 `;
+
+export const UPDATE_PASSWORD = gql`
+  mutation ResetPassword($userEmail: String!, $password: String!) {
+    resetPassword(userEmail: $userEmail, password: $password) {
+      id
+    }
+  }
+`;

@@ -15,6 +15,7 @@ import useAddressByCoords from './useAddressByCoords';
 import useIntersectionObserver from './useIntersectionObserver';
 import useLogout from './useLogout';
 import useMypageInfo from './useMypageInfo';
+import useUpdatePassword from './useUpdatePassword';
 
 export {
   useDebounce,
@@ -33,5 +34,6 @@ export {
   useAddressByCoords,
   useIntersectionObserver,
   useLogout,
-  useMypageInfo
+  useMypageInfo,
+  useUpdatePassword
 };
