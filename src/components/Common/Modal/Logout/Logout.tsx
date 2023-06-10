@@ -1,4 +1,5 @@
 import useModal from '@/hooks/useModal';
+import useLogout from '@/hooks/useLogout';
 
 import Typography from '../../Typography/Typography';
 
@@ -6,13 +7,10 @@ import * as Style from './Logout.style';
 
 const Logout = () => {
   const { closeModal } = useModal();
+  const [logout] = useLogout();
 
   const onClickLogout = () => {
-    console.log(`로그아웃을 해요. 
-    1. api 호출 (api 수정중이라 query일지 mutation일지 모르겠음)
-    2. api 호출 정상적으로 되면 로컬스토리지에 있는 토큰 삭제
-    3. 로그인 페이지로 라우팅
-    `);
+    logout();
   };
 
   return (

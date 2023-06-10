@@ -39,3 +39,9 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const LOGOUT = gql`
+  mutation Mutation {
+    logout
+  }
+`;

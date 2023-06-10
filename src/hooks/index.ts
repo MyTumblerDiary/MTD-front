@@ -14,6 +14,7 @@ import useNotifyToSlack from './useNotifyToSlack';
 import useSelectState from './useSelectState';
 import useAddressByCoords from './useAddressByCoords';
 import useIntersectionObserver from './useIntersectionObserver';
+import useLogout from './useLogout';
 
 export {
   useDebounce,
@@ -31,5 +32,6 @@ export {
   useNotifyToSlack,
   useSelectState,
   useAddressByCoords,
-  useIntersectionObserver
+  useIntersectionObserver,
+  useLogout
 };
