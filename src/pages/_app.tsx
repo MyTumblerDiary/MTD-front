@@ -12,6 +12,7 @@ import { client } from '@/apollo/client';
 import { RecoilRoot } from 'recoil';
 
 import Layout from '@/components/Layout/Layout';
+import ModalPortal from '@/components/Common/Modal/ModalPortal/ModalPortal';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import '../components/Record/DatePicker/DatePicker.css';
@@ -70,6 +71,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <ApolloProvider client={client}>
         {getLayout(<Component {...pageProps} />)}
         <GlobalStyle />
+        <ModalPortal />
       </ApolloProvider>
     </RecoilRoot>
   );
