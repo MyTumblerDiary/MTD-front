@@ -13,7 +13,7 @@ export const DiaryRecord = styled.div`
 
 export const RecordImage = styled.img`
   border-radius: 20px;
-  width: 100px;
+  width: 150px;
   height: 100px;
 `;
 

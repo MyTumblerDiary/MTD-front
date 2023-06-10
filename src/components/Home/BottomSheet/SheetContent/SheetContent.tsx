@@ -30,14 +30,16 @@ export default function SheetContent() {
                       {store?.name || placeType}
                     </Typography>
                     <Typography size='caption'>
-                      {store?.streetNameAddress || ''}
+                      {store?.streetNameAddress || '개인공간'}
                     </Typography>
                   </Style.RecordHeader>
                   <Typography size='body2'>{memo || ''}</Typography>
                 </Style.RecordInfo>
-                <Style.RecordAmount>
-                  <Typography size='button1'>{prices || 0}원 할인</Typography>
-                </Style.RecordAmount>
+                {!!store && (
+                  <Style.RecordAmount>
+                    <Typography size='button1'>{prices || 0}원 할인</Typography>
+                  </Style.RecordAmount>
+                )}
               </Style.RecordInfoWrapper>
             </Style.DiaryRecord>
             {tumblerRecords.length - 1 !== idx && <Style.HorizontalRule />}
