@@ -20,6 +20,11 @@ export const cache = new InMemoryCache({
 
             return incoming;
           }
+        },
+        tumblerRecords: {
+          merge(_, incoming) {
+            return incoming;
+          }
         }
       }
     }

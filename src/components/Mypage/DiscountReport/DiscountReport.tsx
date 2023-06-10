@@ -7,7 +7,7 @@ import Typography from '@/components/Common/Typography/Typography';
 import * as Style from './DiscountReport.style';
 
 const DiscountReport = () => {
-  const { data } = useTumblerRecord({ order: 'ASC', searchBy: 'createdAt' });
+  const { data } = useTumblerRecord({});
 
   const DiscountInformationProps = {
     count: data?.tumblerRecords.totalUsedTumbler,
