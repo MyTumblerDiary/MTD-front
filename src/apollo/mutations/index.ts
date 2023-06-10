@@ -9,8 +9,10 @@ export const CREATE_USER = gql`
 `;
 
 export const POST_LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password)
+  mutation Login($loginInput: LoginInputDto!) {
+    login(loginInput: $loginInput) {
+      accessToken
+    }
   }
 `;
 
@@ -43,6 +45,14 @@ export const RECORD_TUMBLER_PRIVATE_SPACE = gql`
   mutation Mutation($input: CreateTumblerRecordOnPrivateSpaceInput!) {
     createTumblerRecordOnPrivateSpace(input: $input) {
       id
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation Mutation($updateUserInput: UpdateUserInput!) {
+    updateUser(updateUserInput: $updateUserInput) {
+      nickname
     }
   }
 `;

@@ -23,7 +23,9 @@ export type InputNameProps =
   | 'place'
   | 'tumblerImage'
   | 'isDiscounted'
-  | 'search';
+  | 'search'
+  | 'place'
+  | 'currentPassword';
 
 export type InputValidationProps = 'default' | 'success' | 'error';
 

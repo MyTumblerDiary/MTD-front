@@ -2,17 +2,15 @@ import * as Style from './SheetHeader.style';
 
 import { useReactiveVar } from '@apollo/client';
 import activeDayState from '@/store/activeDay';
+import clickedTumblerDataState from '@/store/clickedTumblerData';
 
 import Typography from '@/components/Common/Typography/Typography';
 import Title from '@/components/Common/Heading/Title';
 import Svg from '@/components/svg';
 
-interface SheetHeaderProps {
-  dataLength: number;
-}
-
-export default function SheetHeader({ dataLength }: SheetHeaderProps) {
+export default function SheetHeader() {
   const activeDay = useReactiveVar(activeDayState);
+  const tumblerRecords = useReactiveVar(clickedTumblerDataState);
 
   return (
     <Style.SheetHeader>
@@ -29,7 +27,7 @@ export default function SheetHeader({ dataLength }: SheetHeaderProps) {
       <Style.SheetTitle>
         <Title>텀블러 기록</Title>
         <Svg.TumblerMaterial />
-        <Title>{dataLength}</Title>
+        <Title>{tumblerRecords.length}</Title>
       </Style.SheetTitle>
     </Style.SheetHeader>
   );

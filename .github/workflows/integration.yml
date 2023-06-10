@@ -1,4 +1,4 @@
-name: Project CI when run pull_request
+name: Continuous Integration when when run pull request
 
 on:
   pull_request:
