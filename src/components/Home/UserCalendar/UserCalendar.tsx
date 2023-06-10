@@ -4,9 +4,16 @@ import theme from '@/styles/theme';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-import useToggleSheet from '@/hooks/useToggleSheet';
+import { useToggleSheet, useTumblerRecord } from '@/hooks';
+
+import {
+  type TumblerRecordsProps,
+  type TumblerRecordProps,
+  type ViewProps
+} from '@/types';
 
 import activeDayState from '@/store/activeDay';
+import clickedTumblerDataState from '@/store/clickedTumblerData';
 
 import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 
@@ -14,47 +21,9 @@ import BottomSheet from '../BottomSheet/BottomSheet';
 import ReactPortal from '@/components/Common/BottomSheetFrame/ReactPortal';
 import Typography from '@/components/Common/Typography/Typography';
 
-const data = [
-  {
-    id: 1,
-    date: '2023-04-13',
-    usesCount: 1,
-    totalDiscountAmount: 400
-  },
-  {
-    id: 2,
-    date: '2023-04-01',
-    usesCount: 1,
-    totalDiscountAmount: 400
-  },
-  {
-    id: 3,
-    date: '2023-04-09',
-    usesCount: 1,
-    totalDiscountAmount: 400
-  },
-  {
-    id: 4,
-    date: '2023-04-16',
-    usesCount: 1,
-    totalDiscountAmount: 3200
-  },
-  {
-    id: 5,
-    date: '2023-04-20',
-    usesCount: 3,
-    totalDiscountAmount: 500
-  },
-  {
-    id: 6,
-    date: '2023-04-05',
-    usesCount: 5,
-    totalDiscountAmount: 3200
-  }
-];
-
 export default function UserCalendar() {
   const { sheetState, toggleSheet } = useToggleSheet();
+  const { data } = useTumblerRecord({});
 
   const handleTumblerVariant = (usesCount: number) => {
     if (usesCount >= 5) {
@@ -83,9 +52,70 @@ export default function UserCalendar() {
     }
   };
 
+  const filterTumblerRecordsByDay = (
+    day: Date,
+    tumblerRecords: TumblerRecordsProps
+  ) => {
+    if (!tumblerRecords) {
+      return [];
+    }
+
+    return tumblerRecords.filter(
+      (item: TumblerRecordProps) => item.usedAt === toStringByFormatting(day)
+    );
+  };
+
   const handleClickDay = (day: Date) => {
     toggleSheet();
     activeDayState(day);
+
+    const filteredRecordsByDay = filterTumblerRecordsByDay(
+      day,
+      data?.tumblerRecords.tumblerRecords
+    );
+
+    clickedTumblerDataState(filteredRecordsByDay);
+  };
+
+  const calculateTotalPricesByDay = (
+    filteredRecordsByDay: TumblerRecordsProps
+  ) => {
+    if (!filteredRecordsByDay.length) {
+      return 0;
+    }
+
+    return filteredRecordsByDay.reduce(
+      (acc: number, record: TumblerRecordProps) => acc + record.prices,
+      0
+    );
+  };
+
+  const generateCalendarRecords = (date: Date, view: ViewProps) => {
+    if (view !== 'month') {
+      return;
+    }
+    const filteredRecordsByDay = filterTumblerRecordsByDay(
+      date,
+      data?.tumblerRecords.tumblerRecords
+    );
+
+    if (filteredRecordsByDay?.length) {
+      return (
+        <Style.CalendarContent>
+          <Style.ColoredTumbler
+            variation={handleVariation(
+              handleTumblerVariant(filteredRecordsByDay.length)
+            )}
+          />
+          <Typography
+            size='caption'
+            variant={handleTumblerVariant(filteredRecordsByDay.length)}
+          >
+            {calculateTotalPricesByDay(filteredRecordsByDay)}원
+          </Typography>
+        </Style.CalendarContent>
+      );
+    }
   };
 
   return (
@@ -95,31 +125,7 @@ export default function UserCalendar() {
         calendarType='US'
         formatDay={(_, date) => date.getDate().toString()}
         onClickDay={handleClickDay}
-        tileContent={({ date, view }) => {
-          if (view !== 'month') {
-            return;
-          }
-          const existsData = data.filter(
-            (item) => item.date === toStringByFormatting(date)
-          );
-          if (existsData.length) {
-            return (
-              <Style.CalendarContent>
-                <Style.ColoredTumbler
-                  variation={handleVariation(
-                    handleTumblerVariant(existsData[0].usesCount)
-                  )}
-                />
-                <Typography
-                  size='caption'
-                  variant={handleTumblerVariant(existsData[0].usesCount)}
-                >
-                  {existsData[0].totalDiscountAmount}원
-                </Typography>
-              </Style.CalendarContent>
-            );
-          }
-        }}
+        tileContent={({ date, view }) => generateCalendarRecords(date, view)}
       />
       {sheetState && (
         <ReactPortal>

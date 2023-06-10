@@ -6,6 +6,7 @@ import useSendEmail from './useSendEmail';
 import useAuthEmail from './useAuthEmail';
 import useSignupState from './useSignupState';
 import useToggleSheet from './useToggleSheet';
+import useTumblerRecord from './useTumblerRecord';
 import useStoreList from './useStoreList';
 import useCurrentCoords from './useCurrentCoords';
 import useNotifyToSlack from './useNotifyToSlack';
@@ -22,6 +23,7 @@ export {
   useAuthEmail,
   useSignupState,
   useToggleSheet,
+  useTumblerRecord,
   useStoreList,
   useCurrentCoords,
   useNotifyToSlack,

@@ -24,6 +24,32 @@ export const CHECK_EMAIL_AUTH = gql`
   }
 `;
 
+export const GET_TUMBLER_RECORDS = gql`
+  query TumblerRecords($searchTumblerRecordInput: SearchTumblerRecordInput!) {
+    tumblerRecords(searchTumblerRecordInput: $searchTumblerRecordInput) {
+      totalUsedTumbler
+      totalDiscount
+      filteredTumbler
+      filteredDiscount
+      tumblerRecords {
+        usedAt
+        updatedAt
+        prices
+        placeType
+        memo
+        imageFileKey
+        id
+        deletedAt
+        createdAt
+        store {
+          name
+          streetNameAddress
+        }
+      }
+    }
+  }
+`;
+
 export const FETCH_STORES = gql`
   query Stores(
     $searchStoreInput: SearchStoreInput
