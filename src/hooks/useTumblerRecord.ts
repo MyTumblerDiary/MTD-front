@@ -14,6 +14,7 @@ export default function useTumblerRecord(
     variables: { searchTumblerRecordInput },
     onError: (error) => {
       console.error(error);
-    }
+    },
+    fetchPolicy: 'cache-and-network'
   });
 }
