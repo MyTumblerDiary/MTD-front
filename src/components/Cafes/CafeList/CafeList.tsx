@@ -68,8 +68,6 @@ export default function CafeList() {
     );
   }
 
-  console.log(data);
-
   return (
     <>
       <Style.CafeListWrapper>
