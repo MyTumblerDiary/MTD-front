@@ -68,16 +68,20 @@ export default function CafeList() {
     );
   }
 
+  console.log(data);
+
   return (
     <>
       <Style.CafeListWrapper>
         {data.stores.stores.map((item: CafeProps) => (
           <Style.CafeCard key={item.id} onClick={() => handleCardClick(item)}>
             <Style.CafeSummary>
-              <Style.CafeThumbnail
-                src={item.thumbnail}
-                alt={`${item.name}'s thumbnail`}
-              />
+              <Style.CafeThumbnail>
+                <img
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}${item.imageFileKey}`}
+                  alt={`${item.name}'s thumbnail`}
+                />
+              </Style.CafeThumbnail>
               <Style.CafeTitle>
                 <Typography size='button2'>{item.name}</Typography>
                 <Typography size='caption'>{item.streetNameAddress}</Typography>

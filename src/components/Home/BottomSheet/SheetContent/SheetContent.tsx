@@ -19,10 +19,12 @@ export default function SheetContent() {
         ({ id, imageFileKey, memo, prices, store, placeType }, idx) => (
           <Style.SheetContent key={id}>
             <Style.DiaryRecord>
-              <Style.RecordImage
-                src={imageFileKey}
-                alt={`today_tumbler_${id}`}
-              />
+              <Style.RecordImage>
+                <img
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}${imageFileKey}`}
+                  alt={`today_tumbler_${idx}`}
+                />
+              </Style.RecordImage>
               <Style.RecordInfoWrapper>
                 <Style.RecordInfo>
                   <Style.RecordHeader>
