@@ -1,15 +1,17 @@
 import * as Style from './MainHeader.style';
 
 import Title from '../Heading/Title';
+import Svg from '@/components/svg';
 
 interface HeaderProps {
-  title: string;
+  title: string | React.ReactNode;
 }
 
 export default function MainHeader({ title }: HeaderProps) {
   return (
     <Style.HeaderWrapper>
-      <Title variant='gray2'>{title}</Title>
+      <Title>{title}</Title>
+      <Svg.Alarm />
     </Style.HeaderWrapper>
   );
 }

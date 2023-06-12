@@ -1,3 +1,4 @@
+import theme from '@/styles/theme';
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
@@ -7,8 +8,9 @@ export const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   padding: 0px 30px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 `;
 
 export const LoginLink = styled.div`

@@ -30,9 +30,9 @@ export default function HomeContainer() {
 
   return (
     <Style.HomeContainer>
-      <Button {...recordButtonProps} />
       <UserCalendar />
       <DataCardList />
+      <Button {...recordButtonProps} />
     </Style.HomeContainer>
   );
 }

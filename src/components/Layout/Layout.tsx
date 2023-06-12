@@ -3,6 +3,7 @@ import * as Style from './Layout.style';
 import BottomNavigator from './BottomNavigator/BottomNavigator';
 import MainHeader from '../Common/MainHeader/MainHeader';
 import { useRouter } from 'next/router';
+import Svg from '../svg';
 
 interface LayoutProps {
   header?: boolean;
@@ -22,8 +23,8 @@ export default function Layout({
 
   const pathObj = {
     '': '',
-    '/': '텀블러 기록',
-    '/cafes': '카페',
+    '/': <Svg.LogoIconTypo />,
+    '/cafes': '가게 보기',
     '/cafes/search': '카페 검색',
     '/mypage': '마이 페이지'
   };
