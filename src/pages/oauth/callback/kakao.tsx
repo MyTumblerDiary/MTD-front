@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { KAKAO_CODE } from '@/apollo/mutations';
 
+import { ACCESS_TOKEN } from '@/utils/constants/localStorageKey';
+
 import LoadingTumbler from '@/components/Common/LoadingTumbler/LoadingTumbler';
 import Layout from '@/components/Layout/Layout';
 
@@ -22,7 +24,7 @@ const OauthKakao = () => {
       code: kakaoCode
     },
     onCompleted: (data) => {
-      localStorage.setItem('accessToken', data.kakaoLogin.accessToken);
+      localStorage.setItem(ACCESS_TOKEN, data.kakaoLogin.accessToken);
       router.push('/');
     },
     onError: (err) => {

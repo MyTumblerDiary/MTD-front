@@ -11,6 +11,8 @@ import { client } from '@/apollo/client';
 
 import { RecoilRoot } from 'recoil';
 
+import { ACCESS_TOKEN } from '@/utils/constants/localStorageKey';
+
 import Layout from '@/components/Layout/Layout';
 import ModalPortal from '@/components/Common/Modal/ModalPortal/ModalPortal';
 
@@ -37,7 +39,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     Component.getLayout || ((page: React.ReactNode) => <Layout>{page}</Layout>);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
     if (!accessToken && router.pathname === '/password-recovery') {
       return;

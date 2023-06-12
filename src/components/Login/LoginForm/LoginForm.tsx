@@ -20,6 +20,8 @@ import {
   submitValidation
 } from '@/utils/helpers/login.helper';
 
+import { ACCESS_TOKEN } from '@/utils/constants/localStorageKey';
+
 import { POST_LOGIN } from '@/apollo/mutations';
 
 import * as Style from './LoginForm.style';
@@ -82,7 +84,7 @@ const LoginForm = () => {
       }
     },
     onCompleted: (data) => {
-      localStorage.setItem('accessToken', data.login.accessToken);
+      localStorage.setItem(ACCESS_TOKEN, data.login.accessToken);
       router.push('/');
     },
     onError: (err) => {

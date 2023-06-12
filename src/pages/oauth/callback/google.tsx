@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { GOOGLE_CODE } from '@/apollo/mutations';
 
+import { ACCESS_TOKEN } from '@/utils/constants/localStorageKey';
+
 import LoadingTumbler from '@/components/Common/LoadingTumbler/LoadingTumbler';
 import Layout from '@/components/Layout/Layout';
 
@@ -22,7 +24,7 @@ const OauthGoogle = () => {
       code: googleCode
     },
     onCompleted: (data) => {
-      localStorage.setItem('accessToken', data.googleLogin.accessToken);
+      localStorage.setItem(ACCESS_TOKEN, data.googleLogin.accessToken);
       router.push('/');
     },
     onError: (err) => {
