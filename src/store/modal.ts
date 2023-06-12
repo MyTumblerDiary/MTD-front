@@ -1,5 +1,5 @@
 import { makeVar } from '@apollo/client';
 
-const activeModalNameVar = makeVar('');
+export const activeModalNameVar = makeVar('');
 
-export default activeModalNameVar;
+export const modalProps = makeVar({});
