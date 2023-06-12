@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
   color: {
     main: '#12B886',
+    primary: '#70a9a1',
 
     g900: '#222222',
     g800: '#4D4D4D',
@@ -17,6 +18,9 @@ const theme: DefaultTheme = {
     success: '#006EFF',
     warning: '#F09A00',
     error: '#F00001',
+
+    medium: '#F2D68A',
+    high: '#512DA8',
 
     border: '#D1D1D1'
   },

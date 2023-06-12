@@ -8,10 +8,12 @@ interface HeaderProps {
 }
 
 export default function MainHeader({ title }: HeaderProps) {
+  const isAlarmExists = false;
+
   return (
     <Style.HeaderWrapper>
       <Title>{title}</Title>
-      <Svg.Alarm />
+      {isAlarmExists ? <Svg.AlarmExsits /> : <Svg.Alarm />}
     </Style.HeaderWrapper>
   );
 }

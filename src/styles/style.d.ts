@@ -4,6 +4,7 @@ declare module 'styled-components' {
   interface DefaultTheme {
     color: {
       main: string;
+      primary: string;
 
       g900: string;
       g800: string;
@@ -18,6 +19,9 @@ declare module 'styled-components' {
       success: string;
       warning: string;
       error: string;
+
+      medium: string;
+      high: string;
 
       border: string;
     };

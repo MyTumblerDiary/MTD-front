@@ -32,6 +32,8 @@ import Setting from '../../public/icons/Setting.svg';
 import LogoIcon from '../../public/icons/LogoIcon.svg';
 import LogoIconTypo from '../../public/icons/LogoIconTypo.svg';
 import Alarm from '../../public/icons/Alarm.svg';
+import AlarmExsits from '../../public/icons/AlarmExists.svg';
+import LogoMain from '../../public/icons/LogoMain.svg';
 
 export default {
   Home,
@@ -67,5 +69,7 @@ export default {
   Setting,
   LogoIcon,
   LogoIconTypo,
-  Alarm
+  Alarm,
+  AlarmExsits,
+  LogoMain
 };
