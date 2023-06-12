@@ -11,7 +11,6 @@ export default function Cafes() {
     <>
       <PageHead title='카페' />
       <CafesContainer>
-        <MainHeader title='카페' />
         <CafeSearchWrapper />
         <UserLocation />
         <CafeList />
@@ -23,6 +22,7 @@ export default function Cafes() {
 export const CafesContainer = styled.div`
   width: 100%;
   min-height: 100vh;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
