@@ -23,6 +23,7 @@ declare module 'styled-components' {
     };
 
     maxWidth: string;
+    headerHeight: string;
     bottomNavigatorHeight: string;
     mobileScreenPadding: string;
   }

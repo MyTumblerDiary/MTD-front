@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import PageHead from '@/components/Common/Head/Head';
-import MainHeader from '@/components/Common/MainHeader/MainHeader';
 import CafeSearchWrapper from '@/components/Cafes/CafeSearchWrapper/CafeSearchWrapper';
 import UserLocation from '@/components/Cafes/UserLocation/UserLocation';
 import CafeList from '@/components/Cafes/CafeList/CafeList';

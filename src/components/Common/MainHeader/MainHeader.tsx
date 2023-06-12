@@ -9,7 +9,7 @@ interface HeaderProps {
 export default function MainHeader({ title }: HeaderProps) {
   return (
     <Style.HeaderWrapper>
-      <Title>{title}</Title>
+      <Title variant='gray2'>{title}</Title>
     </Style.HeaderWrapper>
   );
 }
