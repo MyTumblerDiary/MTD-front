@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-
-import activeModalNameVar from '@/store/modal';
+import useModal from '@/hooks/useModal';
 
 import { IS_SOCIAL_USER } from '@/utils/constants/localStorageKey';
 
@@ -12,21 +11,28 @@ import * as Style from './AccountSetting.style';
 
 const AccountSetting = () => {
   const router = useRouter();
+  const { openModal } = useModal();
 
   const onClickChangePassword = () => {
     if (localStorage.getItem(IS_SOCIAL_USER) === 'Y') {
-      console.log('소셜로 가입한 계정이라는 모달이 띄워질 예정~');
+      openModal({
+        modalName: 'confirm',
+        props: {
+          title: '소셜로 가입한 계정입니다.'
+        }
+      });
+
       return;
     }
     router.push('/mypage/account-setting/change-password');
   };
 
   const openLogoutModal = () => {
-    activeModalNameVar('logout');
+    openModal({ modalName: 'logout' });
   };
 
   const openWithdrawalModal = () => {
-    activeModalNameVar('withdrawal');
+    openModal({ modalName: 'withdrawal' });
   };
 
   const ACCOUNT_SETTING_INFO = [
