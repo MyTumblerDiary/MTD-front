@@ -81,6 +81,7 @@ export const GET_MYPAGE_INFO = gql`
   query Query {
     user {
       nickname
+      social
     }
     tumblerRecords {
       totalDiscount

@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 
 import activeModalNameVar from '@/store/modal';
 
+import { IS_SOCIAL_USER } from '@/utils/constants/localStorageKey';
+
 import Header from '@/components/Common/Header/Header';
 import Typography from '@/components/Common/Typography/Typography';
 import Svg from '@/components/svg';
@@ -12,6 +14,10 @@ const AccountSetting = () => {
   const router = useRouter();
 
   const onClickChangePassword = () => {
+    if (localStorage.getItem(IS_SOCIAL_USER) === 'Y') {
+      console.log('소셜로 가입한 계정이라는 모달이 띄워질 예정~');
+      return;
+    }
     router.push('/mypage/account-setting/change-password');
   };
 
