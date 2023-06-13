@@ -53,3 +53,9 @@ export const UPDATE_PASSWORD = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation Mutation {
+    deleteUser
+  }
+`;
