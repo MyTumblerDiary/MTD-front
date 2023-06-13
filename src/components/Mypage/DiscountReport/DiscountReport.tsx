@@ -36,14 +36,9 @@ const DiscountReport = () => {
                     {memo}
                   </Typography>
                 </Style.ReportTitleContainer>
-                <Style.ReportAmountContainer>
-                  <Typography size='button1'>
-                    {prices?.toLocaleString() || 0}원
-                  </Typography>
-                  <Typography size='body2' variant='gray3'>
-                    000원
-                  </Typography>
-                </Style.ReportAmountContainer>
+                <Typography size='button1'>
+                  {prices?.toLocaleString() || 0}원
+                </Typography>
               </Style.ReportContainer>
             );
           })}
