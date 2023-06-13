@@ -4,13 +4,19 @@ import useModal from './useModal';
 
 import { LOGOUT } from '@/apollo/mutations';
 
+import {
+  ACCESS_TOKEN,
+  IS_SOCIAL_USER
+} from '@/utils/constants/localStorageKey';
+
 export default function useLogout() {
   const router = useRouter();
   const { closeModal } = useModal();
 
   return useMutation(LOGOUT, {
     onCompleted: () => {
-      localStorage.removeItem('accessToken');
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(IS_SOCIAL_USER);
       router.replace('/login');
       closeModal();
     },
