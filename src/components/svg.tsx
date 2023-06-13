@@ -29,6 +29,11 @@ import Pencil from '../../public/icons/Pencil.svg';
 import Graph from '../../public/icons/Graph.svg';
 import Headset from '../../public/icons/Headset.svg';
 import Setting from '../../public/icons/Setting.svg';
+import LogoIcon from '../../public/icons/LogoIcon.svg';
+import LogoIconTypo from '../../public/icons/LogoIconTypo.svg';
+import Alarm from '../../public/icons/Alarm.svg';
+import AlarmExsits from '../../public/icons/AlarmExists.svg';
+import LogoMain from '../../public/icons/LogoMain.svg';
 
 export default {
   Home,
@@ -61,5 +66,10 @@ export default {
   Pencil,
   Graph,
   Headset,
-  Setting
+  Setting,
+  LogoIcon,
+  LogoIconTypo,
+  Alarm,
+  AlarmExsits,
+  LogoMain
 };

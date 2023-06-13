@@ -1,16 +1,16 @@
+import theme from '@/styles/theme';
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 58px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0px 30px;
   background-color: #ffffff;
-  border-bottom: 1px solid #f5f5f5;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const LoginLink = styled.div`

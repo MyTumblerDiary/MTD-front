@@ -6,7 +6,6 @@ import { type ButtonProps } from '@/types';
 
 import UserCalendar from '../UserCalendar/UserCalendar';
 import Typography from '@/components/Common/Typography/Typography';
-import MainHeader from '@/components/Common/MainHeader/MainHeader';
 import Button from '@/components/Common/Button/Button';
 import DataCardList from '../DataCardList/DataCardList';
 
@@ -20,7 +19,7 @@ export default function HomeContainer() {
   const recordButtonProps: ButtonProps = {
     name: 'record',
     type: 'button',
-    size: 'lg',
+    size: 'full',
     onClick: onClickRecordHandler,
     children: (
       <Typography size='button1' variant='accent'>
@@ -31,7 +30,6 @@ export default function HomeContainer() {
 
   return (
     <Style.HomeContainer>
-      <MainHeader title='나의 텀블러 다이어리' />
       <Button {...recordButtonProps} />
       <UserCalendar />
       <DataCardList />

@@ -9,8 +9,6 @@ export const AuthHeaderWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  border-bottom: 1px solid #f5f5f5;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const LoginLink = styled.div`
