@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  border-radius: 8px;
-  background-color: #fff;
   width: 70vw;
   max-width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
   text-align: center;
 `;
 
 export const ModalTitleContainer = styled.div`
-  padding: 30px 0;
+  margin-bottom: 30px;
+  word-break: keep-all;
+  line-height: 24px;
+  word-spacing: 2px;
 `;
 
 export const Button = styled.button`
-  padding: 7px 10px;
-  margin: 10px 0 15px;
+  padding: 7px;
 `;
