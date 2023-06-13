@@ -1,22 +1,18 @@
+import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
+import usePasswordChange from '@/hooks/usePasswordChange';
 
 import Input from '@/components/Common/Input/Input';
 import Svg from '@/components/svg';
 
 import * as Style from './ChangePassword.style';
-import React, { useMemo, useState } from 'react';
-import { InputNameProps, InputProps, UserInputPramProps } from '@/types';
+
+import { InputNameProps, InputProps, ChangePasswordInputTypes } from '@/types';
 import {
   passwordValidation,
   passworCheckValidation
 } from '@/utils/helpers/signup.helper';
 import { passwordValidation as currentPasswordValidation } from '@/utils/helpers/login.helper';
-
-interface ChangePasswordInputTypes {
-  currentPassword: UserInputPramProps;
-  password: UserInputPramProps;
-  passwordCheck: UserInputPramProps;
-}
 
 const ChangePassword = () => {
   const router = useRouter();
@@ -117,14 +113,21 @@ const ChangePassword = () => {
     onChange: handleUserInput
   };
 
-  const submitButtonProps = {
+  const submitButtonProps: React.ButtonHTMLAttributes<HTMLButtonElement> = {
+    form: 'change_password',
     type: 'submit',
     disabled: !isValidateSubmit
   };
 
+  const [changePassword] = usePasswordChange(
+    userInput.currentPassword.value,
+    userInput.password.value,
+    setUserInput
+  );
+
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('비밀번호 변경 api 호출');
+    changePassword();
   };
 
   return (
@@ -133,11 +136,9 @@ const ChangePassword = () => {
         <Style.BackButton onClick={onClickBack}>
           <Svg.ArrowLeft />
         </Style.BackButton>
-        <button form='test' type='submit' disabled={!isValidateSubmit}>
-          완료
-        </button>
+        <button {...submitButtonProps}>완료</button>
       </Style.HeaderContainer>
-      <Style.AllInputsContainer id='test' onSubmit={onSubmitHandler}>
+      <Style.AllInputsContainer id='change_password' onSubmit={onSubmitHandler}>
         <Input {...currentPasswordProps} />
         <Input {...newPasswordProps} />
         <Input {...newPasswordCheckProps} />
