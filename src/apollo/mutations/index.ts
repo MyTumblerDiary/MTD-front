@@ -42,7 +42,9 @@ export const IMAGE_PRESIGN = gql`
 `;
 
 export const RECORD_TUMBLER_PRIVATE_SPACE = gql`
-  mutation Mutation($input: CreateTumblerRecordOnPrivateSpaceInput!) {
+  mutation CreateTumblerRecordOnPrivateSpace(
+    $input: CreateTumblerRecordInput!
+  ) {
     createTumblerRecordOnPrivateSpace(input: $input) {
       id
     }
