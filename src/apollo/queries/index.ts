@@ -76,3 +76,13 @@ export const FETCH_STORES = gql`
     }
   }
 `;
+
+export const SEARCH_FRANCISE = gql`
+  query FranchisesBySearch($searchInput: SearchFranchiseInput!) {
+    franchisesBySearch(searchInput: $searchInput) {
+      id
+      name
+      discountPrice
+    }
+  }
+`;
