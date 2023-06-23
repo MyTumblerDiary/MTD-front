@@ -27,9 +27,9 @@ import {
 
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
+import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 
 import * as Style from './PaidContainer.style';
-import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 
 const initialState: RecordInputTypes = {
   recordDate: new Date(),
@@ -211,6 +211,7 @@ const PaidContainer = () => {
           <Style.ElementContainer>
             <Title variant='main'>할인 금액</Title>
             <Style.DiscountedAmountSelect
+              name='discountPrice'
               onChange={handlerUserInputWithoutValidation}
               value={userInput.discountPrice}
               disabled={userInput.discountPrice !== 0}
