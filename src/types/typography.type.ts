@@ -17,6 +17,9 @@ export interface TypographyProps {
     | 'success'
     | 'warning'
     | 'error'
-    | 'main';
+    | 'main'
+    | 'high'
+    | 'medium'
+    | 'primary';
   children: React.ReactNode;
 }

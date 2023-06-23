@@ -27,11 +27,11 @@ export default function UserCalendar() {
 
   const handleTumblerVariant = (usesCount: number) => {
     if (usesCount >= 5) {
-      return 'success';
+      return 'high';
     }
 
     if (usesCount >= 3) {
-      return 'warning';
+      return 'medium';
     }
 
     if (usesCount >= 0) {
@@ -41,10 +41,10 @@ export default function UserCalendar() {
 
   const handleVariation = (variation: string | undefined) => {
     switch (variation) {
-      case 'success':
-        return theme.color.success;
-      case 'warning':
-        return theme.color.warning;
+      case 'high':
+        return theme.color.high;
+      case 'medium':
+        return theme.color.medium;
       case 'default':
         return 'black';
       default:

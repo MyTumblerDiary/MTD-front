@@ -1,7 +1,7 @@
-import { HeadTitle } from '@/components/Common/Heading/Heading.style';
+import Svg from '@/components/svg';
 
 const LoginLogo = () => {
-  return <HeadTitle>로그인 로고</HeadTitle>;
+  return <Svg.LogoMain />;
 };
 
 export default LoginLogo;
