@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useMutation } from '@apollo/client';
 import useRecordState from '@/hooks/useRecordState';
+import useImageUpload from '@/hooks/useImageUpload';
+import useImagePresign from '@/hooks/useImagePresign';
+
+import { RECORD_TUMBLER_CAFE } from '@/apollo/mutations';
 
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
@@ -19,91 +25,106 @@ import {
   type RecordInputTypes
 } from '@/types';
 
-import { FRANCHISE_DISCOUNT_PRICE } from '@/apollo/queries';
-import { useQuery } from '@apollo/client';
-
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
 
 import * as Style from './PaidContainer.style';
+import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 
 const initialState: RecordInputTypes = {
-  recordDate: {
-    value: new Date()
-  },
+  recordDate: new Date(),
+  previewImageSrc: '',
   tumblerImage: {
     value: '' as unknown as File,
     validation: 'default',
     message: ''
-  },
-  previewImage: {
-    value: ''
   },
   place: {
     value: '',
     validation: 'default',
     message: ''
   },
-  placeSearchWord: {
-    value: ''
-  },
-  placeSearchResult: {
-    value: []
-  },
-  isDiscounted: {
-    value: false
-  },
-  price: {
-    value: 0
-  },
-  coordinate: {
-    value: {
-      latitude: 0,
-      longitude: 0
-    }
+
+  placeSearchWord: '',
+  placeSearchResult: [],
+  isDiscounted: false,
+  discountPrice: 0,
+
+  cafeData: {
+    name: '',
+    discountPrice: 0,
+    kakaoUId: '',
+    franchiseId: null,
+    detailAddress: '',
+    latitude: 0,
+    longitude: 0,
+    streetNameAddress: '',
+    lotNumberAddress: ''
   }
 };
 
 const PaidContainer = () => {
+  const router = useRouter();
   const [memo, setMemo] = useState('');
-
   const {
     isValidateSubmit,
     userInput,
     setUserInput,
-    handleUserInput,
+    handleUserInputWithValidation,
     handlePlaceInput,
     onClickSearchResult,
-    onChangePriceHandler
+    handlerUserInputWithoutValidation
   } = useRecordState(initialState);
 
-  useEffect(() => {
-    if (userInput?.isDiscounted?.value) {
-      setUserInput((currentState) => ({
-        ...currentState,
-        ['price']: {
-          value: 100
+  const [imagePresign] = useImagePresign({
+    imageData: userInput.tumblerImage.value
+  });
+  const { handleImageUpload } = useImageUpload();
+
+  const [recordTumblerCafe] = useMutation(RECORD_TUMBLER_CAFE);
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const imagePresignResponse = await imagePresign();
+    const { presignedUrl, fileKey } = imagePresignResponse.data.getPresignedUrl;
+
+    await handleImageUpload(userInput.tumblerImage.value, presignedUrl);
+
+    const discountedPrice = !userInput.isDiscounted
+      ? 0
+      : userInput.discountPrice;
+
+    await recordTumblerCafe({
+      variables: {
+        input: {
+          createStoreInput: {
+            ...userInput.cafeData
+          },
+          createTumblerRecordInput: {
+            usedAt: toStringByFormatting(userInput.recordDate),
+            imageFileKey: fileKey,
+            memo: memo,
+            placeType: userInput.place.value,
+            prices: discountedPrice
+          }
         }
-      }));
-    } else {
-      setUserInput((currentState) => ({
-        ...currentState,
-        ['price']: {
-          value: 0
-        }
-      }));
-    }
-  }, [setUserInput, userInput?.isDiscounted?.value]);
+      },
+      onCompleted: () => {
+        router.push('/');
+      }
+    });
+  };
 
   const RecordDatePickerProps = {
-    recordDate: userInput.recordDate.value,
+    recordDate: userInput.recordDate,
     setUserInput
   };
 
   const TumblerImageProps = {
     userInput,
     setUserInput,
-    handleUserInput
+    handleUserInputWithValidation
   };
 
   const SubmitButtonTextProps: TypographyProps = {
@@ -125,7 +146,7 @@ const PaidContainer = () => {
     name: 'place',
     size: 'full',
     label: 'place',
-    value: userInput?.placeSearchWord?.value || '',
+    value: userInput?.placeSearchWord || '',
     placeholder: '장소를 입력해주세요.',
     onChange: handlePlaceInput
   };
@@ -138,22 +159,6 @@ const PaidContainer = () => {
     height: 'md',
     placeholder: '오늘의 텀블러 사용은 어땠나요?',
     setValue: setMemo
-  };
-
-  useQuery(FRANCHISE_DISCOUNT_PRICE, {
-    variables: {
-      searchInput: {
-        searchBy: 'name',
-        value: '투썸플레이스'
-      }
-    },
-    onCompleted: (data) => {
-      console.log('성공: ', data.franchisesBySearch[0].discountPrice);
-    }
-  });
-
-  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
   return (
@@ -170,9 +175,9 @@ const PaidContainer = () => {
           <Style.SearchContainer>
             <Input {...PlaceInputProps} />
             {userInput.placeSearchResult &&
-              userInput.placeSearchResult.value.length > 0 && (
+              userInput.placeSearchResult.length > 0 && (
                 <SearchResultPopup
-                  placeSearchResult={userInput.placeSearchResult.value}
+                  placeSearchResult={userInput.placeSearchResult}
                   onClickSearchResult={onClickSearchResult}
                 />
               )}
@@ -193,8 +198,8 @@ const PaidContainer = () => {
               type='checkbox'
               id='isDiscounted'
               name='isDiscounted'
-              checked={userInput?.isDiscounted?.value}
-              onChange={handleUserInput}
+              checked={userInput?.isDiscounted}
+              onChange={handlerUserInputWithoutValidation}
             />
             <Style.DiscountCheckboxLabel htmlFor='isDiscounted'>
               네, 할인 받았어요!
@@ -202,10 +207,14 @@ const PaidContainer = () => {
           </Style.DiscountCheckboxContainer>
         </Style.ElementContainer>
 
-        {userInput?.isDiscounted?.value && (
+        {userInput?.isDiscounted && (
           <Style.ElementContainer>
             <Title variant='main'>할인 금액</Title>
-            <Style.DiscountedAmountSelect onChange={onChangePriceHandler}>
+            <Style.DiscountedAmountSelect
+              onChange={handlerUserInputWithoutValidation}
+              value={userInput.discountPrice}
+              disabled={userInput.discountPrice !== 0}
+            >
               {DISCOUNTED_AMOUNT.map((amount) => (
                 <option key={amount} value={amount}>
                   {amount}원

@@ -51,6 +51,16 @@ export const RECORD_TUMBLER_PRIVATE_SPACE = gql`
   }
 `;
 
+export const RECORD_TUMBLER_CAFE = gql`
+  mutation CreateTumblerRecord(
+    $input: CreateTumblerRecordWithCreateStoreInput!
+  ) {
+    createTumblerRecord(input: $input) {
+      id
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
   mutation Mutation($updateUserInput: UpdateUserInput!) {
     updateUser(updateUserInput: $updateUserInput) {
