@@ -18,9 +18,7 @@ const RecordDatePicker = ({ recordDate, setUserInput }: DatePickerProps) => {
   const handleDateChange = (date: Date) => {
     setUserInput((currentState) => ({
       ...currentState,
-      ['recordDate']: {
-        value: date
-      }
+      recordDate: date
     }));
   };
 

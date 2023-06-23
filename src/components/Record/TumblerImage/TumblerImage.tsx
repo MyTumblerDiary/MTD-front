@@ -12,22 +12,22 @@ import * as Style from './TumblerImage.style';
 interface TumblerImageProps {
   userInput: RecordInputTypes;
   setUserInput: React.Dispatch<React.SetStateAction<RecordInputTypes>>;
-  handleUserInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleUserInputWithValidation: (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 }
 
 const TumblerImage = ({
   userInput,
   setUserInput,
-  handleUserInput
+  handleUserInputWithValidation
 }: TumblerImageProps) => {
   const addImageHandler = (e: React.ChangeEvent<any>) => {
     if (e.target.files[0]) {
-      handleUserInput(e);
+      handleUserInputWithValidation(e);
       setUserInput((currentState) => ({
         ...currentState,
-        ['previewImage']: {
-          value: URL?.createObjectURL(e.target.files[0])
-        }
+        ['previewImageSrc']: URL?.createObjectURL(e.target.files[0])
       }));
     }
   };
@@ -40,9 +40,7 @@ const TumblerImage = ({
         validation: 'default',
         message: ''
       },
-      ['previewImage']: {
-        value: ''
-      }
+      ['previewImageSrc']: ''
     }));
   };
 
@@ -52,11 +50,11 @@ const TumblerImage = ({
       <Typography size='body3' variant='gray2'>
         이미지는 1장만 넣을 수 있습니다.
       </Typography>
-      {userInput.previewImage.value ? (
+      {userInput.previewImageSrc ? (
         <Style.AddImageContainer>
           <Style.ImageDeleteButton onClick={onClickPreviewDelete} />
           <Style.PreviewImage
-            src={userInput.previewImage.value}
+            src={userInput.previewImageSrc}
             alt='텀블러 이미지'
             width={150}
             height={150}

@@ -19,16 +19,20 @@ const SearchResultPopup = (props: SearchResultPopupProps) => {
     <Style.SearchResultContainer>
       <Style.SearchResultContent>
         {placeSearchResult.map((place: KakaoResultType) => {
-          const { id, place_name, address_name, x, y } = place;
+          const { id, place_name, address_name, x, y, road_address_name } =
+            place;
           return (
             <li key={id}>
               <Style.SearchResultButton
                 type='button'
                 onClick={() =>
                   onClickSearchResult({
+                    id: id,
                     place: place_name,
                     latitude: Number(y),
-                    longitude: Number(x)
+                    longitude: Number(x),
+                    detailAddress: address_name,
+                    streetNameAddress: road_address_name
                   })
                 }
               >

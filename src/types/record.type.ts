@@ -7,37 +7,35 @@ type UserFileInputPramProps = {
   message: string;
 };
 
+type CafeDataTypes = {
+  name?: string;
+  discountPrice?: number;
+  kakaoUId?: string;
+  franchiseId?: string | null;
+  detailAddress?: string;
+  latitude?: number;
+  longitude?: number;
+  streetNameAddress?: string;
+  lotNumberAddress?: string;
+};
+
 export interface RecordInputTypes {
-  recordDate: {
-    value: Date;
-  };
+  recordDate: Date;
   tumblerImage: UserFileInputPramProps;
-  previewImage: {
-    value: string;
-  };
+  previewImageSrc: string;
   place: UserInputPramProps;
-  placeSearchWord?: {
-    value: string;
-  };
-  placeSearchResult?: {
-    value: KakaoResultType[];
-  };
-  isDiscounted?: {
-    value: boolean;
-  };
-  price?: {
-    value: number;
-  };
-  coordinate?: {
-    value: {
-      latitude: number;
-      longitude: number;
-    };
-  };
+  placeSearchWord?: string;
+  placeSearchResult?: KakaoResultType[];
+  isDiscounted?: boolean;
+  discountPrice?: number;
+  cafeData?: CafeDataTypes;
 }
 
 export interface SelectedPlaceType {
+  id: string;
   place: string;
   latitude: number;
   longitude: number;
+  detailAddress: string;
+  streetNameAddress: string;
 }

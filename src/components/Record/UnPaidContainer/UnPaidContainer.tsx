@@ -40,19 +40,19 @@ const initialState: RecordInputTypes = {
     validation: 'default',
     message: ''
   },
-  recordDate: {
-    value: new Date()
-  },
-  previewImage: {
-    value: ''
-  }
+  recordDate: new Date(),
+  previewImageSrc: ''
 };
 
 const UnPaidContainer = () => {
   const router = useRouter();
 
-  const { userInput, isValidateSubmit, handleUserInput, setUserInput } =
-    useRecordState(initialState);
+  const {
+    userInput,
+    isValidateSubmit,
+    handleUserInputWithValidation,
+    setUserInput
+  } = useRecordState(initialState);
   const [memo, setMemo] = useState('');
 
   const [imagePresign] = useImagePresign({
@@ -75,7 +75,7 @@ const UnPaidContainer = () => {
           imageFileKey: fileKey,
           memo: memo,
           placeType: userInput.place.value,
-          usedAt: toStringByFormatting(userInput.recordDate.value)
+          usedAt: toStringByFormatting(userInput.recordDate)
         }
       },
       onCompleted: () => {
@@ -85,14 +85,14 @@ const UnPaidContainer = () => {
   };
 
   const RecordDatePickerProps = {
-    recordDate: userInput.recordDate.value,
+    recordDate: userInput.recordDate,
     setUserInput
   };
 
   const TumblerImageProps = {
     userInput,
     setUserInput,
-    handleUserInput
+    handleUserInputWithValidation
   };
 
   const PlaceInputProps: InputProps = {
@@ -103,7 +103,7 @@ const UnPaidContainer = () => {
     value: userInput.place.value,
     maxLength: 10,
     placeholder: '장소를 입력해주세요.',
-    onChange: handleUserInput
+    onChange: handleUserInputWithValidation
   };
 
   const MemoProps: TextareaProps = {
