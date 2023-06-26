@@ -32,6 +32,35 @@ export const GOOGLE_CODE = gql`
   }
 `;
 
+export const IMAGE_PRESIGN = gql`
+  mutation Mutation($presignedUrlInput: S3PresignedUrlInput!) {
+    getPresignedUrl(presignedUrlInput: $presignedUrlInput) {
+      presignedUrl
+      fileKey
+    }
+  }
+`;
+
+export const RECORD_TUMBLER_PRIVATE_SPACE = gql`
+  mutation CreateTumblerRecordOnPrivateSpace(
+    $input: CreateTumblerRecordInput!
+  ) {
+    createTumblerRecordOnPrivateSpace(input: $input) {
+      id
+    }
+  }
+`;
+
+export const RECORD_TUMBLER_CAFE = gql`
+  mutation CreateTumblerRecord(
+    $input: CreateTumblerRecordWithCreateStoreInput!
+  ) {
+    createTumblerRecord(input: $input) {
+      id
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
   mutation Mutation($updateUserInput: UpdateUserInput!) {
     updateUser(updateUserInput: $updateUserInput) {

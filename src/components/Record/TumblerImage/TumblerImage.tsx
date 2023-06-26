@@ -1,25 +1,47 @@
+import React from 'react';
+
 import Title from '@/components/Common/Heading/Title';
 import Typography from '@/components/Common/Typography/Typography';
-import React from 'react';
+
+import { type RecordInputTypes } from '@/types';
 
 import Svg from '../../svg';
 
 import * as Style from './TumblerImage.style';
 
 interface TumblerImageProps {
-  previewImage: string;
-  setPreviewImage: React.Dispatch<React.SetStateAction<string>>;
+  userInput: RecordInputTypes;
+  setUserInput: React.Dispatch<React.SetStateAction<RecordInputTypes>>;
+  handleUserInputWithValidation: (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 }
 
-const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
+const TumblerImage = ({
+  userInput,
+  setUserInput,
+  handleUserInputWithValidation
+}: TumblerImageProps) => {
   const addImageHandler = (e: React.ChangeEvent<any>) => {
     if (e.target.files[0]) {
-      setPreviewImage(URL?.createObjectURL(e.target.files[0]));
+      handleUserInputWithValidation(e);
+      setUserInput((currentState) => ({
+        ...currentState,
+        ['previewImageSrc']: URL?.createObjectURL(e.target.files[0])
+      }));
     }
   };
 
   const onClickPreviewDelete = () => {
-    setPreviewImage('');
+    setUserInput((currentState) => ({
+      ...currentState,
+      ['tumblerImage']: {
+        value: '' as unknown as File,
+        validation: 'default',
+        message: ''
+      },
+      ['previewImageSrc']: ''
+    }));
   };
 
   return (
@@ -28,11 +50,11 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
       <Typography size='body3' variant='gray2'>
         이미지는 1장만 넣을 수 있습니다.
       </Typography>
-      {previewImage ? (
+      {userInput.previewImageSrc ? (
         <Style.AddImageContainer>
           <Style.ImageDeleteButton onClick={onClickPreviewDelete} />
           <Style.PreviewImage
-            src={previewImage}
+            src={userInput.previewImageSrc}
             alt='텀블러 이미지'
             width={150}
             height={150}
@@ -43,7 +65,12 @@ const TumblerImage = ({ previewImage, setPreviewImage }: TumblerImageProps) => {
           <Style.AddImageContainer>
             <Svg.Plus />
           </Style.AddImageContainer>
-          <Style.FileInput id='image-input' type='file' accept='image/*' />
+          <Style.FileInput
+            id='image-input'
+            type='file'
+            accept='image/*'
+            name='tumblerImage'
+          />
         </Style.AddImageLabel>
       )}
     </Style.Container>

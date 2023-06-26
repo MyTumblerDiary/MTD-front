@@ -5,8 +5,16 @@ export const CafeListWrapper = styled.div`
   width: 100%;
   padding: 0px 20px;
   place-items: center;
-  align-items: center;
-  grid-template-columns: repeat(2, minmax(170px, auto));
+  grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (min-width: 590px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   gap: 15px;
 `;
 
@@ -14,6 +22,7 @@ export const CafeCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
   height: 230px;
   padding: 10px;
   background-color: #ffffff;
@@ -26,10 +35,16 @@ export const CafeSummary = styled.div`
   gap: 10px;
 `;
 
-export const CafeThumbnail = styled.img`
-  width: 150px;
+export const CafeThumbnail = styled.div`
+  width: 100%;
   height: 120px;
-  border-radius: 12px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
 `;
 
 export const CafeTitle = styled.div`

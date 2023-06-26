@@ -3,7 +3,7 @@ import theme from '@/styles/theme';
 
 export const MypageContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 112px);
   background-color: ${theme.color.g100};
 `;
 

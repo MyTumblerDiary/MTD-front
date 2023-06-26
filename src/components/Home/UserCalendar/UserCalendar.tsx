@@ -23,15 +23,15 @@ import Typography from '@/components/Common/Typography/Typography';
 
 export default function UserCalendar() {
   const { sheetState, toggleSheet } = useToggleSheet();
-  const { data } = useTumblerRecord({});
+  const { data } = useTumblerRecord();
 
   const handleTumblerVariant = (usesCount: number) => {
     if (usesCount >= 5) {
-      return 'success';
+      return 'high';
     }
 
     if (usesCount >= 3) {
-      return 'warning';
+      return 'medium';
     }
 
     if (usesCount >= 0) {
@@ -41,10 +41,10 @@ export default function UserCalendar() {
 
   const handleVariation = (variation: string | undefined) => {
     switch (variation) {
-      case 'success':
-        return theme.color.success;
-      case 'warning':
-        return theme.color.warning;
+      case 'high':
+        return theme.color.high;
+      case 'medium':
+        return theme.color.medium;
       case 'default':
         return 'black';
       default:
@@ -71,7 +71,7 @@ export default function UserCalendar() {
 
     const filteredRecordsByDay = filterTumblerRecordsByDay(
       day,
-      data?.tumblerRecords.tumblerRecords
+      data?.tumblerRecords
     );
 
     clickedTumblerDataState(filteredRecordsByDay);
@@ -96,7 +96,7 @@ export default function UserCalendar() {
     }
     const filteredRecordsByDay = filterTumblerRecordsByDay(
       date,
-      data?.tumblerRecords.tumblerRecords
+      data?.tumblerRecords
     );
 
     if (filteredRecordsByDay?.length) {

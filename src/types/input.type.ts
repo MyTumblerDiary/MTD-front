@@ -20,6 +20,9 @@ export type InputNameProps =
   | 'username'
   | 'password'
   | 'passwordCheck'
+  | 'place'
+  | 'tumblerImage'
+  | 'isDiscounted'
   | 'search'
   | 'place'
   | 'currentPassword';

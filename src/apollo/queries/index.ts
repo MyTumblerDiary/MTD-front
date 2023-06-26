@@ -25,26 +25,17 @@ export const CHECK_EMAIL_AUTH = gql`
 `;
 
 export const GET_TUMBLER_RECORDS = gql`
-  query TumblerRecords($searchTumblerRecordInput: SearchTumblerRecordInput!) {
-    tumblerRecords(searchTumblerRecordInput: $searchTumblerRecordInput) {
-      totalUsedTumbler
-      totalDiscount
-      filteredTumbler
-      filteredDiscount
-      tumblerRecords {
-        usedAt
-        updatedAt
-        prices
-        placeType
-        memo
-        imageFileKey
-        id
-        deletedAt
-        createdAt
-        store {
-          name
-          streetNameAddress
-        }
+  query TumblerRecords {
+    tumblerRecords {
+      prices
+      placeType
+      memo
+      imageFileKey
+      id
+      usedAt
+      store {
+        name
+        streetNameAddress
       }
     }
   }
@@ -86,6 +77,16 @@ export const GET_MYPAGE_INFO = gql`
     tumblerRecords {
       totalDiscount
       totalUsedTumbler
+    }
+  }
+`;
+
+export const SEARCH_FRANCISE = gql`
+  query FranchisesBySearch($searchInput: SearchFranchiseInput!) {
+    franchisesBySearch(searchInput: $searchInput) {
+      id
+      name
+      discountPrice
     }
   }
 `;

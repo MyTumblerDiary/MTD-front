@@ -16,5 +16,9 @@ export const SIZES = {
   lg: css`
     --button-width: 320px;
     --button-height: 48px;
+  `,
+  full: css`
+    --button-width: 100%;
+    --button-height: 48px;
   `
 };
