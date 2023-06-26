@@ -2,11 +2,11 @@ import { ko } from 'date-fns/locale';
 import { getYear, getMonth } from 'date-fns';
 
 import Typography from '../../Common/Typography/Typography';
+import Title from '@/components/Common/Heading/Title';
 
 import * as Style from './RecordDatePicker.style';
 
 import Svg from '../../svg';
-import Title from '@/components/Common/Heading/Title';
 import { RecordInputTypes } from '@/types';
 
 interface DatePickerProps {
@@ -36,11 +36,15 @@ const RecordDatePicker = ({ recordDate, setUserInput }: DatePickerProps) => {
           increaseMonth,
           nextMonthButtonDisabled
         }) => {
-          const onClickDecreaseMonth = (e: any) => {
+          const onClickDecreaseMonth = (
+            e: React.MouseEvent<HTMLButtonElement>
+          ) => {
             e.preventDefault();
             decreaseMonth();
           };
-          const onClickIncreaseMonth = (e: any) => {
+          const onClickIncreaseMonth = (
+            e: React.MouseEvent<HTMLButtonElement>
+          ) => {
             e.preventDefault();
             increaseMonth();
           };
