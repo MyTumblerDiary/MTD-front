@@ -17,7 +17,7 @@ interface CardDataProps {
 }
 
 export default function DataCardList() {
-  const { data } = useTumblerRecord({});
+  const { data } = useTumblerRecord();
 
   const cardListData: CardDataProps[] = [
     {
