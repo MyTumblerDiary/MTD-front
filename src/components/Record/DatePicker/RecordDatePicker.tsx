@@ -2,20 +2,24 @@ import { ko } from 'date-fns/locale';
 import { getYear, getMonth } from 'date-fns';
 
 import Typography from '../../Common/Typography/Typography';
+import Title from '@/components/Common/Heading/Title';
 
 import * as Style from './RecordDatePicker.style';
 
 import Svg from '../../svg';
-import Title from '@/components/Common/Heading/Title';
+import { RecordInputTypes } from '@/types';
 
 interface DatePickerProps {
   recordDate: Date;
-  setRecordDate: React.Dispatch<React.SetStateAction<Date>>;
+  setUserInput: React.Dispatch<React.SetStateAction<RecordInputTypes>>;
 }
 
-const RecordDatePicker = ({ recordDate, setRecordDate }: DatePickerProps) => {
+const RecordDatePicker = ({ recordDate, setUserInput }: DatePickerProps) => {
   const handleDateChange = (date: Date) => {
-    setRecordDate(date);
+    setUserInput((currentState) => ({
+      ...currentState,
+      recordDate: date
+    }));
   };
 
   const handleFocusBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -31,22 +35,37 @@ const RecordDatePicker = ({ recordDate, setRecordDate }: DatePickerProps) => {
           decreaseMonth,
           increaseMonth,
           nextMonthButtonDisabled
-        }) => (
-          <Style.DatePickerHeader>
-            <Style.DecreaseMonthButton onClick={decreaseMonth}>
-              <Svg.CaretRight />
-            </Style.DecreaseMonthButton>
-            <Typography size='button1' variant='main'>
-              {getYear(date)}년 {getMonth(date) + 1}월
-            </Typography>
-            <Style.IncreaseMonthButton
-              onClick={increaseMonth}
-              disabled={nextMonthButtonDisabled}
-            >
-              <Svg.CaretRight />
-            </Style.IncreaseMonthButton>
-          </Style.DatePickerHeader>
-        )}
+        }) => {
+          const onClickDecreaseMonth = (
+            e: React.MouseEvent<HTMLButtonElement>
+          ) => {
+            e.preventDefault();
+            decreaseMonth();
+          };
+          const onClickIncreaseMonth = (
+            e: React.MouseEvent<HTMLButtonElement>
+          ) => {
+            e.preventDefault();
+            increaseMonth();
+          };
+
+          return (
+            <Style.DatePickerHeader>
+              <Style.DecreaseMonthButton onClick={onClickDecreaseMonth}>
+                <Svg.CaretRight />
+              </Style.DecreaseMonthButton>
+              <Typography size='button1' variant='main'>
+                {getYear(date)}년 {getMonth(date) + 1}월
+              </Typography>
+              <Style.IncreaseMonthButton
+                onClick={onClickIncreaseMonth}
+                disabled={nextMonthButtonDisabled}
+              >
+                <Svg.CaretRight />
+              </Style.IncreaseMonthButton>
+            </Style.DatePickerHeader>
+          );
+        }}
         selected={recordDate}
         dateFormat='yyyy년 MM월 dd일'
         maxDate={new Date()}

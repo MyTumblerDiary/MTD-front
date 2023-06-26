@@ -26,6 +26,12 @@ const validationMessage = {
   authRequest: {
     success: '인증번호 전송 완료',
     fail: '인증번호 전송 실패'
+  },
+  recordTumblerImage: {
+    isEmpty: '사용하신 텀블러 사진을 넣어주세요.'
+  },
+  recordPlace: {
+    isEmpty: '텀블러를 사용한 장소를 입력해주세요.'
   }
 };
 

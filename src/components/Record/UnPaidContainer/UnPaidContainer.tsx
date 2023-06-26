@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import useRecordState from '@/hooks/useRecordState';
+import useImagePresign from '@/hooks/useImagePresign';
+import useImageUpload from '@/hooks/useImageUpload';
+
+import { RECORD_TUMBLER_PRIVATE_SPACE } from '@/apollo/mutations';
 
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
@@ -13,32 +19,80 @@ import {
   type InputProps,
   type ButtonProps,
   type TypographyProps,
-  type TextareaProps
+  type TextareaProps,
+  type RecordInputTypes
 } from '@/types';
 
+import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 
 import * as Style from './UnPaidContainer.style';
+import { useMutation } from '@apollo/client';
+
+const initialState: RecordInputTypes = {
+  tumblerImage: {
+    value: '' as unknown as File,
+    validation: 'default',
+    message: ''
+  },
+  place: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+  recordDate: new Date(),
+  previewImageSrc: ''
+};
 
 const UnPaidContainer = () => {
-  const [recordDate, setRecordDate] = useState(new Date());
-  const [previewImage, setPreviewImage] = useState('');
-  const [place, setPlace] = useState('');
+  const router = useRouter();
+
+  const {
+    userInput,
+    isValidateSubmit,
+    handleUserInputWithValidation,
+    setUserInput
+  } = useRecordState(initialState);
   const [memo, setMemo] = useState('');
 
-  const handleChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPlace(value);
+  const [imagePresign] = useImagePresign({
+    imageData: userInput.tumblerImage.value
+  });
+  const { handleImageUpload } = useImageUpload();
+  const [recordTumblerPrivate] = useMutation(RECORD_TUMBLER_PRIVATE_SPACE);
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const response = await imagePresign();
+    const { presignedUrl, fileKey } = response.data.getPresignedUrl;
+
+    await handleImageUpload(userInput.tumblerImage.value, presignedUrl);
+
+    await recordTumblerPrivate({
+      variables: {
+        input: {
+          imageFileKey: fileKey,
+          memo: memo,
+          placeType: userInput.place.value,
+          usedAt: toStringByFormatting(userInput.recordDate)
+        }
+      },
+      onCompleted: () => {
+        router.push('/');
+      }
+    });
   };
 
   const RecordDatePickerProps = {
-    recordDate,
-    setRecordDate
+    recordDate: userInput.recordDate,
+    setUserInput
   };
 
   const TumblerImageProps = {
-    previewImage,
-    setPreviewImage
+    userInput,
+    setUserInput,
+    handleUserInputWithValidation
   };
 
   const PlaceInputProps: InputProps = {
@@ -46,10 +100,10 @@ const UnPaidContainer = () => {
     name: 'place',
     size: 'full',
     label: 'place',
-    value: place,
+    value: userInput.place.value,
     maxLength: 10,
     placeholder: '장소를 입력해주세요.',
-    onChange: handleChangePlace
+    onChange: handleUserInputWithValidation
   };
 
   const MemoProps: TextareaProps = {
@@ -72,11 +126,8 @@ const UnPaidContainer = () => {
     type: 'submit',
     size: 'lg',
     name: 'record',
+    disabled: !isValidateSubmit,
     children: <Typography {...SubmitButtonTextProps} />
-  };
-
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
   return (
