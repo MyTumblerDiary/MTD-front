@@ -39,3 +39,7 @@ export const Texttest = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
+export const ScrollTarget = styled.div`
+  height: 10px;
+`;

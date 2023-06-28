@@ -16,6 +16,7 @@ import useIntersectionObserver from './useIntersectionObserver';
 import useLogout from './useLogout';
 import useMypageInfo from './useMypageInfo';
 import useUpdatePassword from './useUpdatePassword';
+import useTumblerRecords from './useTumblerRecords';
 
 export {
   useDebounce,
@@ -35,5 +36,6 @@ export {
   useIntersectionObserver,
   useLogout,
   useMypageInfo,
-  useUpdatePassword
+  useUpdatePassword,
+  useTumblerRecords
 };

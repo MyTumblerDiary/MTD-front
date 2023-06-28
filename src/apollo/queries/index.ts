@@ -74,10 +74,6 @@ export const GET_MYPAGE_INFO = gql`
       nickname
       social
     }
-    tumblerRecords {
-      totalDiscount
-      totalUsedTumbler
-    }
   }
 `;
 
@@ -87,6 +83,23 @@ export const SEARCH_FRANCISE = gql`
       id
       name
       discountPrice
+    }
+  }
+`;
+
+export const GET_TUMBLER_RECORDS_PAGINATION = gql`
+  query TumblerRecordsPaginated($input: FindWithOptionsTumblerRecordInput) {
+    tumblerRecordsPaginated(input: $input) {
+      currentCount
+      totalCount
+      currentPage
+      totalPages
+      tumblerRecords {
+        usedAt
+        placeType
+        memo
+        prices
+      }
     }
   }
 `;
