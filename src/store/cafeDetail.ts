@@ -5,7 +5,7 @@ import { type CafeProps } from '@/types';
 const initialState: CafeProps = {
   id: 0,
   name: '',
-  thumbnail: '',
+  imageFileKey: '',
   streetNameAddress: '',
   latitude: 0,
   longitude: 0,
