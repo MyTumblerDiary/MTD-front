@@ -50,5 +50,9 @@ const OauthKakao = () => {
 export default OauthKakao;
 
 OauthKakao.getLayout = function getLayout(page: React.ReactElement) {
-  return <Layout bottomNavigator={false}>{page}</Layout>;
+  return (
+    <Layout header={false} bottomNavigator={false}>
+      {page}
+    </Layout>
+  );
 };

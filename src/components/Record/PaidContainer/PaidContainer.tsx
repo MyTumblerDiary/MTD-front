@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useMutation } from '@apollo/client';
+import useRecordState from '@/hooks/useRecordState';
+import useImageUpload from '@/hooks/useImageUpload';
+import useImagePresign from '@/hooks/useImagePresign';
+
+import { RECORD_TUMBLER_CAFE } from '@/apollo/mutations';
 
 import Title from '../../Common/Heading/Title';
 import Typography from '../../Common/Typography/Typography';
@@ -14,91 +21,110 @@ import {
   type InputProps,
   type ButtonProps,
   type TypographyProps,
-  TextareaProps
+  type TextareaProps,
+  type RecordInputTypes
 } from '@/types';
-import { KakaoResultType } from '@/types/kakaoSearchResult.type';
 
 import { MEMO_MAX_LENGTH } from '@/utils/constants/recordMemoLength';
 import { DISCOUNTED_AMOUNT } from '@/utils/constants/discountedAmount';
+import { toStringByFormatting } from '@/utils/helpers/calendar.helper';
 
 import * as Style from './PaidContainer.style';
 
+const initialState: RecordInputTypes = {
+  recordDate: new Date(),
+  previewImageSrc: '',
+  tumblerImage: {
+    value: '' as unknown as File,
+    validation: 'default',
+    message: ''
+  },
+  place: {
+    value: '',
+    validation: 'default',
+    message: ''
+  },
+
+  placeSearchWord: '',
+  placeSearchResult: [],
+  isDiscounted: false,
+  discountPrice: 0,
+
+  cafeData: {
+    name: '',
+    discountPrice: 0,
+    kakaoUId: '',
+    franchiseId: null,
+    detailAddress: '',
+    latitude: 0,
+    longitude: 0,
+    streetNameAddress: '',
+    lotNumberAddress: ''
+  }
+};
+
 const PaidContainer = () => {
-  const [recordDate, setRecordDate] = useState(new Date());
-  const [previewImage, setPreviewImage] = useState('');
-  const [placeSearchWord, setPlaceSearchWord] = useState('');
-  const [placeSearchResult, setPlaceSearchResult] = useState<KakaoResultType[]>(
-    []
-  );
-  const [place, setPlace] = useState('');
-  const [isDiscountChecked, setIsDiscountChecked] = useState(false);
+  const router = useRouter();
   const [memo, setMemo] = useState('');
+  const {
+    isValidateSubmit,
+    userInput,
+    setUserInput,
+    handleUserInputWithValidation,
+    handlePlaceInput,
+    onClickSearchResult,
+    handlerUserInputWithoutValidation
+  } = useRecordState(initialState);
 
-  const [timer, setTimer] = useState<NodeJS.Timeout>();
+  const [imagePresign] = useImagePresign({
+    imageData: userInput.tumblerImage.value
+  });
+  const { handleImageUpload } = useImageUpload();
 
-  const handlePlaceInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPlaceSearchWord(value);
+  const [recordTumblerCafe] = useMutation(RECORD_TUMBLER_CAFE);
 
-    if (value.length <= 1) {
-      setPlaceSearchResult([]);
-      return;
-    }
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    if (timer) {
-      clearTimeout(timer);
-    }
+    const imagePresignResponse = await imagePresign();
+    const { presignedUrl, fileKey } = imagePresignResponse.data.getPresignedUrl;
 
-    const newTimer = setTimeout(() => {
-      searchAutoComplete(value);
-    }, 100);
+    await handleImageUpload(userInput.tumblerImage.value, presignedUrl);
 
-    setTimer(newTimer);
-  };
+    const discountedPrice = !userInput.isDiscounted
+      ? 0
+      : userInput.discountPrice;
 
-  const searchAutoComplete = (searchKeyword: string) => {
-    const { kakao } = window;
-
-    console.log('히히');
-
-    kakao.maps.load(() => {
-      const placeObj = new kakao.maps.services.Places();
-
-      placeObj.keywordSearch(
-        searchKeyword,
-        (result: KakaoResultType[]) => {
-          setPlaceSearchResult(result);
-        },
-        {
-          category_group_code: ['CE7'],
-          size: 5
+    await recordTumblerCafe({
+      variables: {
+        input: {
+          createStoreInput: {
+            ...userInput.cafeData
+          },
+          createTumblerRecordInput: {
+            usedAt: toStringByFormatting(userInput.recordDate),
+            imageFileKey: fileKey,
+            memo: memo,
+            placeType: userInput.place.value,
+            prices: discountedPrice
+          }
         }
-      );
+      },
+      onCompleted: () => {
+        router.push('/');
+      }
     });
   };
 
-  const onClickSearchResult = (place: string) => {
-    setPlace(place);
-    setPlaceSearchResult([]);
-    setPlaceSearchWord('');
-  };
-
-  const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsDiscountChecked(e.target.checked);
-  };
-
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   const RecordDatePickerProps = {
-    recordDate,
-    setRecordDate
+    recordDate: userInput.recordDate,
+    setUserInput
   };
 
   const TumblerImageProps = {
-    previewImage,
-    setPreviewImage
+    userInput,
+    setUserInput,
+    handleUserInputWithValidation
   };
 
   const SubmitButtonTextProps: TypographyProps = {
@@ -111,6 +137,7 @@ const PaidContainer = () => {
     type: 'submit',
     size: 'lg',
     name: 'record',
+    disabled: !isValidateSubmit,
     children: <Typography {...SubmitButtonTextProps} />
   };
 
@@ -119,7 +146,7 @@ const PaidContainer = () => {
     name: 'place',
     size: 'full',
     label: 'place',
-    value: placeSearchWord,
+    value: userInput?.placeSearchWord || '',
     placeholder: '장소를 입력해주세요.',
     onChange: handlePlaceInput
   };
@@ -147,17 +174,18 @@ const PaidContainer = () => {
           <Title variant='main'>텀블러를 어디에서 사용했나요?</Title>
           <Style.SearchContainer>
             <Input {...PlaceInputProps} />
-            {placeSearchResult.length > 0 && (
-              <SearchResultPopup
-                placeSearchResult={placeSearchResult}
-                onClickSearchResult={onClickSearchResult}
-              />
-            )}
+            {userInput.placeSearchResult &&
+              userInput.placeSearchResult.length > 0 && (
+                <SearchResultPopup
+                  placeSearchResult={userInput.placeSearchResult}
+                  onClickSearchResult={onClickSearchResult}
+                />
+              )}
           </Style.SearchContainer>
-          {place && (
+          {userInput.place.value && (
             <div>
               <Style.SelectedPlace>
-                <Typography size='body2'>{place}</Typography>
+                <Typography size='body2'>{userInput.place.value}</Typography>
               </Style.SelectedPlace>
             </div>
           )}
@@ -168,20 +196,26 @@ const PaidContainer = () => {
           <Style.DiscountCheckboxContainer>
             <Style.DiscountCheckbox
               type='checkbox'
-              id='discount'
-              checked={isDiscountChecked}
-              onChange={onChangeCheckbox}
+              id='isDiscounted'
+              name='isDiscounted'
+              checked={userInput?.isDiscounted}
+              onChange={handlerUserInputWithoutValidation}
             />
-            <Style.DiscountCheckboxLabel htmlFor='discount'>
+            <Style.DiscountCheckboxLabel htmlFor='isDiscounted'>
               네, 할인 받았어요!
             </Style.DiscountCheckboxLabel>
           </Style.DiscountCheckboxContainer>
         </Style.ElementContainer>
 
-        {isDiscountChecked && (
+        {userInput?.isDiscounted && (
           <Style.ElementContainer>
             <Title variant='main'>할인 금액</Title>
-            <Style.DiscountedAmountSelect name='discounted_amount'>
+            <Style.DiscountedAmountSelect
+              name='discountPrice'
+              onChange={handlerUserInputWithoutValidation}
+              value={userInput.discountPrice}
+              disabled={userInput.discountPrice !== 0}
+            >
               {DISCOUNTED_AMOUNT.map((amount) => (
                 <option key={amount} value={amount}>
                   {amount}원

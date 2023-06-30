@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import MainHeader from '../../Common/MainHeader/MainHeader';
 import Typography from '../../Common/Typography/Typography';
 import DiscountInformation from '../DiscountInformation/DiscountInformation';
 
@@ -17,7 +16,6 @@ const MypageContainer = () => {
 
   return (
     <Style.MypageContainer>
-      <MainHeader title='마이페이지' />
       <Style.MainContainer>
         <Style.NicknameContainer>
           <Typography size='button1'>뚱당뚱당</Typography>

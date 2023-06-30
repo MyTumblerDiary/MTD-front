@@ -5,7 +5,7 @@ export const DataCardList = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 10px;
-  padding: 0px 20px 20px 20px;
+  padding-bottom: 20px;
   overflow-x: scroll;
 
   ::-webkit-scrollbar {

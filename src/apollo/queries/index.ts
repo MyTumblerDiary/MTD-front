@@ -14,7 +14,7 @@ export const CHECK_EMAIL_DUPLICATION = gql`
 
 export const SEND_EMAIL = gql`
   query Query($email: String!) {
-    sendEmail(email: $email)
+    createUserEmail(email: $email)
   }
 `;
 
@@ -25,26 +25,17 @@ export const CHECK_EMAIL_AUTH = gql`
 `;
 
 export const GET_TUMBLER_RECORDS = gql`
-  query TumblerRecords($searchTumblerRecordInput: SearchTumblerRecordInput!) {
-    tumblerRecords(searchTumblerRecordInput: $searchTumblerRecordInput) {
-      totalUsedTumbler
-      totalDiscount
-      filteredTumbler
-      filteredDiscount
-      tumblerRecords {
-        usedAt
-        updatedAt
-        prices
-        placeType
-        memo
-        imageFileKey
-        id
-        deletedAt
-        createdAt
-        store {
-          name
-          streetNameAddress
-        }
+  query TumblerRecords {
+    tumblerRecords {
+      prices
+      placeType
+      memo
+      imageFileKey
+      id
+      usedAt
+      store {
+        name
+        streetNameAddress
       }
     }
   }
@@ -73,6 +64,16 @@ export const FETCH_STORES = gql`
         discountPrice
         imageFileKey
       }
+    }
+  }
+`;
+
+export const SEARCH_FRANCISE = gql`
+  query FranchisesBySearch($searchInput: SearchFranchiseInput!) {
+    franchisesBySearch(searchInput: $searchInput) {
+      id
+      name
+      discountPrice
     }
   }
 `;

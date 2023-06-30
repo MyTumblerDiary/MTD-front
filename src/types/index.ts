@@ -12,6 +12,8 @@ import {
   type StepArrayProps,
   type StepButtonNameProps
 } from './stepper.type';
+import { type RecordInputTypes, type SelectedPlaceType } from './record.type';
+import { type KakaoResultType } from './/kakaoSearchResult.type';
 import {
   type TumblerRecordProps,
   type TumblerRecordsProps,
@@ -39,6 +41,9 @@ export {
   StepButtonNameProps,
   TypographyProps,
   TextareaProps,
+  RecordInputTypes,
+  KakaoResultType,
+  SelectedPlaceType,
   TumblerRecordProps,
   TumblerRecordsProps,
   ViewProps,

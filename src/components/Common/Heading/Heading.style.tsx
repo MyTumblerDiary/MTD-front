@@ -16,7 +16,7 @@ export const SubTitle = styled.h2`
 
 export const Title = styled.h3<TitleProps>`
   ${(props) => props.variantStyle}
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: var(--typography-color, black);
 `;

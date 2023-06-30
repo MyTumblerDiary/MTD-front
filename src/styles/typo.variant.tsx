@@ -11,6 +11,9 @@ export const VARIANTS = {
   main: css`
     --typography-color: ${theme.color.main};
   `,
+  primary: css`
+    --typography-color: ${theme.color.primary};
+  `,
   gray: css`
     --typography-color: ${theme.color.g400};
   `,
@@ -28,5 +31,11 @@ export const VARIANTS = {
   `,
   error: css`
     --typography-color: ${theme.color.error};
+  `,
+  medium: css`
+    --typography-color: ${theme.color.medium};
+  `,
+  high: css`
+    --typography-color: ${theme.color.high};
   `
 };

@@ -15,30 +15,39 @@ export default function SheetContent() {
 
   return (
     <>
-      {tumblerRecords.map(({ id, imageFileKey, memo, prices, store }, idx) => (
-        <Style.SheetContent key={id}>
-          <Style.DiaryRecord>
-            <Style.RecordImage src={imageFileKey} alt={`today_tumbler_${id}`} />
-            <Style.RecordInfoWrapper>
-              <Style.RecordInfo>
-                <Style.RecordHeader>
-                  <Typography size='button1'>
-                    {store?.name || '카페 이름'}
-                  </Typography>
-                  <Typography size='caption'>
-                    {store?.streetNameAddress || '도로명 주소'}
-                  </Typography>
-                </Style.RecordHeader>
-                <Typography size='body2'>{memo || ''}</Typography>
-              </Style.RecordInfo>
-              <Style.RecordAmount>
-                <Typography size='button1'>{prices || 0}원 할인</Typography>
-              </Style.RecordAmount>
-            </Style.RecordInfoWrapper>
-          </Style.DiaryRecord>
-          {tumblerRecords.length - 1 !== idx && <Style.HorizontalRule />}
-        </Style.SheetContent>
-      ))}
+      {tumblerRecords.map(
+        ({ id, imageFileKey, memo, prices, store, placeType }, idx) => (
+          <Style.SheetContent key={id}>
+            <Style.DiaryRecord>
+              <Style.RecordImage>
+                <img
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}${imageFileKey}`}
+                  alt={`today_tumbler_${idx}`}
+                />
+              </Style.RecordImage>
+              <Style.RecordInfoWrapper>
+                <Style.RecordInfo>
+                  <Style.RecordHeader>
+                    <Typography size='button1'>
+                      {store?.name || placeType}
+                    </Typography>
+                    <Typography size='caption'>
+                      {store?.streetNameAddress || '개인공간'}
+                    </Typography>
+                  </Style.RecordHeader>
+                  <Typography size='body2'>{memo || ''}</Typography>
+                </Style.RecordInfo>
+                {!!store && (
+                  <Style.RecordAmount>
+                    <Typography size='button1'>{prices || 0}원 할인</Typography>
+                  </Style.RecordAmount>
+                )}
+              </Style.RecordInfoWrapper>
+            </Style.DiaryRecord>
+            {tumblerRecords.length - 1 !== idx && <Style.HorizontalRule />}
+          </Style.SheetContent>
+        )
+      )}
     </>
   );
 }
