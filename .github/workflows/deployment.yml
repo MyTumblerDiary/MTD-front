@@ -25,6 +25,18 @@ jobs:
 
       - name: NPM 패키지를 설치합니다.
         run: npm ci
+      - name: 환경변수를 생성합니다.
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_API=${{secrets.NEXT_PUBLIC_API}} >> .env
+          echo NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY=${{secrets.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY}} >> .env
+          echo NEXT_PUBLIC_KAKAO_RESTAPI_KEY=${{secrets.NEXT_PUBLIC_KAKAO_RESTAPI_KEY}} >> .env
+          echo NEXT_PUBLIC_KAKAO_CALLBACK_URL=${{secrets.NEXT_PUBLIC_KAKAO_CALLBACK_URL}} >> .env
+          echo NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID}} >> .env
+          echo NEXT_PUBLIC_GOOGLE_CALLBACK_URL=${{secrets.NEXT_PUBLIC_GOOGLE_CALLBACK_URL}} >> .env
+          echo NEXT_PUBLIC_SLACK_WEBHOOK_URL=${{secrets.NEXT_PUBLIC_SLACK_WEBHOOK_URL}} >> .env
+          echo NEXT_PUBLIC_S3_URL=${{secrets.NEXT_PUBLIC_S3_URL}} >> .env
+          cat .env
 
       - name: 프로젝트를 빌드합니다.
         run: npm run build
