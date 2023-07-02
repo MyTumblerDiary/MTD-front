@@ -1,16 +1,16 @@
-import activeModalNameVar from '@/store/modal';
+import { activeModalNameVar, modalProps } from '@/store/modal';
 
-interface OpenModalProps {
-  modalName: string;
-}
+import { OpenModalProps } from '@/types/modal.type';
 
 const useModal = () => {
-  const openModal = ({ modalName }: OpenModalProps) => {
+  const openModal = ({ modalName, props }: OpenModalProps) => {
     activeModalNameVar(modalName);
+    modalProps(props);
   };
 
   const closeModal = () => {
     activeModalNameVar('');
+    modalProps({});
   };
 
   return { openModal, closeModal };

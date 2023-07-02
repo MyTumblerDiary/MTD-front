@@ -1,3 +1,9 @@
+import {
+  useIntersectionObserver,
+  useTumblerRecord,
+  useTumblerRecords
+} from '@/hooks';
+
 import Header from '@/components/Common/Header/Header';
 import DiscountInformation from '../DiscountInformation/DiscountInformation';
 import Typography from '@/components/Common/Typography/Typography';
@@ -5,34 +11,44 @@ import Typography from '@/components/Common/Typography/Typography';
 import * as Style from './DiscountReport.style';
 
 const DiscountReport = () => {
+  // const { data } = useTumblerRecord();
+  const { data, fetchMore, loading } = useTumblerRecords();
+
   const DiscountInformationProps = {
-    count: 26,
-    amount: 5900
+    // query 데이터 변경으로 에러 발생해서 임시 주석처리
+    // count: data?.tumblerRecords.totalUsedTumbler,
+    // amount: data?.tumblerRecords.totalDiscount
+    count: 5,
+    amount: 1800
   };
 
-  const DUMMY_DATA = [
-    {
-      date: '05.06',
-      title: '투썸플레이스 인하대점',
-      memo: '메모메모',
-      price: 300,
-      amount: 5900
+  const scrollRef = useIntersectionObserver(
+    async (entry, observer) => {
+      observer.unobserve(entry.target);
+
+      if (
+        !loading &&
+        data.tumblerRecordsPaginated.totalPages -
+          data.tumblerRecordsPaginated.currentPage >
+          0
+      ) {
+        fetchMore({
+          variables: {
+            input: {
+              paginateInput: {
+                page: data.tumblerRecordsPaginated.currentPage + 1,
+                limit: 10
+              },
+              orderInput: { orderBy: 'usedAt', orderDirection: 'DESC' }
+            }
+          }
+        });
+      }
     },
     {
-      date: '05.06',
-      title: '투썸플레이스 인하대점',
-      memo: '메모메모',
-      price: 300,
-      amount: 5900
-    },
-    {
-      date: '05.06',
-      title: '투썸플레이스 인하대점',
-      memo: '메모메모',
-      price: 300,
-      amount: 5900
+      threshold: 0.7
     }
-  ];
+  );
 
   return (
     <div>
@@ -43,28 +59,28 @@ const DiscountReport = () => {
         </Style.DiscountInformationContainer>
 
         <Style.ListContainer>
-          {DUMMY_DATA.map((el, index) => {
-            const { date, title, memo, price, amount } = el;
-            return (
-              <Style.ReportContainer key={`${date}-${index}`}>
-                <Typography size='body2'>{date}</Typography>
-                <Style.ReportTitleContainer>
-                  <Typography size='body1'>{title}</Typography>
-                  <Typography size='body2' variant='gray3'>
-                    {memo}
+          {data?.tumblerRecordsPaginated.tumblerRecords.map(
+            (el: any, index: number) => {
+              const { usedAt, placeType, memo, prices } = el;
+              return (
+                <Style.ReportContainer key={`${usedAt}-${index}`}>
+                  <Typography size='body2'>
+                    {usedAt.split('-').splice(1).join('.')}
                   </Typography>
-                </Style.ReportTitleContainer>
-                <Style.ReportAmountContainer>
+                  <Style.ReportTitleContainer>
+                    <Typography size='body1'>{placeType}</Typography>
+                    <Typography size='body2' variant='gray3'>
+                      {memo}
+                    </Typography>
+                  </Style.ReportTitleContainer>
                   <Typography size='button1'>
-                    {price.toLocaleString()}원
+                    {prices?.toLocaleString() || 0}원
                   </Typography>
-                  <Typography size='body2' variant='gray3'>
-                    {amount.toLocaleString()}원
-                  </Typography>
-                </Style.ReportAmountContainer>
-              </Style.ReportContainer>
-            );
-          })}
+                </Style.ReportContainer>
+              );
+            }
+          )}
+          <Style.ScrollTarget ref={scrollRef} />
         </Style.ListContainer>
       </Style.MainContainer>
     </div>

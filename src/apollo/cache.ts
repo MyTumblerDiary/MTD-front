@@ -20,6 +20,25 @@ export const cache = new InMemoryCache({
 
             return incoming;
           }
+        },
+        tumblerRecordsPaginated: {
+          keyArgs: false,
+          merge(existing = {}, incoming) {
+            if (!incoming.tumblerRecords.length) {
+              return existing;
+            }
+
+            if (!!existing.tumblerRecords) {
+              return {
+                ...incoming,
+                tumblerRecords: [
+                  ...existing.tumblerRecords,
+                  ...incoming.tumblerRecords
+                ]
+              };
+            }
+            return incoming;
+          }
         }
       }
     }

@@ -31,7 +31,7 @@ const DiscountInformation = ({
       </Style.MainInfo>
       <Style.VerticalLine />
       <Style.MainInfo>
-        <Typography size='button1'>{amount.toLocaleString()}원</Typography>
+        <Typography size='button1'>{amount?.toLocaleString()}원</Typography>
         <Typography size='body2'>할인 받은 금액</Typography>
       </Style.MainInfo>
     </Style.MainInfoContainer>

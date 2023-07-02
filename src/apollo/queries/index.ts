@@ -68,12 +68,38 @@ export const FETCH_STORES = gql`
   }
 `;
 
+export const GET_MYPAGE_INFO = gql`
+  query Query {
+    user {
+      nickname
+      social
+    }
+  }
+`;
+
 export const SEARCH_FRANCISE = gql`
   query FranchisesBySearch($searchInput: SearchFranchiseInput!) {
     franchisesBySearch(searchInput: $searchInput) {
       id
       name
       discountPrice
+    }
+  }
+`;
+
+export const GET_TUMBLER_RECORDS_PAGINATION = gql`
+  query TumblerRecordsPaginated($input: FindWithOptionsTumblerRecordInput) {
+    tumblerRecordsPaginated(input: $input) {
+      currentCount
+      totalCount
+      currentPage
+      totalPages
+      tumblerRecords {
+        usedAt
+        placeType
+        memo
+        prices
+      }
     }
   }
 `;

@@ -69,10 +69,22 @@ export const UPDATE_USER = gql`
   }
 `;
 
+export const LOGOUT = gql`
+  mutation Mutation {
+    logout
+  }
+`;
+
 export const UPDATE_PASSWORD = gql`
   mutation ResetPassword($userEmail: String!, $password: String!) {
     resetPassword(userEmail: $userEmail, password: $password) {
       id
     }
+  }
+`;
+
+export const DELETE_USER = gql`
+  mutation Mutation {
+    deleteUser
   }
 `;

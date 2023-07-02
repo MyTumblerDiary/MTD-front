@@ -33,16 +33,13 @@ export const ReportTitleContainer = styled.div`
   gap: 8px;
 `;
 
-export const ReportAmountContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-`;
-
 export const Texttest = styled.p`
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const ScrollTarget = styled.div`
+  height: 10px;
 `;

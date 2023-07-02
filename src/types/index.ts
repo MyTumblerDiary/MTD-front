@@ -29,6 +29,7 @@ import {
   type NotifyMessageProps
 } from './messageInfo.type';
 import { type CafeProps, type CafesProps } from './cafe.type';
+import { type ChangePasswordInputTypes } from './changePassword.type';
 
 export {
   ButtonProps,
@@ -52,5 +53,6 @@ export {
   NotifyMessageProps,
   CafeProps,
   CafesProps,
-  StoreSearchStoreInput
+  StoreSearchStoreInput,
+  ChangePasswordInputTypes
 };

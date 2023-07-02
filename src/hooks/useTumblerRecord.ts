@@ -6,6 +6,6 @@ export default function useTumblerRecord() {
     onError: (error) => {
       console.error(error);
     },
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'network-only'
   });
 }

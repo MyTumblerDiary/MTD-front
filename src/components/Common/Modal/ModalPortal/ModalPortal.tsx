@@ -1,27 +1,30 @@
 import { createPortal } from 'react-dom';
 import { useReactiveVar } from '@apollo/client';
 
-import activeModalNameVar from '@/store/modal';
+import { activeModalNameVar, modalProps } from '@/store/modal';
 
 import useModal from '@/hooks/useModal';
 
 import Logout from '../Logout/Logout';
 import Withdrawal from '../Withdrawal/Withdrawal';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 import * as Style from './ModalPortal.style';
 
 type ModalComponentType = {
-  [key: string]: () => JSX.Element;
+  [key: string]: (props?: any) => JSX.Element;
 };
 
 const MODAL_COMPONENTS: ModalComponentType = {
   logout: Logout,
-  withdrawal: Withdrawal
+  withdrawal: Withdrawal,
+  confirm: ConfirmModal
 };
 
 const ModalPortal = () => {
   const { closeModal } = useModal();
   const activeModalName = useReactiveVar(activeModalNameVar);
+  const modalPropsValue = useReactiveVar(modalProps);
 
   const selectedElement =
     typeof window !== 'undefined' &&
@@ -37,7 +40,7 @@ const ModalPortal = () => {
     ? createPortal(
         <Style.Backdrop onClick={closeModal}>
           <div onClick={(e) => e.stopPropagation()}>
-            <Modal />
+            <Modal {...modalPropsValue} />
           </div>
         </Style.Backdrop>,
         selectedElement

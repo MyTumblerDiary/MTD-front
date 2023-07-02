@@ -2,15 +2,22 @@ import Link from 'next/link';
 import Typography from '../../Common/Typography/Typography';
 import DiscountInformation from '../DiscountInformation/DiscountInformation';
 
+import { useMypageInfo } from '@/hooks';
+
 import SUB_INFORMATION from '@/utils/constants/mypageSubInfo';
 import Svg from '../../svg';
 
 import * as Style from './MainContainer.style';
 
 const MypageContainer = () => {
+  const { data } = useMypageInfo();
+
   const DiscountInformationProps = {
-    count: 26,
-    amount: 5900,
+    // query 데이터 변경으로 에러 발생해서 임시 주석처리
+    // count: data?.tumblerRecords.totalUsedTumbler,
+    // amount: data?.tumblerRecords.totalDiscount,
+    count: 5,
+    amount: 1800,
     href: '/mypage/discount-report'
   };
 
@@ -18,7 +25,7 @@ const MypageContainer = () => {
     <Style.MypageContainer>
       <Style.MainContainer>
         <Style.NicknameContainer>
-          <Typography size='button1'>뚱당뚱당</Typography>
+          <Typography size='button1'>{data?.user.nickname}</Typography>
           <Link href='/mypage/change-nickname'>
             <Svg.Pencil />
           </Link>
