@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { useRouter } from 'next/router';
 
 import Header from '@/components/Common/Header/Header';
 import Input from '@/components/Common/Input/Input';
@@ -15,7 +14,6 @@ import { ButtonProps, type InputProps, type UserInputPramProps } from '@/types';
 import * as Style from './ChangeNickname.style';
 
 const ChangeNickname = () => {
-  const router = useRouter();
   const [nickname, setNickname] = useState<UserInputPramProps>({
     value: '',
     validation: 'default',

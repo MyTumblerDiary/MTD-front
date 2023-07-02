@@ -13,8 +13,11 @@ const MypageContainer = () => {
   const { data } = useMypageInfo();
 
   const DiscountInformationProps = {
-    count: data?.tumblerRecords.totalUsedTumbler,
-    amount: data?.tumblerRecords.totalDiscount,
+    // query 데이터 변경으로 에러 발생해서 임시 주석처리
+    // count: data?.tumblerRecords.totalUsedTumbler,
+    // amount: data?.tumblerRecords.totalDiscount,
+    count: 5,
+    amount: 1800,
     href: '/mypage/discount-report'
   };
 
